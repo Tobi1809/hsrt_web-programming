@@ -1,0 +1,62 @@
+.TitleBand{
+    display: grid;
+    height: 100px;
+    background-color: rgb(68, 67, 67);
+    grid-template-columns: 1fr 2fr 8fr 1fr 1fr 1fr;
+    background-image: linear-gradient(to right, rgb(68, 67, 67), rgb(87, 74, 64));
+}
+
+.TitleBandBox{
+    background-color: rgb(68, 67, 67);
+}
+
+.myTitle{
+    font-size: xx-large;
+}
+
+h1.myTitle{
+    color: whitesmoke;
+}
+strong.myTitle{
+    color: orange;
+}
+p.myTitle{
+    font-size: medium;
+    color: rgb(168, 168, 168);
+}
+/* .mySearchbar{
+    display: grid;
+    grid-template-columns: 2fr 9fr 1fr;
+} */
+
+.myProductsArea{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(175, 175, 175);
+}
+.myProductsGrid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: rgb(175, 175, 175);
+    padding: 50px;
+    
+}
+.myProductBox{
+    height: 500px;
+    width: 300px;
+    background-color: white;
+    float: left;
+
+    border-radius: 40px 20px 40px 20px;
+    padding: 20px 20px;
+    margin: 10px;
+    box-shadow: 10px -10px 3px rgb(255, 193, 92);
+}
+p{
+    color: lightgrey;
+}
+b{
+    color: red;
+    size: large;
+}
