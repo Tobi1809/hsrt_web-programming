@@ -35,7 +35,7 @@
     </div>
   </header>
 
-  <form class="form-horizontal">
+  <form method="POST" action="../backendPhp/registerUser.php" id="registerform" class="form-horizontal">
     <fieldset>
 
       <!-- Form Name -->
@@ -93,7 +93,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="email">Email</label>
         <div class="col-md-4">
-          <input id="email" name="email" type="password" placeholder="E-Mail-Adresse" class="form-control input-md"
+          <input id="email" name="email" type="email" placeholder="E-Mail-Adresse" class="form-control input-md"
             required="">
 
         </div>
@@ -123,8 +123,8 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="register"></label>
         <div class="col-md-4">
-          <button id="register" name="register" class="btn btn-success">Registrieren</button>
-          <button id="backtologin" name="backtologin" class="btn btn-info">Zurück zum Login</button>
+          <button type="submit" name="register" class="btn btn-success">Registrieren</button>
+          <a href="login.html" class="btn btn-info">Zurück zum Login</a>
         </div>
       </div>
 
