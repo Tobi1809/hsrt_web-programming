@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `webshop`
 --
-
+CREATE DATABASE IF NOT EXISTS `webshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_german2_ci;
+USE `webshop`;
 -- --------------------------------------------------------
 
 --
@@ -56,7 +57,6 @@ CREATE TABLE `ws_ordered_items` (
 CREATE TABLE `ws_orders` (
   `orderID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `shoppingcartID` int(11) NOT NULL,
   `orderPrice` decimal(4,2) NOT NULL,
   `shippingCosts` decimal(4,2) NOT NULL,
   `orderDate` datetime NOT NULL COMMENT 'Datum der Bestellung'
@@ -117,7 +117,6 @@ ALTER TABLE `ws_ordered_items`
 ALTER TABLE `ws_orders`
   ADD PRIMARY KEY (`orderID`),
   ADD KEY `userID_FK` (`userID`),
-  ADD KEY `shoppingcartID_FK` (`shoppingcartID`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `ws_shopping_cart`
@@ -182,7 +181,6 @@ ALTER TABLE `ws_ordered_items`
 -- Constraints der Tabelle `ws_orders`
 --
 ALTER TABLE `ws_orders`
-  ADD CONSTRAINT `shoppingcartIDOrders_FK` FOREIGN KEY (`shoppingcartID`) REFERENCES `ws_shopping_cart` (`shoppingcartID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `userIDOrders_FK` FOREIGN KEY (`userID`) REFERENCES `ws_users` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
