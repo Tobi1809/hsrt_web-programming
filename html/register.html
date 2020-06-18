@@ -23,7 +23,7 @@
   <script>
     $(document).ready(function () {// wichtig!
       //bind event Handler to submission form
-      $( "#registerform" ).submit(function( event ) {
+      $("#registerform").submit(function (event) {
         event.preventDefault(); // prevent submission
 
     h1.myTitle {
@@ -59,8 +59,9 @@
         var hash = sjcl.codec.hex.fromBits(out); //tested hash against https://hashgenerator.de/  -->it works
         data[6].value = hash; // override plane password 
 
-        $.post("../backendPhp/registerUser.php", 
-          { firstname: data[0].value,
+        $.post("../backendPhp/registerUser.php",
+          {
+            firstname: data[0].value,
             lastname: data[1].value,
             street: data[2].value,
             zip: data[3].value,
@@ -68,11 +69,11 @@
             email: data[5].value,
             password: data[6].value,
           },
-          function(returnedData) {
-              alert("login happend; data = " + returnedData)
+          function (returnedData) {
+            alert("login happend; data = " + returnedData);
           });
-        
-        
+
+
       });
 
 

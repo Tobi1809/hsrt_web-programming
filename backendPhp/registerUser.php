@@ -33,7 +33,7 @@
         }
         else //Wenn E-Mail-Adresse noch nicht vorhanden in der Datenbank...
         {
-            $password = hash('sha256', $password);
+            //$password = hash('sha256', $password);
 
             $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password) VALUES
             ('$firstname','$lastname','$street','$zip','$city','$email','$password')";
@@ -46,7 +46,6 @@
 
         //Start Session and initialize Variables
         session_start();
-        $_SESSION['loggedIn'] = TRUE;
         $_SESSION['login'] = 111;
         $_SESSION['uid'] = $row["id"];
         $_SESSION['firstname'] = $row["firstname"];
