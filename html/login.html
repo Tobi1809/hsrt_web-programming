@@ -2,15 +2,15 @@
 <html>
 
 <head>
-    <title>Webshop - Index</title>
+    <title>Webshop - Login</title>
     <meta charset="utf-8">
 
     <!-- Webseite responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Stylesheets für Navigationsbereich -->
+    <!-- Stylesheet & FontAwesome für Icons -->
     <link rel="stylesheet" href="../css/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../libraries/FontAwesome/CSS/all.css">
 
     <!-- Benötigt für login -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -18,27 +18,56 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <style>
+
+        h1.myTitle {
+            color: rgb(26, 24, 24);
+            padding: 0px;
+            margin: 0px;
+        }
+
+        strong.myTitle {
+            color: rgb(216, 22, 48);
+        }
+
+        p.myTitle {
+            font-size: large;
+            color: rgb(26, 24, 24);
+            padding: 5px;
+            margin: 0px;
+        }
+
+        .myBarItem {
+            font-size: medium;
+            color: rgb(26, 24, 24);
+            padding: 35px;
+            margin: 0px;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <!-- Kopfbereich -->
-    <header class="w3-container w3-padding-32">
+    <header class="w3-container w3-padding-16">
         <div class="w3-bar w3-light-gray">
-            <span class="w3-bar-item w3-pale-yellow"> My Webshop</span>
-            <a href="home.html" class="w3-bar-item w3-button w3-hide-small"></i> Home</a>
-            <a href="#produkte.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Produkte</a>
-            <a href="#überuns.html" class="w3-bar-item w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-light-gray"><i
-                    class="fa fa-user"></i> Login</a>
+            <div class="w3-bar-item w3-light-gray w3-center">
+                <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
+                <p class="myTitle">Only the greatest discounts!</p>
+            </div>
+            <a href="home.html" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
+            <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
+            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
+                    class="fas fa-user"></i> Login</a>
         </div>
     </header>
+
     <div class="container">
         <form class="form-horizontal" role="form" id="loginform" method="POST" action="../backendPhp/loginUser.php">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <h2>Login</h2>
+            <div class="w3-container w3-center">
+                <div class="w3-panel w3-border-top w3-border-bottom">
+                    <h3>Login </h3>
                 </div>
             </div>
             <div class="row">
@@ -48,8 +77,8 @@
                         <label class="sr-only" for="email">E-Mail</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail-Adresse"
-                                required autofocus>
+                            <input type="email" name="email" class="form-control" id="email"
+                                placeholder="E-Mail-Adresse" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -89,12 +118,13 @@
         </form>
     </div>
 
-    <footer class="w3-container w3-padding-32 w3-margin-top">
+    <!-- Fußleiste -->
+    <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
-            <span class="w3-bar-item w3-pale-yellow"> User online: 0</span>
-            <a href="#kontakt.html" class="w3-bar-item w3-button w3-right"><i class="fa fa-envelope"></i>
+            <span class="myBarItem w3-light-gray w3-left"> User online: 0</span>
+            <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
-            <a href="#impressum.html" class="w3-bar-item w3-button w3-right"> Impressum</a>
+            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
         </div>
     </footer>
 </body>
