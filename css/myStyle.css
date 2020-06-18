@@ -24,18 +24,23 @@ p.myTitle {
 	font-size: medium;
 	color: rgb(26, 24, 24);
 }
-
+/*  */
 .myProductsArea {
 	display: flex;
 	flex-direction: row;
-	background-color: rgb(175, 175, 175);
+	background-color: rgb(255, 255, 255);
+	margin: 100px;
+	
 }
+
 .myProductsGrid {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	color: rgb(175, 175, 175);
-	padding: 50px;
+	align-items: center;
+	justify-content: center;
+	
 }
 
 .myProductBox {
@@ -47,8 +52,33 @@ p.myTitle {
 	border-radius: 40px 20px 40px 20px;
 	padding: 20px 20px;
 	margin: 10px;
-	box-shadow: 10px -10px 3px rgb(255, 193, 92);
+	box-shadow: 10px -10px 3px rgb(216, 22, 48);
 }
+
+h1.myTitle {
+	color: rgb(26, 24, 24);
+	padding: 0px;
+	margin: 0px;
+}
+
+strong.myTitle {
+	color: rgb(216, 22, 48);
+}
+
+p.myTitle {
+	font-size: large;
+	color: rgb(26, 24, 24);
+	padding: 5px;
+	margin: 0px;
+}
+
+.myBarItem {
+	font-size: medium;
+	color: rgb(26, 24, 24);
+	padding: 35px;
+	margin: 0px;
+}
+
 p {
 	color: lightgrey;
 }
