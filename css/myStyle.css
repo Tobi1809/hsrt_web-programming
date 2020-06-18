@@ -15,19 +15,15 @@
 }
 
 h1.myTitle {
-	color: whitesmoke;
+	color: rgb(212, 20, 20);
 }
 strong.myTitle {
-	color: orange;
+	color: rgb(216, 22, 48);
 }
 p.myTitle {
 	font-size: medium;
-	color: rgb(168, 168, 168);
+	color: rgb(26, 24, 24);
 }
-/* .mySearchbar{
-    display: grid;
-    grid-template-columns: 2fr 9fr 1fr;
-} */
 
 .myProductsArea {
 	display: flex;
@@ -41,11 +37,12 @@ p.myTitle {
 	color: rgb(175, 175, 175);
 	padding: 50px;
 }
+
 .myProductBox {
 	height: 500px;
 	width: 300px;
 	background-color: white;
-	float: left;
+	float: center;
 
 	border-radius: 40px 20px 40px 20px;
 	padding: 20px 20px;
