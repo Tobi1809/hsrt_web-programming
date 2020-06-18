@@ -17,6 +17,39 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="../libraries/StanfordJavascriptCryptoLibrary.js"></script>
+
+  <script>
+    $(document).ready(function () {// wichtig!
+      //bind event Handler to submission form
+      $( "#registerform" ).submit(function( event ) {
+        var data = $("#registerform :input").serializeArray();
+        //alert( "Handler for .submit() called." );
+        //alert("Input array: " +data.toString());
+        var planePassword = data[6].value;
+        var out = sjcl.hash.sha256.hash(planePassword);
+        var hash = sjcl.codec.hex.fromBits(out); //tested hash against https://hashgenerator.de/  -->it works
+        data[6].value = hash; // override plane password 
+
+        $.get("registerUser.php", 
+          { firstname: data[0].value,
+            lastname: data[1].value,
+            street: data[2].value,
+            zip: data[3].value,
+            city: data[4].value,
+            email: data[5].value,
+            password: data[6].value,
+          },
+          function(returnedData) {
+              alert("login happend; data = " + returnedData)
+          });
+        
+        event.preventDefault(); // prevent submission
+      });
+
+
+    });
+  </script>
 
 
 </head>
@@ -35,7 +68,7 @@
     </div>
   </header>
 
-  <form class="form-horizontal">
+  <form id="registerform" class="form-horizontal" method="POST" action="../backendPhp/registerUser.php">
     <fieldset>
 
       <!-- Form Name -->
@@ -109,15 +142,18 @@
         </div>
       </div>
 
+      <!-- Hidden input for encrypted Password -->
+      <!-- <input id="encryptedPassword" value="" name="encryptedPassword" hidden type="text">  -->
+
       <!-- Password input-->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label class="col-md-8 control-label" for="passwordrepeat"></label>
         <div class="col-md-4">
           <input id="passwordrepeat" name="passwordrepeat" type="password" placeholder="Passwort wiederholen"
             class="form-control input-md" required="">
 
         </div>
-      </div>
+      </div> -->
 
       <!-- Button (Double) -->
       <div class="form-group">
