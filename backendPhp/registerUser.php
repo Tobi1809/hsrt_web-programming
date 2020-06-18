@@ -12,7 +12,7 @@
     }
 
     //Sind die $_POST Werte vorhanden beim Button-click "Registrieren"
-    if (isset($_POST['register']))
+    if (isset($_POST['firstname']))
     {
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
@@ -21,7 +21,7 @@
         $city = $_POST['city'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $passwordrepeat = $_POST['passwordrepeat'];
+        //$passwordrepeat = $_POST['passwordrepeat'];
 
         //SQL Syntax - Überprüfung, ob die E-Mail-Adresse registriert ist oder nicht
         $sql = "SELECT * FROM ws_users where email ='$email'";
@@ -42,9 +42,19 @@
         }
 
         //Registrierungsbestätigung per E-Mail hier noch einfügen!
+
+
+        //Start Session and initialize Variables
+        session_start();
+        $_SESSION['loggedIn'] = TRUE;
+        $_SESSION['login'] = 111;
+        $_SESSION['uid'] = $row["id"];
+        $_SESSION['firstname'] = $row["firstname"];
+        $_SESSION['lastname'] = $row["lastname"];
         
-        //Weiterleitung zu registeredUser.html sobald die Seite fertig ist!
-        header("Location: ../html/login.html");
+        $_SESSION['lastActiveTime'] = time();
+        //Weiterleitung zu Startseite!
+        header("Location: ../html/home.php");
 
     }
 
