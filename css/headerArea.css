@@ -1,0 +1,37 @@
+/* Dieser Style ist für den Kopfbereich */
+
+h1.myTitle {
+	color: rgb(26, 24, 24);
+	padding: 0px;
+	margin: 0px;
+}
+
+strong.myTitle {
+	color: rgb(216, 22, 48);
+}
+
+p.myTitle {
+	font-size: large;
+	color: rgb(26, 24, 24);
+	padding: 5px;
+	margin: 0px;
+}
+
+.myBarItem {
+	font-size: medium;
+	color: rgb(26, 24, 24);
+	padding: 35px;
+	margin: 0px;
+}
+
+/* .TitleBand {
+	display: grid;
+	height: 100px;
+	background-color: rgb(68, 67, 67);
+	grid-template-columns: 1fr 2fr 8fr 1fr 1fr 1fr;
+	background-image: linear-gradient(to right, rgb(68, 67, 67), rgb(87, 74, 64));
+}
+
+.TitleBandBox {
+	background-color: rgb(68, 67, 67);
+} */

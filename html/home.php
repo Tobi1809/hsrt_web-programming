@@ -3,15 +3,21 @@
 
 <head>
 
-    <title>Webshop - Index</title>
+    <title>Webshop - Home</title>
     <meta charset="utf-8">
+
+    <!-- our Styles -->
+    <link rel="stylesheet" href="../css/headerArea.css">
+    <link rel="stylesheet" href="../css/productsGrid.css">
 
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Stylesheets für Navigationsbereich -->
+    <!-- Stylesheet & FontAwesome für Icons -->
     <link rel="stylesheet" href="../css/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../libraries/FontAwesome/CSS/all.css">
+    
+
 
     <!-- Für das Karussell-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -30,16 +36,24 @@
 
 <body>
     <!-- Kopfbereich -->
-    <header class="w3-container w3-padding-32">
+    <header class="w3-container w3-padding-16">
         <div class="w3-bar w3-light-gray">
-            <span class="w3-bar-item w3-pale-yellow"> My Webshop</span>
-            <a href="home.php" class="w3-bar-item w3-button w3-hide-small"></i> Home</a>
-            <a href="#produkte.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Produkte</a>
-            <a href="#überuns.html" class="w3-bar-item w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-light-gray"><i
-                    class="fa fa-user"></i> Login</a>
+            <div class="w3-bar-item w3-light-gray w3-center">
+                <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
+                <p class="myTitle">Only the greatest discounts!</p>
+            </div>
+            <a href="home.html" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
+            <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
+            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
+                    class="fas fa-user"></i> Login</a>
         </div>
     </header>
+
+    <div class="w3-container w3-center">
+        <div class="w3-panel w3-border-top w3-border-bottom">
+            <h3>Shoppen Sie ganz einfach direkt drauflos <i class="far fa-thumbs-up"></i></h3>
+        </div>
+    </div>
 
     <!-- Karussell Slideshow-->
     <div class="container">
@@ -58,7 +72,7 @@
             <div class="carousel-inner" role="listbox">
 
                 <div class="item active">
-                    <img src="../images/example1.jpg" alt="Chania" width="460" height="345">
+                    <img src="../images/uhr1.jpeg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Produkt 1</h3>
                         <p>Hier könnte eine Beschreibung stehen!</p>
@@ -66,7 +80,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/example2.jpg" alt="Chania" width="460" height="345">
+                    <img src="../images/uhr2.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Produkt 2</h3>
                         <p>Hier könnte eine Beschreibung stehen!</p>
@@ -74,7 +88,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/example3.png" alt="Chania" width="460" height="345">
+                    <img src="../images/uhr3.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Produkt 3</h3>
                         <p>Hier könnte eine Beschreibung stehen!</p>
@@ -82,7 +96,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/example4.jpeg" alt="Chania" width="460" height="345">
+                    <img src="../images/uhr4.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Produkt 4</h3>
                         <p>Hier könnte eine Beschreibung stehen!</p>
@@ -90,7 +104,7 @@
                 </div>
 
                 <div class="item">
-                    <img src="../images/example5.jpeg" alt="Chania" width="460" height="345">
+                    <img src="../images/uhr6.jpg" alt="Chania" width="460" height="345">
                     <div class="carousel-caption">
                         <h3>Produkt 5</h3>
                         <p>Hier könnte eine Beschreibung stehen!</p>
@@ -111,13 +125,142 @@
         </div>
     </div>
 
+    <div class="myProductsArea">
+
+        <div class="myProductsGrid">
+
+            <!-- Produkte -->
+            <div class="myProductBox">
+                <!-- Produkt 1 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 2 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 3 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 4 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 5 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 6 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 7 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="myProductBox">
+                <!-- Produkt 8 -->
+                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
+                <p>hübsche uhr mit Zeigern</p>
+                <p><b>€4.99</b></p>
+                <p> <s>€14.69 </s> | 33% Rabatt</p>
+                <div class="progress" style="margin: 5px;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                        aria-valuemax="100" style="width:70%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     <!-- Fußleiste -->
-    <footer class="w3-container w3-padding-32 w3-margin-top">
+    <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
-            <span class="w3-bar-item w3-pale-yellow"> User online: 0</span>
-            <a href="#kontakt.html" class="w3-bar-item w3-button w3-right"><i class="fa fa-envelope"></i>
+            <span class="myBarItem w3-light-gray w3-left"> User online: 0</span>
+            <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
-            <a href="#impressum.html" class="w3-bar-item w3-button w3-right"> Impressum</a>
+            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
         </div>
     </footer>
 
