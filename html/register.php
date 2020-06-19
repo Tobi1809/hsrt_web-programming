@@ -12,6 +12,9 @@ session_start();
   <!-- our Styles -->
   <link rel="stylesheet" href="../css/headerArea.css">
 
+  <!-- for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
   <!-- Webseite responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,7 +44,7 @@ session_start();
         var hash = sjcl.codec.hex.fromBits(out); //tested hash against https://hashgenerator.de/  -->it works
         data[6].value = hash; // override plane password 
 
-        $.post("../backendPhp/b_registerUser.php", {
+        $.post("../backendPhp/registerUser.php", {
             firstname: data[0].value,
             lastname: data[1].value,
             street: data[2].value,
@@ -51,14 +54,16 @@ session_start();
             password: data[6].value,
           },
           function(returnedData) {
-            alert("login happend; data = " + returnedData)
+            //alert("login happend; data = " + returnedData)
 
             switch (returnedData) {
               case "failed":
-                alert("e-mail is already taken");
+                //alert("e-mail is already taken");
+                var emailErrorMessage = document.getElementById("e-mailFehlerMeldung");
+                emailErrorMessage.innerHTML = '<i class="fa fa-close animate__animated animate__shakeX"></i> E-Mail-Adresse ist schon vergeben';
                 break;
               case "success":
-                alert("registration successfull");
+                //alert("registration successfull");
                 window.location.href = 'home.php';
                 break;
               default:
@@ -147,8 +152,16 @@ session_start();
         <label class="col-md-8 control-label" for="email">Email</label>
         <div class="col-md-4">
           <input id="email" name="email" type="email" placeholder="E-Mail-Adresse" class="form-control input-md" required="">
-
         </div>
+        <div class="col-md-3">
+          <div class="form-control-feedback">
+            <span class="text-danger align-middle " id="e-mailFehlerMeldung"> 
+              <!-- Hier wird per JAVASCRIPT Dom manipiulation eine Fahlermeldung eingefügt -->
+              <!-- <i class="fa fa-close animate__animated animate__shakeX"></i> E-Mail-Adresse ist schon vergeben -->
+            </span>
+          </div>
+        </div>
+
       </div>
 
       <!-- Password input-->
