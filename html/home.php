@@ -48,7 +48,7 @@ session_start();
             </div>
             <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
             <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
+            <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
         </div>
     </header>
 

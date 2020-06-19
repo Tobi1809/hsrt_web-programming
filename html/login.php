@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +25,50 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <!-- JS for SHA256 -->
+    <script src="../libraries/StanfordJavascriptCryptoLibrary.js"></script>
+
+    <script>
+        $(document).ready(function() { // wichtig!
+            //bind event Handler to submission form
+            $("#loginform").submit(function(event) {
+                event.preventDefault(); // prevent submission
+
+                var data = $("#loginform :input").serializeArray();
+                //alert( "Handler for .submit() called." );
+                //alert("Input array: " +data.toString());
+                var planePassword = data[1].value;
+                var out = sjcl.hash.sha256.hash(planePassword);
+                var hash = sjcl.codec.hex.fromBits(out); //tested hash against https://hashgenerator.de/  -->it works
+                data[1].value = hash; // override plane password 
+
+                $.post("../backendPhp/loginUser.php", {
+                        email: data[0].value,
+                        password: data[1].value,
+                    },
+                    function(returnedData) {
+                        //alert("login happend; data = " + returnedData)
+
+                        switch (returnedData) {
+                            case "failed":
+                                //alert("e-mail is already taken");
+                                var emailErrorMessage = document.getElementById("invalidCredentialsErrorMessage");
+                                emailErrorMessage.innerHTML = '<i class="fa fa-close animate__animated animate__shakeX"></i>Bitte prüfen Sie noch einmal Ihre Eingaben.';
+                                break;
+                            case "success":
+                                //alert("registration successfull");
+                                window.location.href = 'home.php';
+                                break;
+                            default:
+                                alert("!!!!!!!!Unecpected server replie!!!!!!!!!!!!!!");
+                                break;
+                        }
+                    }
+                );
+            });
+
+        });
+    </script>
 
 </head>
 
@@ -35,8 +83,7 @@
             </div>
             <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
             <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
-                    class="fas fa-user"></i> Login</a>
+            <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
         </div>
     </header>
 
@@ -54,8 +101,7 @@
                         <label class="sr-only" for="email">E-Mail</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="email" name="email" class="form-control" id="email"
-                                placeholder="E-Mail-Adresse" required autofocus>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail-Adresse" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -67,24 +113,20 @@
                         <label class="sr-only" for="password">Password</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                            <input type="password" name="password" class="form-control" id="password"
-                                placeholder="Passwort" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Passwort" required>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"></div>
-                <!-- <div class="col-md-6" style="padding-top: .35rem">
-                    <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-                        Ne, ich glaub wir wollen das feature nicht implementieren
-                        <label class="form-check-label">                                  
-                            <input class="form-check-input" name="remember" type="checkbox">
-                            <span style="padding-bottom: .15rem">Benutzerdaten speichern</span>
-                        </label>  
+                <div class="col-md-3">
+                    <div class="form-control-feedback">
+                        <span class="text-danger align-middle" id="invalidCredentialsErrorMessage">
+                            <!-- Put password error message here -->
+                            <!-- <i class="fa fa-close animate__animated animate__shakeX"></i>Bitte prüfen Sie noch einmal Ihre Eingaben. -->
+                        </span>
                     </div>
-                </div> -->
+                </div>
             </div>
+
             <div class="row" style="padding-top: 1.5rem">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">

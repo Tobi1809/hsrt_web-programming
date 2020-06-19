@@ -36,7 +36,7 @@
             <a href="home.php" class="w3-bar-item w3-button w3-hide-small"></i> Home</a>
             <a href="#produkte.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> Produkte</a>
             <a href="#überuns.html" class="w3-bar-item w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="w3-bar-item w3-button w3-hide-small w3-right w3-light-gray"><i
+            <a href="login.php" class="w3-bar-item w3-button w3-hide-small w3-right w3-light-gray"><i
                     class="fa fa-user"></i> Login</a>
         </div>
     </header>

@@ -9,7 +9,7 @@
   if ($_SESSION['login'] != 111)
   {
     //Sofort Logout, falls User nicht eingeloggt ist!
-    header("location: ../html/login.html");
+    header("location: ../html/login.php");
   }
 
 ?>
@@ -103,7 +103,7 @@
             </div>
             <a href="../html/home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
             <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="../html/login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
+            <a href="../html/login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
                     class="fas fa-user"></i> Login</a>
         </div>
     </header>

@@ -13,7 +13,7 @@ session_start();
   <link rel="stylesheet" href="../css/headerArea.css">
 
   <!-- for animations -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
 
   <!-- Webseite responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +27,8 @@ session_start();
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <!-- JS for SHA256 -->
   <script src="../libraries/StanfordJavascriptCryptoLibrary.js"></script>
 
 
@@ -59,7 +61,7 @@ session_start();
             switch (returnedData) {
               case "failed":
                 //alert("e-mail is already taken");
-                var emailErrorMessage = document.getElementById("e-mailFehlerMeldung");
+                var emailErrorMessage = document.getElementById("emailErrorMessage");
                 emailErrorMessage.innerHTML = '<i class="fa fa-close animate__animated animate__shakeX"></i> E-Mail-Adresse ist schon vergeben';
                 break;
               case "success":
@@ -91,7 +93,7 @@ session_start();
       </div>
       <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
       <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-      <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i>
+      <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i>
         Login</a>
     </div>
   </header>
@@ -134,7 +136,6 @@ session_start();
         <label class="col-md-8 control-label" for="zip"></label>
         <div class="col-md-4">
           <input id="zip" name="zip" type="text" placeholder="PLZ" class="form-control input-md" required="">
-
         </div>
       </div>
 
@@ -155,7 +156,7 @@ session_start();
         </div>
         <div class="col-md-3">
           <div class="form-control-feedback">
-            <span class="text-danger align-middle " id="e-mailFehlerMeldung"> 
+            <span class="text-danger align-middle " id="emailErrorMessage">
               <!-- Hier wird per JAVASCRIPT Dom manipiulation eine Fahlermeldung eingefügt -->
               <!-- <i class="fa fa-close animate__animated animate__shakeX"></i> E-Mail-Adresse ist schon vergeben -->
             </span>
@@ -191,7 +192,7 @@ session_start();
         <label class="col-md-8 control-label" for="register"></label>
         <div class="col-md-4">
           <button type="submit" name="register" class="btn btn-success">Registrieren</button>
-          <a href="login.html" class="btn btn-info">Zurück zum Login</a>
+          <a href="login.php" class="btn btn-info">Zurück zum Login</a>
         </div>
       </div>
 
