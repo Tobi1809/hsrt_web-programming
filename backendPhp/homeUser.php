@@ -101,7 +101,7 @@
                 <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
                 <p class="myTitle">Only the greatest discounts!</p>
             </div>
-            <a href="../html/home.html" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
+            <a href="../html/home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
             <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
             <a href="../html/login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
                     class="fas fa-user"></i> Login</a>

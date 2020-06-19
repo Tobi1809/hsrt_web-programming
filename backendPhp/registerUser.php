@@ -27,9 +27,9 @@
         $sql = "SELECT * FROM ws_users where email ='$email'";
         $result1 = $dbConnection->query($sql);
 
-        if ($result1->num_rows == 1) //Wenn E-Mail-Adresse bereits registriert ist...
+        if ($result1->num_rows >= 1) //Wenn E-Mail-Adresse bereits registriert ist...
         {
-            header("Location: ../html/alreadyRegisteredUser.html");
+            echo "failed";
         }
         else //Wenn E-Mail-Adresse noch nicht vorhanden in der Datenbank...
         {
@@ -37,24 +37,25 @@
 
             $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password) VALUES
             ('$firstname','$lastname','$street','$zip','$city','$email','$password')";
-
             $result2 = $dbConnection->query($sql);
+
+            //Registrierungsbestätigung per E-Mail hier noch einfügen! #!
+
+            // get User ID of newly registered user // could be optimized be including it in sql query above
+            $sql = "SELECT UserID FROM webshop.ws_users where email='$email';";
+            $result3 = $dbConnection->query($sql);
+            $uid = intval ($result3->fetch_assoc()["UserID"]);   //with typeconversion
+
+            //Start Session and initialize Variables
+            $sessionStarted = session_start();
+            $_SESSION['login'] = 111;
+            $_SESSION['uid'] = $uid;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['lastActiveTime'] = time();
+
+            //Rückgabewert für ajax anfrage
+            echo "success";
         }
-
-        //Registrierungsbestätigung per E-Mail hier noch einfügen!
-
-
-        //Start Session and initialize Variables
-        session_start();
-        $_SESSION['login'] = 111;
-        $_SESSION['uid'] = $row["id"];
-        $_SESSION['firstname'] = $row["firstname"];
-        $_SESSION['lastname'] = $row["lastname"];
-        
-        $_SESSION['lastActiveTime'] = time();
-        //Weiterleitung zu Startseite!
-        header("Location: ../html/home.php");
-
+        // here shouldn't be any code! #?
     }
-
-?>

@@ -20,7 +20,7 @@
 	if (isset($_POST['password']))
 	{
         //Verschlüsselung des Passworts mit SHA 256 für die Datenbank
-		$password = hash('sha256', $_POST['password']);
+		//$password = hash('sha256', $_POST['password']);   // is done clientsided
 	}
 
     //Falls nichts in den Feldern angegeben wurde

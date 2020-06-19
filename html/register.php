@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -24,9 +28,9 @@
 
 
   <script>
-    $(document).ready(function () {// wichtig!
+    $(document).ready(function() { // wichtig!
       //bind event Handler to submission form
-      $("#registerform").submit(function (event) {
+      $("#registerform").submit(function(event) {
         event.preventDefault(); // prevent submission
 
         var data = $("#registerform :input").serializeArray();
@@ -37,8 +41,7 @@
         var hash = sjcl.codec.hex.fromBits(out); //tested hash against https://hashgenerator.de/  -->it works
         data[6].value = hash; // override plane password 
 
-        $.post("../backendPhp/registerUser.php",
-          {
+        $.post("../backendPhp/b_registerUser.php", {
             firstname: data[0].value,
             lastname: data[1].value,
             street: data[2].value,
@@ -47,12 +50,25 @@
             email: data[5].value,
             password: data[6].value,
           },
-          function (returnedData) {
+          function(returnedData) {
             alert("login happend; data = " + returnedData)
+
+            switch (returnedData) {
+              case "failed":
+                alert("e-mail is already taken");
+                break;
+              case "success":
+                alert("registration successfull");
+                window.location.href = 'home.php';
+                break;
+              default:
+                alert("!!!!!!!!Unecpected server replie!!!!!!!!!!!!!!");
+                break;
+            }
           }
         );
       });
-      
+
 
     });
   </script>
@@ -68,14 +84,14 @@
         <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
         <p class="myTitle">Only the greatest discounts!</p>
       </div>
-      <a href="home.html" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
+      <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
       <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
       <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i>
         Login</a>
     </div>
   </header>
 
-  <form method="POST" action="../backendPhp/registerUser.php" id="registerform" class="form-horizontal">
+  <form method="POST" action="../backendPhp/b_registerUser.php" id="registerform" class="form-horizontal">
     <fieldset>
 
       <!-- Form Name -->
@@ -85,8 +101,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="firstname">Vor- und Nachname</label>
         <div class="col-md-4">
-          <input id="firstname" name="firstname" type="text" placeholder="Vorname" class="form-control input-md"
-            required="">
+          <input id="firstname" name="firstname" type="text" placeholder="Vorname" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -95,8 +110,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="lastname"></label>
         <div class="col-md-4">
-          <input id="lastname" name="lastname" type="text" placeholder="Nachname" class="form-control input-md"
-            required="">
+          <input id="lastname" name="lastname" type="text" placeholder="Nachname" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -105,8 +119,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="street">Adresse</label>
         <div class="col-md-4">
-          <input id="street" name="street" type="text" placeholder="Straße und Hausnummer" class="form-control input-md"
-            required="">
+          <input id="street" name="street" type="text" placeholder="Straße und Hausnummer" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -133,8 +146,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="email">Email</label>
         <div class="col-md-4">
-          <input id="email" name="email" type="email" placeholder="E-Mail-Adresse" class="form-control input-md"
-            required="">
+          <input id="email" name="email" type="email" placeholder="E-Mail-Adresse" class="form-control input-md" required="">
 
         </div>
       </div>
@@ -143,8 +155,7 @@
       <div class="form-group">
         <label class="col-md-8 control-label" for="password">Passwort</label>
         <div class="col-md-4">
-          <input id="password" name="password" type="password" placeholder="Passwort" class="form-control input-md"
-            required="">
+          <input id="password" name="password" type="password" placeholder="Passwort" class="form-control input-md" required="">
 
         </div>
       </div>

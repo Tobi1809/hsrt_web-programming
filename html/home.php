@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -16,7 +20,7 @@
     <!-- Stylesheet & FontAwesome für Icons -->
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../libraries/FontAwesome/CSS/all.css">
-    
+
 
 
     <!-- Für das Karussell-->
@@ -42,10 +46,9 @@
                 <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
                 <p class="myTitle">Only the greatest discounts!</p>
             </div>
-            <a href="home.html" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
+            <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
             <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i
-                    class="fas fa-user"></i> Login</a>
+            <a href="login.html" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
         </div>
     </header>
 
@@ -137,8 +140,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -152,8 +154,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -167,8 +168,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -182,8 +182,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -197,8 +196,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -212,8 +210,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -227,8 +224,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
@@ -242,8 +238,7 @@
                 <p><b>€4.99</b></p>
                 <p> <s>€14.69 </s> | 33% Rabatt</p>
                 <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                        aria-valuemax="100" style="width:70%">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
                         <span class="sr-only">70% Complete</span>
                     </div>
                 </div>
