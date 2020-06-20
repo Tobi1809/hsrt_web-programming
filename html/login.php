@@ -12,6 +12,10 @@ session_start();
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerArea.css">
 
+    <!-- for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

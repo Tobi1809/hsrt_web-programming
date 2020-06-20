@@ -4,13 +4,16 @@ session_start();
 
 $welcomeString = "";
 //create welcome string if logge in 
-if ($_SESSION["login"] == 111) {
-    //we are logged in
-    $welcomeString .= "Hallo, ";
-    $welcomeString .=  $_SESSION["firstname"];
-    $welcomeString .= " ";
-    $welcomeString .=  $_SESSION["lastname"];
+if (isset($_SESSION["login"])) {
+    if ($_SESSION["login"] == 111) {
+        //we are logged in
+        $welcomeString .= "Hallo, ";
+        $welcomeString .=  $_SESSION["firstname"];
+        $welcomeString .= " ";
+        $welcomeString .=  $_SESSION["lastname"];
+    }
 }
+
 
 ?>
 
@@ -76,8 +79,21 @@ if ($_SESSION["login"] == 111) {
             <!-- shopping cart -->
             <a href="#"> <i class="fa fa-shopping-cart fa-4x"></i></a>
         </div>
-        
-        <div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>
+
+        <?php
+        // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
+        $loginHTML = '<div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>';
+        $logoutHTML = '<div class="centerMargin"><a href="logout.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Logout</a></div>';
+        if (isset($_SESSION["login"])) {
+            if ($_SESSION["login"] == 111) {
+                echo $logoutHTML;
+            } else {
+                echo $loginHTML;
+            }
+        } else {
+            echo $loginHTML;
+        }
+        ?>
 
 
     </header>
