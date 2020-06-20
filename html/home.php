@@ -1,5 +1,17 @@
 <?php
 session_start();
+
+
+$welcomeString = "";
+//create welcome string if logge in 
+if ($_SESSION["login"] == 111) {
+    //we are logged in
+    $welcomeString .= "Hallo, ";
+    $welcomeString .=  $_SESSION["firstname"];
+    $welcomeString .= " ";
+    $welcomeString .=  $_SESSION["lastname"];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -10,9 +22,7 @@ session_start();
     <title>Webshop - Home</title>
     <meta charset="utf-8">
 
-    <!-- our Styles -->
-    <link rel="stylesheet" href="../css/headerArea.css">
-    <link rel="stylesheet" href="../css/productsGrid.css">
+
 
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +38,10 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <!-- our Styles -->
+    <link rel="stylesheet" href="../css/headerArea.css">
+    <link rel="stylesheet" href="../css/productsGrid.css">
+
     <style>
         .carousel-inner>.item>img,
         .carousel-inner>.item>a>img {
@@ -40,16 +54,32 @@ session_start();
 
 <body>
     <!-- Kopfbereich -->
-    <header class="w3-container w3-padding-16">
-        <div class="w3-bar w3-light-gray">
-            <div class="w3-bar-item w3-light-gray w3-center">
-                <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-                <p class="myTitle">Only the greatest discounts!</p>
-            </div>
-            <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
-            <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
+    <header class="titleBand w3-padding-16">
+
+        <div class="3-bar w3-center">
+            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
+            <p class="myTitle">Only the greatest discounts!</p>
         </div>
+
+        <div class="centerMargin"><a href="home.php" class=" w3-button "></i> Home</a></div>
+
+        <div class="centerMargin"><a href="#überuns.html" class=" w3-button"> Über uns</a></div>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <h3 class="myTitle"><?php echo $welcomeString ?></h3>
+        </div>
+
+        <div></div>
+        <div class="centerMargin">
+            <!-- shopping cart -->
+            <a href="#"> <i class="fa fa-shopping-cart fa-4x"></i></a>
+        </div>
+        
+        <div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>
+
+
     </header>
 
     <div class="w3-container w3-center">

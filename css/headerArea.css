@@ -5,6 +5,12 @@ h1.myTitle {
 	padding: 0px;
 	margin: 0px;
 }
+h3.myTitle {
+	color: rgb(26, 24, 24);
+	padding: 0px;
+	margin: 0px;
+	font-weight: 500;
+}
 
 strong.myTitle {
 	color: rgb(216, 22, 48);
@@ -24,14 +30,20 @@ p.myTitle {
 	margin: 0px;
 }
 
-/* .TitleBand {
+.titleBand {
 	display: grid;
-	height: 100px;
+	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr;
+	justify-items: center;
+
+	height: fit-content;
 	background-color: rgb(68, 67, 67);
-	grid-template-columns: 1fr 2fr 8fr 1fr 1fr 1fr;
-	background-image: linear-gradient(to right, rgb(68, 67, 67), rgb(87, 74, 64));
+	background-image: linear-gradient(to right, rgb(107, 107, 107), rgb(145, 114, 114));
 }
 
-.TitleBandBox {
+.centerMargin{
+	margin: auto;
+}
+
+/* .TitleBandBox {
 	background-color: rgb(68, 67, 67);
 } */
