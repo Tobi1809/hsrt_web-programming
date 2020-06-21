@@ -33,7 +33,7 @@ CREATE TABLE `ws_items` (
   `itemID` int(11) NOT NULL,
   `itemName` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `description` varchar(300) COLLATE utf8_german2_ci NOT NULL,
-  `price` decimal(4,2) NOT NULL
+  `price` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -42,7 +42,13 @@ CREATE TABLE `ws_items` (
 
 INSERT INTO `ws_items` (`itemID`, `itemName`, `description`, `price`) VALUES
 (1, 'Titan Uhr - Modell 1', 'Hübsche Uhr mit Zeigern.', '4.99'),
-(2, 'Titan Uhr - Modell 2', 'Hübsche Uhr mit noch schöneren Zeigern.', '9.99');
+(2, 'Titan Uhr - Modell 2', 'Hübsche Uhr mit noch schöneren Zeigern.', '9.99'),
+(3, 'Titan Uhr - Modell 3', 'Hübsche Uhr mit hochwertigen Zeigern.', '14.99'),
+(4, 'Titan Uhr - Modell 4', 'Hübsche Uhr mit luxuriösen Zeigern.', '199.99'),
+(5, 'Titan Uhr - Modell 5', 'Hübsche Uhr mit Zeigern.', '4.99'),
+(6, 'Titan Uhr - Modell 6', 'Hübsche Uhr mit noch schöneren Zeigern.', '9.99'),
+(7, 'Titan Uhr - Modell 7', 'Hübsche Uhr mit hochwertigen Zeigern', '14.99'),
+(8, 'Titan Uhr - Modell 8', 'Hübsche Uhr mit luxuriösen Zeigern.', '199.99');
 
 
 -- --------------------------------------------------------
@@ -125,7 +131,7 @@ ALTER TABLE `ws_ordered_items`
 --
 ALTER TABLE `ws_orders`
   ADD PRIMARY KEY (`orderID`),
-  ADD KEY `userID_FK` (`userID`),
+  ADD KEY `userID_FK` (`userID`);
 
 --
 -- Indizes für die Tabelle `ws_shopping_cart`
