@@ -36,6 +36,15 @@ CREATE TABLE `ws_items` (
   `price` decimal(4,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
+--
+-- Daten für Tabelle `ws_items`
+--
+
+INSERT INTO `ws_items` (`itemID`, `itemName`, `description`, `price`) VALUES
+(1, 'Titan Uhr - Modell 1', 'Hübsche Uhr mit Zeigern.', '4.99'),
+(2, 'Titan Uhr - Modell 2', 'Hübsche Uhr mit noch schöneren Zeigern.', '9.99');
+
+
 -- --------------------------------------------------------
 
 --
