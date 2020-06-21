@@ -1,9 +1,12 @@
 <?php
+
 session_start();
+include '../backendPhp/dbConnection.php';
+include '../backendPhp/getProductInfo.php';
 
 
 $welcomeString = "";
-//create welcome string if logge in 
+//create welcome string if logged in 
 if (isset($_SESSION["login"])) {
     if ($_SESSION["login"] == 111) {
         //we are logged in
@@ -13,7 +16,6 @@ if (isset($_SESSION["login"])) {
         $welcomeString .=  $_SESSION["lastname"];
     }
 }
-
 
 ?>
 
@@ -175,20 +177,19 @@ if (isset($_SESSION["login"])) {
     </div>
 
     <div class="myProductsArea">
-
+        <!-- Produkte -->
         <div class="myProductsGrid">
 
-            <!-- Produkte -->
             <div class="myProductBox">
                 <!-- Produkt 1 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row1->itemName ?></p>
+                <p><?php echo $row1->description ?></p>
+                <p><b><?php echo $row1->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -196,13 +197,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 2 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row2->itemName ?></p>
+                <p><?php echo $row2->description ?></p>
+                <p><b><?php echo $row2->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -210,13 +211,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 3 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row3->itemName ?></p>
+                <p><?php echo $row3->description ?></p>
+                <p><b><?php echo $row3->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -224,13 +225,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 4 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row4->itemName ?></p>
+                <p><?php echo $row4->description ?></p>
+                <p><b><?php echo $row4->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -238,13 +239,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 5 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row5->itemName ?></p>
+                <p><?php echo $row5->description ?></p>
+                <p><b><?php echo $row5->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -252,13 +253,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 6 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row6->itemName ?></p>
+                <p><?php echo $row6->description ?></p>
+                <p><b><?php echo $row6->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -266,13 +267,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 7 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row7->itemName ?></p>
+                <p><?php echo $row7->description ?></p>
+                <p><b><?php echo $row7->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
@@ -280,13 +281,13 @@ if (isset($_SESSION["login"])) {
             <div class="myProductBox">
                 <!-- Produkt 8 -->
                 <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <p>hübsche uhr mit Zeigern</p>
-                <p><b>€4.99</b></p>
-                <p> <s>€14.69 </s> | 33% Rabatt</p>
-                <div class="progress" style="margin: 5px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        <span class="sr-only">70% Complete</span>
-                    </div>
+                <hr>
+                <p><?php echo $row8->itemName ?></p>
+                <p><?php echo $row8->description ?></p>
+                <p><b><?php echo $row8->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
+                <hr>
+                <div>
+                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                 </div>
 
             </div>
