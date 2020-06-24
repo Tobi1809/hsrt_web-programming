@@ -180,117 +180,53 @@ if (isset($_SESSION["login"])) {
         <!-- Produkte -->
         <div class="myProductsGrid">
 
-            <div class="myProductBox">
-                <!-- Produkt 1 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row1->itemName ?></p>
-                <p><?php echo $row1->description ?></p>
-                <p><b><?php echo $row1->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
+        <?php
+            // echo "Print Products";
+    	    try {
+                //Öffnen der Datenbank-Verbindung
+                $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
+        
+                if (!$dbConnection) {
+                    echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
+                    echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
+                    echo "Debug-Fehlermledung: " . mysqli_connect_error() . PHP_EOL;
+                    exit;
+                }
+                //SQL Syntax - wählt alle Zeilen aus, wo Email und Passwort den eingegebenen Daten entspricht
+                $sql1 = "SELECT itemID, itemName, description, price FROM ws_items";
+                $result1 = mysqli_query($dbConnection, $sql1);
+        
+                //Falls die Tabelle genau eine Reihe (Datensatz) besitzt, wo die Sql-Abfrage true ergibt
+                
+                while ($row = $result1->fetch_assoc()) {
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////// Create Product Cards dynamically
+                    $name = $row["itemName"];
+                    ?>
+                    <div class="myProductBox">
+                        <!-- Produkt <?php echo $row["itemID"]; //lol, php für kommentare XD?> --> 
+                        <div style="height: 50%;">
+                            <img src="products/productImages/product(<?php echo $row["itemID"]; ?>).jpg" class="img-rounded img-responsive" alt="">
+                        </div>
+                        <hr>
+                        <p><?php echo $row["itemName"]; ?></p>
+                        <p><?php echo $row["description"]; ?></p>
+                        <p><b><?php echo $row["price"]; ?> €</b> <s><?php echo round($row["price"] / 0.67, 2) ?> €</s> | 33% Rabatt</p>
+                        <hr>
+                        <div>
+                            <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
+                        </div>
+                    </div>
+                    <?php
+                }
 
-            </div>
+                //Datenbank-Verbindung wieder schließen!
+                mysqli_close($dbConnection);
+            } catch (Exception $e) {
+                echo "Error Connecting to database";
+                exit;
+            }
 
-            <div class="myProductBox">
-                <!-- Produkt 2 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row2->itemName ?></p>
-                <p><?php echo $row2->description ?></p>
-                <p><b><?php echo $row2->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 3 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row3->itemName ?></p>
-                <p><?php echo $row3->description ?></p>
-                <p><b><?php echo $row3->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 4 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row4->itemName ?></p>
-                <p><?php echo $row4->description ?></p>
-                <p><b><?php echo $row4->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 5 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row5->itemName ?></p>
-                <p><?php echo $row5->description ?></p>
-                <p><b><?php echo $row5->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 6 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row6->itemName ?></p>
-                <p><?php echo $row6->description ?></p>
-                <p><b><?php echo $row6->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 7 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row7->itemName ?></p>
-                <p><?php echo $row7->description ?></p>
-                <p><b><?php echo $row7->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
-
-            <div class="myProductBox">
-                <!-- Produkt 8 -->
-                <img src="../images/wristwatch.webp" class="img-rounded img-responsive" alt="">
-                <hr>
-                <p><?php echo $row8->itemName ?></p>
-                <p><?php echo $row8->description ?></p>
-                <p><b><?php echo $row8->price ?> €</b> <s>14.69 €</s> | 33% Rabatt</p>
-                <hr>
-                <div>
-                    <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
-                </div>
-
-            </div>
+        ?>
 
         </div>
 
