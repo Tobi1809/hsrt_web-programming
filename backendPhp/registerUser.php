@@ -35,9 +35,9 @@ if (isset($_POST['firstname'])) //#! Check clientside with js if values are set
         } else //Wenn E-Mail-Adresse noch nicht vorhanden in der Datenbank...
         {
             //$password = hash('sha256', $password);
-
-            $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password, active) VALUES
-                ('$firstname','$lastname','$street','$zip','$city','$email','$password', 1)";
+            $thisTime = time();
+            $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password, active, created, lastLoginTime) VALUES
+                ('$firstname','$lastname','$street','$zip','$city','$email','$password', 1, $thisTime, $thisTime)";
 
             $result2 = $dbConnection->query($sql);
 
@@ -54,7 +54,7 @@ if (isset($_POST['firstname'])) //#! Check clientside with js if values are set
             $_SESSION['uid'] = $uid;
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
-            $_SESSION['lastActiveTime'] = time();
+            $_SESSION['lastLoginTime'] = time();
 
 
 

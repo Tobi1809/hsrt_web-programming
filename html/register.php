@@ -76,7 +76,6 @@ session_start();
         );
       });
 
-
     });
   </script>
 
