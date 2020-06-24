@@ -1,8 +1,25 @@
 <?php
 
+//Session starten
 session_start();
-include '../backendPhp/dbConnection.php';
-include '../backendPhp/getProductInfo.php';
+
+//Wird nicht mehr benötigt?
+include ("../backendPhp/getProductInfo.php");
+
+//Öffnen der Datenbank-Verbindung
+include ("../backendPhp/dbConnection.php");
+
+//Die Klasse verfügbar machen
+include_once ("../backendPhp/cart.php");
+
+//Eine Neue Instanz der Klasse cart erstellen
+$cart = new cart();
+
+//Prüfen, ob der Warenkorb bereits besteht
+$cart->initial_cart();
+
+//Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
+$productCount = $cart->get_cart_count();
 
 
 $welcomeString = "";
@@ -27,16 +44,12 @@ if (isset($_SESSION["login"])) {
     <title>Webshop - Home</title>
     <meta charset="utf-8">
 
-
-
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Stylesheet & FontAwesome für Icons -->
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../libraries/FontAwesome/CSS/all.css">
-
-
 
     <!-- Für das Karussell-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -75,6 +88,7 @@ if (isset($_SESSION["login"])) {
 </head>
 
 <body>
+
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-16">
 
@@ -94,9 +108,10 @@ if (isset($_SESSION["login"])) {
         </div>
 
         <div></div>
+
         <div class="centerMargin">
             <!-- shopping cart -->
-            <a href="#"> <i class="fa fa-shopping-cart fa-4x"></i></a>
+            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-4x"></i>(<?php echo $productCount ?>)</a>
         </div>
 
         <?php
@@ -230,9 +245,27 @@ if (isset($_SESSION["login"])) {
                         <p><?php echo $row["description"]; ?></p>
                         <p><b><?php echo $row["price"]; ?> €</b> <s><?php echo round($row["price"] / 0.67, 2) ?> €</s> | 33% Rabatt</p>
                         <hr>
+                        
+                        <form method="post">
                         <div>
-                            <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
+                            <button type="submit" name="button" class="btn btn-success">Zum Warenkorb hinzufügen</button>
                         </div>
+                        </form>
+
+                        <?php
+
+                            if (isset($_POST['button']))
+                            {
+                                $itemID = $row ["itemID"];
+                                $itemName = $row["itemName"];
+                                $description = $row["description"];
+                                $quantity = "1";
+                                $price = $row["price"];
+
+                                $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
+                            }
+
+                        ?>
                     </div>
             <?php
                 }
@@ -243,7 +276,6 @@ if (isset($_SESSION["login"])) {
                 echo "Error Connecting to database";
                 exit;
             }
-
             ?>
 
         </div>
