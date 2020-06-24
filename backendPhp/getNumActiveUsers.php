@@ -11,11 +11,10 @@ try {
     }
 
     //update active status
-    $uid = $_SESSION['uid'];
     $sql = "SELECT UserID FROM webshop.ws_users where active=1";
     $result = $dbConnection->query($sql);
-    $numActiveUsers;-
-
+    $numActiveUsers = $result->num_rows;
+    echo $numActiveUsers;
 
     mysqli_close($dbConnection);
 } catch (Exception $e) {

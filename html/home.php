@@ -58,21 +58,17 @@ if (isset($_SESSION["login"])) {
     <script>
 
         $(document).ready(function() { // wichtig!
+            
             setInterval(function () {
-                $.get("daten_auf_dem_server.php",
+                $.get("../backendPhp/getNumActiveUsers.php",
                     {},
                     function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
                     });
-            }, 1000);
-            $.post("../backendPhp/getActiveUsers.php", {},
-            function(returnedData) {
+            }, 1000);  
 
-                
-            }
-            );
         });    
     </script>
 
