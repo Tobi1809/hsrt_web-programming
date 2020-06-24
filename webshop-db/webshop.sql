@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Jun 2020 um 20:19
--- Server-Version: 10.1.38-MariaDB
--- PHP-Version: 7.3.3
+-- Erstellungszeit: 24. Jun 2020 um 15:29
+-- Server-Version: 10.4.11-MariaDB
+-- PHP-Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `webshop`
 --
-CREATE DATABASE IF NOT EXISTS `webshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_german2_ci;
-USE `webshop`;
+
 -- --------------------------------------------------------
 
 --
@@ -49,7 +47,6 @@ INSERT INTO `ws_items` (`itemID`, `itemName`, `description`, `price`) VALUES
 (6, 'Titan Uhr - Modell 6', 'Hübsche Uhr mit noch schöneren Zeigern.', '9.99'),
 (7, 'Titan Uhr - Modell 7', 'Hübsche Uhr mit hochwertigen Zeigern', '14.99'),
 (8, 'Titan Uhr - Modell 8', 'Hübsche Uhr mit luxuriösen Zeigern.', '199.99');
-
 
 -- --------------------------------------------------------
 
@@ -87,7 +84,7 @@ CREATE TABLE `ws_shopping_cart` (
   `shoppingcartID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `itemID` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitstempel für Warenkorb'
+  `time` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Zeitstempel für Warenkorb'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 -- --------------------------------------------------------
@@ -105,8 +102,18 @@ CREATE TABLE `ws_users` (
   `city` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `password` char(255) COLLATE utf8_german2_ci NOT NULL COMMENT 'SHA-256',
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Zeitpunkt der Registrierung'
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Zeitpunkt der Registrierung',
+  `lastLoginTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `ws_users`
+--
+
+INSERT INTO `ws_users` (`userID`, `firstName`, `lastName`, `street`, `zip`, `city`, `email`, `password`, `created`, `lastLoginTime`, `active`) VALUES
+(1, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', '2020-06-24 13:00:36', '2020-06-24 13:05:42', 0),
+(2, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', '1@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', '2020-06-24 12:41:37', '2020-06-24 13:05:42', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -155,7 +162,7 @@ ALTER TABLE `ws_users`
 -- AUTO_INCREMENT für Tabelle `ws_items`
 --
 ALTER TABLE `ws_items`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `ws_ordered_items`
@@ -179,7 +186,7 @@ ALTER TABLE `ws_shopping_cart`
 -- AUTO_INCREMENT für Tabelle `ws_users`
 --
 ALTER TABLE `ws_users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints der exportierten Tabellen
