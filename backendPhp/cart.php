@@ -25,18 +25,16 @@ class Cart
     //Gibt Alle Artikel des Warenkorb-Array in einer Tabelle aus
     public function getCart()
     {
-        $Array = $_SESSION['cartArray'];
+        $cartArray = $_SESSION['cartArray'];
         echo "<table width='100%'>";
         echo "<tr><th>Produktname</th><th>Produktbeschreibung</th><th>Anzahl</th><th>Preis</th></tr>";
-        for($i = 0 ; $i < count($Array); $i++)
-        {
-            $innerArray = $Array[$i];
-            
+
+        foreach ($cartArray as $cartRow) {
             echo "<tr>
-            <td>$innerArray[1]</td>
-            <td>$innerArray[2]</td>
-            <td>$innerArray[3]</td>
-            <td>$innerArray[4]</td>
+            <td>$cartRow[1]</td>
+            <td>$cartRow[2]</td>
+            <td>$cartRow[3]</td>
+            <td>$cartRow[4]</td>
             </tr>";
         }
         echo "</table>";
