@@ -135,7 +135,7 @@
         </thead>
 
         <?php
-        $Array = $_SESSION['cart'];
+        $Array = $_SESSION['cartArray'];
 
         if ($productCount == 0) {
         echo "<tr><td> Ihr Warenkorb ist leer.</td></tr>";

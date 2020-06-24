@@ -5,10 +5,10 @@ class Cart
     //Initialisiert die Klasse - muss in jeder Seite wo der Warenkorb benötigt wird ausgeführt werden
     public function initial_cart()
     {
-        $cart = array();
-        if(!isset($_SESSION['cart']))
+        $cartArray = array();
+        if(!isset($_SESSION['cartArray']))
         {
-            $_SESSION['cart']=$cart;
+            $_SESSION['cartArray']=$cartArray;
         } 
     }
     
@@ -17,15 +17,15 @@ class Cart
     {
         $quantity = "1";
         $product = array($itemID, $itemName, $description, $quantity, $price);
-        $cart = $_SESSION['cart'];
-        array_push($cart, $product);
-        $_SESSION['cart'] = $cart;
+        $cartArray = $_SESSION['cartArray'];
+        array_push($cartArray, $product);
+        $_SESSION['cartArray'] = $cartArray;
     }
     
     //Gibt Alle Artikel des Warenkorb-Array in einer Tabelle aus
     public function getCart()
     {
-        $Array = $_SESSION['cart'];
+        $Array = $_SESSION['cartArray'];
         echo "<table width='100%'>";
         echo "<tr><th>Produktname</th><th>Produktbeschreibung</th><th>Anzahl</th><th>Preis</th></tr>";
         for($i = 0 ; $i < count($Array); $i++)
@@ -45,27 +45,27 @@ class Cart
     //Löscht den Warenkorb
     public function undo_cart()
     {
-        $_SESSION['cart'] = array();
+        $_SESSION['cartArray'] = array();
     }
     
     //Gibt einen Datensatz zurück am Point n
     public function get_cartValue_at_Point($n)
     {
-        $Array = $_SESSION['cart'];            
+        $Array = $_SESSION['cartArray'];            
         return $Array[$n];
     }
     
     //Entfernt ein Produkt am Point n
     public function delete_cartValue_at_Point($point)
     {
-        $Array = $_SESSION['cart'];
+        $Array = $_SESSION['cartArray'];
         unset($Array[$point]);
     }
     
     //Gibt die Anzahl der Produkte im Warenkorb zurück
     public function get_cart_count()
     {
-        return count($_SESSION['cart']);
+        return count($_SESSION['cartArray']);
     }
 
 }
