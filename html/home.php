@@ -56,20 +56,18 @@ if (isset($_SESSION["login"])) {
     </style>
 
     <script>
-
         $(document).ready(function() { // wichtig!
-            
-            setInterval(function () {
-                $.get("../backendPhp/getNumActiveUsers.php",
-                    {},
+
+            setInterval(function() {
+                $.get("../backendPhp/getNumActiveUsers.php", {},
                     function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
                     });
-            }, 1000);  
+            }, 1000);
 
-        });    
+        });
     </script>
 
 </head>
@@ -254,9 +252,19 @@ if (isset($_SESSION["login"])) {
     <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
             <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
+
+            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
             <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
-            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
+            <!-- <span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am <ins></ins></span> -->
+            <?php
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                    echo '<span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am: <ins>' . $dateString . '</ins></span>';
+                }
+            }
+            ?>
         </div>
     </footer>
 

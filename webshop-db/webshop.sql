@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Jun 2020 um 15:29
+-- Erstellungszeit: 24. Jun 2020 um 18:28
 -- Server-Version: 10.4.11-MariaDB
 -- PHP-Version: 7.4.5
 
@@ -102,8 +102,8 @@ CREATE TABLE `ws_users` (
   `city` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `password` char(255) COLLATE utf8_german2_ci NOT NULL COMMENT 'SHA-256',
-  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Zeitpunkt der Registrierung',
-  `lastLoginTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created` bigint(20) UNSIGNED NOT NULL DEFAULT current_timestamp() COMMENT 'Timestamp of Account creation',
+  `lastLoginTime` bigint(20) UNSIGNED NOT NULL DEFAULT current_timestamp() COMMENT 'Timestamp of last logout',
   `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
@@ -112,8 +112,7 @@ CREATE TABLE `ws_users` (
 --
 
 INSERT INTO `ws_users` (`userID`, `firstName`, `lastName`, `street`, `zip`, `city`, `email`, `password`, `created`, `lastLoginTime`, `active`) VALUES
-(1, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', '2020-06-24 13:00:36', '2020-06-24 13:05:42', 0),
-(2, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', '1@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', '2020-06-24 12:41:37', '2020-06-24 13:05:42', 0);
+(7, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 1593015914, 1593015914, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -186,7 +185,7 @@ ALTER TABLE `ws_shopping_cart`
 -- AUTO_INCREMENT für Tabelle `ws_users`
 --
 ALTER TABLE `ws_users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints der exportierten Tabellen

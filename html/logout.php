@@ -15,7 +15,8 @@ try {
 
     //update active status
     $uid = $_SESSION['uid'];
-    $sql = "UPDATE webshop.ws_users SET active = 0 WHERE userID = $uid";
+    $thisTime = time();
+    $sql = "UPDATE webshop.ws_users SET active = 0, lastLoginTime = $thisTime WHERE userID = $uid";
     $result = $dbConnection->query($sql);
 
 
