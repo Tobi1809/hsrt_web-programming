@@ -1,6 +1,6 @@
 <?php
 
-class cart
+class Cart
 {
     //Initialisiert die Klasse - muss in jeder Seite wo der Warenkorb benötigt wird ausgeführt werden
     public function initial_cart()

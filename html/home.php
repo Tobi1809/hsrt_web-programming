@@ -13,7 +13,7 @@ include ("../backendPhp/dbConnection.php");
 include_once ("../backendPhp/cart.php");
 
 //Eine Neue Instanz der Klasse cart erstellen
-$cart = new cart();
+$cart = new Cart();
 
 //Prüfen, ob der Warenkorb bereits besteht
 $cart->initial_cart();
