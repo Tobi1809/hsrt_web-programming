@@ -15,8 +15,7 @@ include_once ("../backendPhp/cart.php");
 //Eine Neue Instanz der Klasse cart erstellen
 $cart = new Cart();
 
-//Prüfen, ob der Warenkorb bereits besteht
-$cart->initial_cart();
+
 
 //Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
 $productCount = $cart->get_cart_count();

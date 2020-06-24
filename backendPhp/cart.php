@@ -2,8 +2,8 @@
 
 class Cart
 {
-    //Initialisiert die Klasse - muss in jeder Seite wo der Warenkorb benötigt wird ausgeführt werden
-    public function initial_cart()
+    //Initialisiert das Objekt - wird aufgerufen wenn ein neues Objekt der Klasse Cart erstellt wird
+    function __construct()
     {
         $cartArray = array();
         if(!isset($_SESSION['cartArray']))
@@ -23,7 +23,7 @@ class Cart
     }
     
     //Gibt Alle Artikel des Warenkorb-Array in einer Tabelle aus
-    public function getCart()
+    public function getCartTable()
     {
         $cartArray = $_SESSION['cartArray'];
         echo "<table width='100%'>";
@@ -41,7 +41,7 @@ class Cart
     }
     
     //Löscht den Warenkorb
-    public function undo_cart()
+    public function reset_cart()
     {
         $_SESSION['cartArray'] = array();
     }
