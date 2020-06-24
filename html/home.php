@@ -55,6 +55,27 @@ if (isset($_SESSION["login"])) {
         }
     </style>
 
+    <script>
+
+        $(document).ready(function() { // wichtig!
+            setInterval(function () {
+                $.get("daten_auf_dem_server.php",
+                    {},
+                    function(numActiveUsers) {
+                        var activeUserElement = document.getElementById("numUserOnline");
+                        activeUserElement.innerText = numActiveUsers;
+                        console.log("updated active users");
+                    });
+            }, 1000);
+            $.post("../backendPhp/getActiveUsers.php", {},
+            function(returnedData) {
+
+                
+            }
+            );
+        });    
+    </script>
+
 </head>
 
 <body>
@@ -180,12 +201,12 @@ if (isset($_SESSION["login"])) {
         <!-- Produkte -->
         <div class="myProductsGrid">
 
-        <?php
+            <?php
             // echo "Print Products";
-    	    try {
+            try {
                 //Öffnen der Datenbank-Verbindung
                 $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
-        
+
                 if (!$dbConnection) {
                     echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
                     echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
@@ -195,15 +216,16 @@ if (isset($_SESSION["login"])) {
                 //SQL Syntax - wählt alle Zeilen aus, wo Email und Passwort den eingegebenen Daten entspricht
                 $sql1 = "SELECT itemID, itemName, description, price FROM ws_items";
                 $result1 = mysqli_query($dbConnection, $sql1);
-        
+
                 //Falls die Tabelle genau eine Reihe (Datensatz) besitzt, wo die Sql-Abfrage true ergibt
-                
+
                 while ($row = $result1->fetch_assoc()) {
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////// Create Product Cards dynamically
                     $name = $row["itemName"];
-                    ?>
+            ?>
                     <div class="myProductBox">
-                        <!-- Produkt <?php echo $row["itemID"]; //lol, php für kommentare XD?> --> 
+                        <!-- Produkt <?php echo $row["itemID"]; //lol, php für kommentare XD
+                                        ?> -->
                         <div style="height: 50%;">
                             <img src="products/productImages/product(<?php echo $row["itemID"]; ?>).jpg" class="img-rounded img-responsive" alt="">
                         </div>
@@ -216,7 +238,7 @@ if (isset($_SESSION["login"])) {
                             <a href="" class="btn btn-success">Zum Warenkorb hinzufügen</a>
                         </div>
                     </div>
-                    <?php
+            <?php
                 }
 
                 //Datenbank-Verbindung wieder schließen!
@@ -226,7 +248,7 @@ if (isset($_SESSION["login"])) {
                 exit;
             }
 
-        ?>
+            ?>
 
         </div>
 
@@ -235,7 +257,7 @@ if (isset($_SESSION["login"])) {
     <!-- Fußleiste -->
     <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
-            <span class="myBarItem w3-light-gray w3-left"> User online: 0</span>
+            <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
             <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
             <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>

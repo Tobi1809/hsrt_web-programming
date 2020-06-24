@@ -35,11 +35,16 @@ if (isset($_POST['email'])) //#! Check clientside with js if values are set
 		if ($result->num_rows == 1) {
 			while ($row = $result->fetch_assoc()) {
 				//Speichert Werte aus der Tabelle ws_users in der Session
+				$uid = $row["userID"];
 				$_SESSION['login'] = 111;
-				$_SESSION['uid'] = $row["userID"];
+				$_SESSION['uid'] = $uid;
 				$_SESSION['firstname'] = $row["firstName"];
 				$_SESSION['lastname'] = $row["lastName"];
 				$_SESSION['lastActiveTime'] = time();
+
+				//update active status
+				$sql2 = "UPDATE webshop.ws_users SET active = 1 WHERE userID = $uid";
+				$result2 = $dbConnection->query($sql2);
 			}
 			//Login erfolgreich			
 			echo "success";

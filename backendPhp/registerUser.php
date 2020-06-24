@@ -36,15 +36,15 @@ if (isset($_POST['firstname'])) //#! Check clientside with js if values are set
         {
             //$password = hash('sha256', $password);
 
-            $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password) VALUES
-                ('$firstname','$lastname','$street','$zip','$city','$email','$password')";
+            $sql = "INSERT INTO ws_users (firstName, lastName, street, zip, city, email, password, active) VALUES
+                ('$firstname','$lastname','$street','$zip','$city','$email','$password', 1)";
+
             $result2 = $dbConnection->query($sql);
 
-            //Registrierungsbestätigung per E-Mail hier noch einfügen! #!
-            sendRegistrationEmail($firstname, $lastname, $email);
+            // sendRegistrationEmail($firstname, $lastname, $email);  #! auskommentiert, um nicht ausversehen emails zu verschicken
 
             // get User ID of newly registered user // could be optimized be including it in sql query above
-            $sql = "SELECT UserID FROM webshop.ws_users where email='$email';";
+            $sql = "SELECT UserID FROM webshop.ws_users where email='$email'";
             $result3 = $dbConnection->query($sql);
             $uid = intval($result3->fetch_assoc()["UserID"]);   //with typeconversion
 
@@ -62,6 +62,7 @@ if (isset($_POST['firstname'])) //#! Check clientside with js if values are set
             echo "success";
         }
         mysqli_close($dbConnection);
+        exit;
     } catch (Exception $e) {
         echo "Error Connecting to database";
         exit;
