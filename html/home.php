@@ -3,6 +3,8 @@
 //Session starten
 session_start();
 
+//Wird nicht mehr benötigt?
+//include ("../backendPhp/getProductInfo.php");
 
 //Die Klasse verfügbar machen
 include_once ("../backendPhp/cart.php");
@@ -246,6 +248,7 @@ if (isset($_SESSION["login"])) {
                         </div>
                         </form>
                     </div>
+
             <?php
                 }
 
