@@ -13,7 +13,7 @@
     $cart = new Cart();
 
     //Prüfen, ob der Warenkorb bereits besteht
-    $cart->initial_cart();
+    $cart->__construct();
 
     //Falls Produkte in der Session bereits im Warenkorb - dann gib diese zurück
     $productCount = $cart->get_cart_count();
@@ -158,7 +158,7 @@
 
     <div class="w3-container">
         <div class="w3-panel w3-border-top">
-            <h4>Summe: 
+            <h4>Summe (<?php echo $productCount?> Artikel): 
                 
             <?php
 
@@ -191,7 +191,7 @@
             
                 if(isset($_POST['emptyCart']))
                 {
-                    $cart->undo_cart();
+                    $cart->reset_cart();
                     echo "<script>location.href=location.href;</script>";
                 }
 
