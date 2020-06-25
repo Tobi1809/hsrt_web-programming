@@ -3,19 +3,12 @@
 //Session starten
 session_start();
 
-//Wird nicht mehr benötigt?
-include ("../backendPhp/getProductInfo.php");
-
-//Öffnen der Datenbank-Verbindung
-include ("../backendPhp/dbConnection.php");
 
 //Die Klasse verfügbar machen
 include_once ("../backendPhp/cart.php");
 
 //Eine Neue Instanz der Klasse cart erstellen
 $cart = new Cart();
-
-
 
 //Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
 $productCount = $cart->get_cart_count();
@@ -243,26 +236,15 @@ if (isset($_SESSION["login"])) {
                         <p><b><?php echo $row["price"]; ?> €</b> <s><?php echo round($row["price"] / 0.67, 2) ?> €</s> | 33% Rabatt</p>
                         <hr>
                         
-                        <form method="post">
+                        <form method="post" action="../backendPhp/addItemToCart.php">
                         <div>
+                            <input id="itemID" value="<?php echo $row["itemID"]; ?>" name= "itemID" hidden >
+                            <input id="itemName" value="<?php echo $row["itemName"]; ?>" name= "itemName" hidden >
+                            <input id="description" value="<?php echo $row["description"]; ?>" name= "description" hidden >
+                            <input id="price" value="<?php echo $row["price"]; ?>" name= "price" hidden >
                             <button type="submit" name="button" class="btn btn-success">Zum Warenkorb hinzufügen</button>
                         </div>
                         </form>
-
-                        <?php
-
-                            if (isset($_POST['button']))
-                            {
-                                $itemID = $row ["itemID"];
-                                $itemName = $row["itemName"];
-                                $description = $row["description"];
-                                $quantity = "1";
-                                $price = $row["price"];
-
-                                $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
-                            }
-
-                        ?>
                     </div>
             <?php
                 }

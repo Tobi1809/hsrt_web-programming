@@ -5,13 +5,12 @@ class Cart
     //Initialisiert das Objekt - wird aufgerufen wenn ein neues Objekt der Klasse Cart erstellt wird
     function __construct()
     {
-        $cartArray = array();
-        if(!isset($_SESSION['cartArray']))
-        {
-            $_SESSION['cartArray']=$cartArray;
-        } 
+        if (!isset($_SESSION['cartArray'])) {
+            $cartArray = array();
+            $_SESSION['cartArray'] = $cartArray;
+        }
     }
-    
+
     //Fügt ein Produkt in das Warenkorb-Array ein
     public function insertProduct($itemID, $itemName, $description, $quantity, $price)
     {
@@ -21,7 +20,7 @@ class Cart
         array_push($cartArray, $product);
         $_SESSION['cartArray'] = $cartArray;
     }
-    
+
     //Gibt Alle Artikel des Warenkorb-Array in einer Tabelle aus
     public function getCartTable()
     {
@@ -39,33 +38,41 @@ class Cart
         }
         echo "</table>";
     }
-    
+
     //Löscht den Warenkorb
     public function reset_cart()
     {
         $_SESSION['cartArray'] = array();
     }
-    
+
     //Gibt einen Datensatz zurück am Point n
     public function get_cartValue_at_Point($n)
     {
-        $Array = $_SESSION['cartArray'];            
+        $Array = $_SESSION['cartArray'];
         return $Array[$n];
     }
-    
+
     //Entfernt ein Produkt am Point n
     public function delete_cartValue_at_Point($point)
     {
         $Array = $_SESSION['cartArray'];
         unset($Array[$point]);
     }
-    
+
     //Gibt die Anzahl der Produkte im Warenkorb zurück
     public function get_cart_count()
     {
         return count($_SESSION['cartArray']);
     }
-
 }
 
-?>
+
+if (!debug_backtrace()) {
+    //this is like Pythons if __name__ == "__main__":
+    //this will only be executed if this php script is called directly
+
+    //this is to test 
+    $cart = new Cart();
+
+    $eins = 1;
+}
