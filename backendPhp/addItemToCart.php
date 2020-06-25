@@ -12,9 +12,6 @@ include_once ("../backendPhp/cart.php");
 //Eine Neue Instanz der Klasse cart erstellen
 $cart = new Cart();
 
-//Prüfen, ob der Warenkorb bereits besteht
-$cart->__construct();
-
 if (isset($_POST['button']))
 {
     $itemID = $_POST["itemID"];
