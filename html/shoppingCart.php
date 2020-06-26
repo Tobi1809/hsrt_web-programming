@@ -202,17 +202,28 @@
 
                 if(isset($_POST['checkOut']))
                 {
-                    if($productCount == 0)
-                    {
+                    $userLogin = false;
+
+                    if($productCount == 0) {
                         ?><span class="text-danger align-middle" id="invalidCredentialsErrorMessage">
                         <!-- Error message here -->
                         <i class="fa fa-close animate__animated animate__shakeX"></i>Füllen Sie bitte zuerst Ihren Warenkorb um fortzufahren!
                         </span>
                         <?php
                     }
-                } else {
-                    //header ("location: checkOut.php");
+                    if(isset($_SESSION["login"]) && $productCount > 0) {
+                        if($_SESSION["login"] == 111) {
+                            $userLogin = true;
+                            $uid = $_SESSION['uid'];
+
+                            header ("Location: checkOut.php");
+                        }    
+                    }
+                    if($userLogin == false && $productCount > 0) {
+                        header ("Location: login.php");
+                    }
                 }
+
             ?>
         </div>
     </form>
