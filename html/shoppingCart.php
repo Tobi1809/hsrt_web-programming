@@ -138,7 +138,7 @@
         $Array = $_SESSION['cartArray'];
 
         if ($productCount == 0) {
-        echo "<tr><td> Ihr Warenkorb ist leer.</td></tr>";
+            echo "<tr><td> Ihr Warenkorb ist leer.</td></tr>";
         }
         else {
         for($i = 0 ; $i < count($Array); $i++){
@@ -216,7 +216,7 @@
                             $userLogin = true;
                             $uid = $_SESSION['uid'];
 
-                            header ("Location: checkOut.php");
+                            header ("Location: checkout.php");
                         }    
                     }
                     if($userLogin == false && $productCount > 0) {
