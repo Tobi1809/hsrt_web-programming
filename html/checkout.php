@@ -161,7 +161,7 @@
     </div>
 
     <div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float:left">
-        <form method="post" action="../backendPhp/processOrder.php" name="payment" class="form-horizontal">
+        <form method="post" action="home.php" name="payment" class="form-horizontal">
 
             <fieldset>
 

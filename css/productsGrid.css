@@ -1,9 +1,11 @@
 
+.mainContent{
+	background-color: rgb(230, 230, 230);
+}
 
 .myProductsArea {
 	display: flex;
 	flex-direction: row;
-	background-color: rgb(189, 189, 189);
 	margin: 100px;
 }
 
@@ -12,14 +14,13 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	color: rgb(175, 175, 175);
-	background-color:  rgb(175, 175, 175);
 	align-items: center;
 	justify-content: center;
 }
 
 .myProductBox {
-	height: 500px;
-	width: 300px;
+	height: 450px;
+	width: 400px;
 	background-color: white;
 	float: center;
 
@@ -30,9 +31,12 @@
 }
 
 p {
-	color: rgb(172, 172, 172);
+	color: rgb(88, 88, 88);
 }
 b {
-	color: red;
+	color: rgb(216, 22, 48);
 	size: large;
+}
+i.red{
+	color: rgb(216, 22, 48);
 }

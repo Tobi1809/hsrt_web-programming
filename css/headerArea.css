@@ -32,7 +32,7 @@ p.myTitle {
 
 .titleBand {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr;
+	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
 	justify-items: center;
 
 	height: fit-content;
@@ -43,6 +43,8 @@ p.myTitle {
 .centerMargin{
 	margin: auto;
 }
+
+
 
 /* .TitleBandBox {
 	background-color: rgb(68, 67, 67);
