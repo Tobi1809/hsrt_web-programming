@@ -3,9 +3,6 @@
 //Session starten
 session_start();
 
-//Wird nicht mehr benötigt?
-//include ("../backendPhp/getProductInfo.php");
-
 //Die Klasse verfügbar machen
 include_once("../backendPhp/cart.php");
 
@@ -86,7 +83,7 @@ if (isset($_SESSION["login"])) {
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-16">
 
-        <div class="3-bar w3-center">
+        <div class="w3-bar w3-center">
             <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
             <p class="myTitle">Only the greatest discounts!</p>
         </div>
@@ -287,7 +284,7 @@ if (isset($_SESSION["login"])) {
         <div class="w3-bar w3-light-gray">
             <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
 
-            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
+            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
             <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
             <!-- <span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am <ins></ins></span> -->
