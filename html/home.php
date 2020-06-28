@@ -88,7 +88,7 @@ if (isset($_SESSION["login"])) {
 
         <div class="3-bar w3-center">
             <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-            <p class="myTitle">Only the greatest discounts!</p>
+            <p class="myTitle">Dies ist der erste TestRelease0.00.01</p>
         </div>
 
         <div class="centerMargin"><a href="home.php" class=" w3-button "></i> Home</a></div>
