@@ -1,0 +1,22 @@
+.myOrdersGrid {
+	display: flex;
+	flex-direction: column;
+	color: rgb(88, 88, 88);
+	align-items: center;
+	justify-content: center;
+}
+
+.myOrderBox {
+	background-color: white;
+	float: center;
+	width: 800px;
+	border-radius: 10px 10px 10px 10px;
+	padding: 20px 20px;
+	margin: 10px;
+	box-shadow: 10px -10px 3px rgb(216, 22, 48);
+}
+
+img.smallImage {
+	height: 100px;
+	margin: 5px;
+}

@@ -40,11 +40,9 @@ p.myTitle {
 	background-image: linear-gradient(to right, rgb(107, 107, 107), rgb(145, 114, 114));
 }
 
-.centerMargin{
+.centerMargin {
 	margin: auto;
 }
-
-
 
 /* .TitleBandBox {
 	background-color: rgb(68, 67, 67);

@@ -103,7 +103,7 @@ if (isset($_SESSION["login"])) {
 
         <div></div>
 
-        
+
 
         <div class="centerMargin">
             <!-- shopping cart -->
@@ -119,7 +119,7 @@ if (isset($_SESSION["login"])) {
                     echo $MyOrdersHtml;
                 }
             }
-            
+
             ?>
         </div>
 

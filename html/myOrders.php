@@ -41,6 +41,7 @@ if (isset($_SESSION["login"])) {
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
+    <link rel="stylesheet" href="../css/myOrders.css">
 
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -134,38 +135,88 @@ if (isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="w3-container">
-            <table class="w3-table">
+        <div class="myOrdersGrid">
 
-            <thead>
-                <tr class="w3-light-gray">
-                    <th>Produktname</th>
-                    <th>Preis</th>
-                </tr>
-            </thead>
+            <div class="myOrderBox w3-container">
+                <div class="w3-light-gray w3-container" style="margin-top: 3px;">
+                    <span style="float: left;">Order Nr. 687654</span>
+                    <span style="float: right;"> Order Datum: 13:09:27 Dec 10 2018</span>
+                </div>
+                <table class="w3-table w3-margin-top">
 
-            <tr>
-                <td>Titan Uhr - Modell 1</td>
-                <td>4.99€</td>
-            </tr>
-            <tr>
-                <td>Titan Uhr - Modell 1</td>
-                <td>9.99€</td>
-            </tr>
-            <div class="w3-container">
-        <div class="w3-panel w3-border-top">
-            <h4>Zwischensumme :  14.98 € </h4>
-            <h4>Versandkosten:  5 € </h4>
-            <h4>Gesamtbetrag:  19.98 € </h4>
-            <div class="w3-border-top">
-            <h4>Status:  19.98 € </h4>
+                    <thead>
+                        <tr class="w3-light-gray">
+                            <th></th>
+                            <th>Produktname</th>
+                            <th>Preis</th>
+                        </tr>
+                    </thead>
+
+                    <tr>
+                        <td><img src="products/productImages/product(1).jpg" class="smallImage"></td>
+                        <td>Titan Uhr - Modell 1</td>
+                        <td>4.99€</td>
+                    </tr>
+                    <tr>
+                        <td><img src="products/productImages/product(1).jpg" class="smallImage"></td>
+                        <td>Titan Uhr - Modell 1</td>
+                        <td>9.99€</td>
+                    </tr>
+                </table>
+                <div class="w3-container">
+                    <div class="w3-panel w3-border-top">
+                        <h4>Zwischensumme : 14.98 € </h4>
+                        <h4>Versandkosten: 5 € </h4>
+                        <h4>Gesamtbetrag: 19.98 € </h4>
+                        <div class="w3-border-top">
+                            <h4>Status: angekommen </h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="goback"></label>
+                    <div class="col-md-8">
+                        <div class=" "><a href="#" class=" w3-button  w3-light-gray"><i class="fas fa-redo-alt"></i> nocheinmal bestellen</a></div>
+                        <div class=""><a href="processOrder.php" class=" w3-button w3-light-gray"><i class="fas fa-receipt"></i> Rechnung anfordern</a></div>
+                    </div>
+                </div>
             </div>
+
+            <div class="myOrderBox w3-container">
+                <table class="w3-table w3-margin-top">
+
+                    <thead>
+                        <tr class="w3-light-gray">
+                            <th>Produktname</th>
+                            <th>Preis</th>
+                        </tr>
+                    </thead>
+
+                    <tr>
+                        <td>Titan Uhr - Modell 1</td>
+                        <td>4.99€</td>
+                    </tr>
+                    <tr>
+                        <td>Titan Uhr - Modell 1</td>
+                        <td>9.99€</td>
+                    </tr>
+                </table>
+                <div class="w3-container">
+                    <div class="w3-panel w3-border-top">
+                        <h4>Zwischensumme : 14.98 € </h4>
+                        <h4>Versandkosten: 5 € </h4>
+                        <h4>Gesamtbetrag: 19.98 € </h4>
+                        <div class="w3-border-top">
+                            <h4>Status: 19.98 € </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-            
-            </table>
-        </div>
-    </div>
+
 
     </div>
 
