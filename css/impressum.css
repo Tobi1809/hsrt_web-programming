@@ -1,0 +1,41 @@
+
+h1.impressum {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 46px;
+    margin: 30px;
+    font-weight: normal;
+}
+
+.impressum-entry {
+    width: 100%;
+    Padding: 20px;
+    Margin: 0px;
+}
+
+h2.impressum {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 25px;
+    margin: 30px;
+    font-weight: bold;
+}
+
+h3.impressum {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 25px;
+    margin: 30px;
+    font-weight: bold;
+}
+
+p.impressum {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    margin: 30px;
+}
+
+body.impressum {
+    background-color: #F4F4F4;
+}
