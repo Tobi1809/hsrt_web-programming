@@ -149,7 +149,7 @@ if (isset($_SESSION["uid"])) {
 
         <div class="centerMargin"><a href="home.php" class=" w3-button "></i> Home</a></div>
 
-        <div class="centerMargin"><a href="#überuns.html" class=" w3-button"> Über uns</a></div>
+        <div class="centerMargin"><a href="aboutUs.php" class=" w3-button"> Über uns</a></div>
 
         <div></div>
 
@@ -361,9 +361,9 @@ if (isset($_SESSION["uid"])) {
     <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
             <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
-            <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
+            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
-            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
+            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
         </div>
     </footer>
 

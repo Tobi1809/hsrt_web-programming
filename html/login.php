@@ -86,7 +86,7 @@ session_start();
                 <p class="myTitle">Only the greatest discounts!</p>
             </div>
             <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
-            <a href="#überuns.html" class="myBarItem w3-button w3-hide-small"> Über uns</a>
+            <a href="aboutUs.php" class="myBarItem w3-button w3-hide-small"> Über uns</a>
             <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
         </div>
     </header>
@@ -146,9 +146,9 @@ session_start();
     <footer class="w3-container w3-padding-16 w3-margin-top">
         <div class="w3-bar w3-light-gray">
             <span class="myBarItem w3-light-gray w3-left"> User online: 0</span>
-            <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
+            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
-            <a href="#impressum.html" class="myBarItem w3-button w3-right"> Impressum</a>
+            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
         </div>
     </footer>
 </body>

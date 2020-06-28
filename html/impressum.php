@@ -81,7 +81,7 @@ if (isset($_SESSION["login"])) {
 
         <div class="centerMargin"><a href="home.php" class="w3-button"></i> Home</a></div>
 
-        <div class="centerMargin"><a href="#überuns.html" class="w3-button"> Über uns</a></div>
+        <div class="centerMargin"><a href="aboutUs.php" class="w3-button"> Über uns</a></div>
 
         <div></div>
 
@@ -205,7 +205,7 @@ if (isset($_SESSION["login"])) {
             <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
 
             <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
-            <a href="#kontakt.html" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
+            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
                 Kontakt</a>
             <!-- <span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am <ins></ins></span> -->
             <?php
