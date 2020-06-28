@@ -1,33 +1,68 @@
 <?php
-    
-    //Session starten
-    session_start();
 
-    //Öffnen der Datenbank-Verbindung
-    include ("../backendPhp/dbConnection.php");
+//Session starten
+session_start();
 
-    //Die Klasse verfügbar machen
-    include_once ("../backendPhp/cart.php");
+//Öffnen der Datenbank-Verbindung
+//include("../backendPhp/dbConnection.php");
 
-    //Eine Neue Instanz der Klasse cart erstellen
-    $cart = new Cart();
+//Die Klasse verfügbar machen
+include_once("../backendPhp/cart.php");
 
-    //Falls Produkte in der Session bereits im Warenkorb - dann gib diese zurück
-    $productCount = $cart->get_cart_count();
+//Eine Neue Instanz der Klasse cart erstellen
+$cart = new Cart();
 
-    //Sicherheitskontrolle - ist User eingeloggt der gerade bestellen will?
-    $userLogin = false;
+//Falls Produkte in der Session bereits im Warenkorb - dann gib diese zurück
+$productCount = $cart->get_cart_count();
 
-    if(isset($_SESSION["login"]) && $productCount > 0) {
- 	    if($_SESSION["login"] == 111) {
-               $userLogin = true;
-               $uid = $_SESSION['uid'];
-         }
+//Sicherheitskontrolle - ist User eingeloggt der gerade bestellen will?
+$userLogin = false;
+
+if (isset($_SESSION["login"]) && $productCount > 0) {
+    if ($_SESSION["login"] == 111) {
+        $userLogin = true;
+        $uid = $_SESSION['uid'];
     }
-    if($userLogin == false || $productCount == 0) {
-        header("Location: login.php");
-    }
+}
+if ($userLogin == false || $productCount == 0) {
+    header("Location: login.php");
+}
 
+?>
+<?php
+//auslesen der Nutzerdaten
+if (isset($_SESSION["uid"])) {
+    $uid = $_SESSION['uid'];
+    try {
+        //Öffnen der Datenbank-Verbindung
+        $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
+
+        if (!$dbConnection) {
+            echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
+            echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
+            echo "Debug-Fehlermledung: " . mysqli_connect_error() . PHP_EOL;
+            exit;
+        }
+        //liest Daten des Users aus
+        $sql = "SELECT * FROM ws_users where UserID ='$uid' ";
+        $result = $dbConnection->query($sql);
+
+        if ($result->num_rows == 1) {
+            while ($row = $result->fetch_assoc()) {
+                //Speichert Werte aus der Tabelle ws_users in der Session
+                $firstName = $row["firstName"];
+                $lasName = $row["lastName"];
+                $street = $row["street"];
+                $zip = $row["zip"];
+                $city = $row["city"];
+            }
+        }
+        mysqli_close($dbConnection);
+    } catch (Exception $e) {
+        echo "Error Connecting to database";
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,13 +87,11 @@
     <link rel="stylesheet" href="../css/productsGrid.css">
 
     <script>
+        $(document).ready(function() { // wichtig!
 
-        $(document).ready(function () { // wichtig!
-
-            setInterval(function () {
-                $.get("../backendPhp/getNumActiveUsers.php",
-                    {},
-                    function (numActiveUsers) {
+            setInterval(function() {
+                $.get("../backendPhp/getNumActiveUsers.php", {},
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -66,51 +99,40 @@
             }, 1000);
 
         });
-
     </script>
 
     <!--Versandkosten-Anzeige für die User-->
     <script type="text/javascript">
+        $(function() {
+            $('#shipping').change(function() {
+                if ($(this).val() != "") {
+                    $.get("../backendPhp/getShippingCostsForUser.php", {
+                            selection: $(this).val()
+                        },
+                        function(data) {
+                            $('#getShippingCosts').html(data);
+                        });
+                }
+            });
 
-    $(function ()
-    {
-        $('#shipping').change(function()
-        {
-            if($(this).val()!= "")
-            {
-                $.get("../backendPhp/getShippingCostsForUser.php",
-                    { selection: $(this).val()},
-                    function(data)
-                    {
-                        $('#getShippingCosts').html(data);
-                    });
-            }
         });
-
-    });
-
     </script>
 
     <!--Gesamtbetrag-Anzeige für die User-->
     <script type="text/javascript">
+        $(function() {
+            $('#shipping').change(function() {
+                if ($(this).val() != "") {
+                    $.get("../backendPhp/getTotalAmountForUsers.php", {
+                            selection: $(this).val()
+                        },
+                        function(data) {
+                            $('#getTotalAmount').html(data);
+                        });
+                }
+            });
 
-    $(function ()
-    {
-        $('#shipping').change(function()
-        {
-            if($(this).val()!= "")
-            {
-                $.get("../backendPhp/getTotalAmountForUsers.php",
-                    { selection: $(this).val()},
-                    function(data)
-                    {
-                        $('#getTotalAmount').html(data);
-                    });
-            }
         });
-
-    });
-
     </script>
 
 </head>
@@ -138,19 +160,19 @@
         </div>
 
         <?php
-    // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-    $loginHTML = '<div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>';
-    $logoutHTML = '<div class="centerMargin"><a href="logout.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Logout</a></div>';
-    if (isset($_SESSION["login"])) {
-        if ($_SESSION["login"] == 111) {
-            echo $logoutHTML;
+        // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
+        $loginHTML = '<div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>';
+        $logoutHTML = '<div class="centerMargin"><a href="logout.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Logout</a></div>';
+        if (isset($_SESSION["login"])) {
+            if ($_SESSION["login"] == 111) {
+                echo $logoutHTML;
+            } else {
+                echo $loginHTML;
+            }
         } else {
             echo $loginHTML;
         }
-    } else {
-        echo $loginHTML;
-    }
-    ?>
+        ?>
 
     </header>
 
@@ -161,7 +183,7 @@
     </div>
 
     <div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float:left">
-        <form method="post" action="home.php" name="payment" class="form-horizontal">
+        <form method="post" action="processOrder.php" name="payment" class="form-horizontal">
 
             <fieldset>
 
@@ -176,8 +198,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="firstname">Name</label>
                     <div class="col-md-6">
-                        <input id="firstname" name="firstname" type="text" placeholder="Vorname"
-                            class="form-control input-md" required="">
+                        <input id="firstname" name="firstname" type="text" placeholder="Vorname" value="<?php echo  $firstName; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -186,8 +207,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="lastname"></label>
                     <div class="col-md-6">
-                        <input id="lastname" name="lastname" type="text" placeholder="Nachname"
-                            class="form-control input-md" required="">
+                        <input id="lastname" name="lastname" type="text" placeholder="Nachname" value="<?php echo $lasName; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -196,8 +216,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="street">Straße</label>
                     <div class="col-md-6">
-                        <input id="street" name="street" type="text" placeholder="Straße" class="form-control input-md"
-                            required="">
+                        <input id="street" name="street" type="text" placeholder="Straße" value="<?php echo $street; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -206,8 +225,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="city">Stadt</label>
                     <div class="col-md-6">
-                        <input id="city" name="city" type="text" placeholder="Stadt" class="form-control input-md"
-                            required="">
+                        <input id="city" name="city" type="text" placeholder="Stadt" value="<?php echo $city; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -216,8 +234,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="zip">Postleitzahl</label>
                     <div class="col-md-6">
-                        <input id="zip" name="zip" type="text" placeholder="Postleitzahl" class="form-control input-md"
-                            required="">
+                        <input id="zip" name="zip" type="text" placeholder="Postleitzahl" value="<?php echo $zip; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -286,12 +303,12 @@
 
         <tbody>
 
-        <?php
+            <?php
             $Array = $_SESSION['cartArray'];
 
-            for($i = 0 ; $i < count($Array); $i++) {
+            for ($i = 0; $i < count($Array); $i++) {
                 $innerArray = $Array[$i];
-                
+
                 echo "<tr>
                 <td>$innerArray[1]</td>
                 <td>$innerArray[2]</td>
@@ -299,43 +316,45 @@
                 <td>$innerArray[4]€</td>
                 </tr>";
             }
-        ?>
+            ?>
 
         </tbody>
-                
+
     </table>
 
     <table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-black w3-margin" style="width:45%; float: right">
 
         <thead>
             <tr class="w3-light-gray">
-                <tr><th>Zwischensumme (<?php echo $productCount?> Artikel):
-                <?php
+            <tr>
+                <th>Zwischensumme (<?php echo $productCount ?> Artikel):
+                    <?php
 
-                $total = 0;
-    
-                for($i = 0 ; $i < count($Array); $i++)
-                {
-                    $innerArray = $Array[$i];
-                    $total+= $innerArray[4];
-                }
-    
-                if($total!=0)
-                {
-                    echo "$total €"; 
-                }
-                else
-                {
-                    echo "0 €";
-                }
+                    $total = 0;
 
-                ?>
-                </th></tr>
-                <tr><th>Versandkosten: <span id="getShippingCosts"></span> €</th></tr>
-                <tr><th>Gesamtbetrag: <span id="getTotalAmount"></span> €</th></tr>
+                    for ($i = 0; $i < count($Array); $i++) {
+                        $innerArray = $Array[$i];
+                        $total += $innerArray[4];
+                    }
+
+                    if ($total != 0) {
+                        echo "$total €";
+                    } else {
+                        echo "0 €";
+                    }
+
+                    ?>
+                </th>
+            </tr>
+            <tr>
+                <th>Versandkosten: <span id="getShippingCosts"></span> €</th>
+            </tr>
+            <tr>
+                <th>Gesamtbetrag: <span id="getTotalAmount"></span> €</th>
+            </tr>
             </tr>
         </thead>
-    
+
     </table>
 
     <!-- Fußleiste -->
@@ -353,5 +372,5 @@
 </html>
 
 <?php
-    mysqli_close($dbConnection);
+//mysqli_close($dbConnection);
 ?>

@@ -138,18 +138,14 @@ if (isset($_SESSION["login"])) {
         <div class="w3-container">
             <div></div>
             <div class="centerMargin">
-               <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat" class="centerImage"> 
+                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat" class="centerImage">
             </div>
             <div></div>
         </div>
-        
+
         <div class="centerMargin">
             <a href="logout.php" class=" w3-button w3-light-gray centerMargin"><i class="fas fa-arrow-right"></i> Weiter shoppen</a>
         </div>
-        
-        
-
-
     </div>
 
     <!-- Fußleiste -->
