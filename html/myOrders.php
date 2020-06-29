@@ -56,11 +56,11 @@ if (isset($_SESSION["login"])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
 
-            setInterval(function () {
+            setInterval(function() {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function (numActiveUsers) {
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -143,149 +143,137 @@ if (isset($_SESSION["login"])) {
                 <h3>Meine Bestellungen <i class="far fa-thumbs-up"></i></h3>
             </div>
         </div>
-
-        <?php
-        // get all Orders
-        try {
-            //Öffnen der Datenbank-Verbindung
-            $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
-    
-            if (!$dbConnection) {
-                echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
-                echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
-                echo "Debug-Fehlermledung: " . mysqli_connect_error() . PHP_EOL;
-                exit;
-            }
-
-            // get Orders
-            $uid = $_SESSION["uid"];
-            $sql1 = "SELECT * FROM ws_orders WHERE userID = $uid";
-            $result1 = $dbConnection->query($sql1);
-
-            while ($row = $result->fetch_assoc()) {
-                
-            }
-            //Produkte auseinander fledern
-            $length = strlen($itemIDs);
-            $itemIDsArr = array();
-            $i = 1;
-            while ($i < $length) {
-                //if($i == ",")(++$i)
-                $item = "";
-                while ($itemIDs[$i] != ",") {
-                    $item .= $itemIDs[$i];
-                    ++$i;
-                }
-                array_push($itemIDsArr, intval($item));
-                ++$i;
-            }
-
-            //individual Product names
-            $itemsArr = array();
-            foreach ($itemIDsArr as $itemID) {
-                $sql3 = "SELECT itemName, price FROM ws_items WHERE itemID = $itemID";
-                $result3 = $dbConnection->query($sql3);
-                $row = $result3->fetch_assoc();
-                $itemName = $row["itemName"];
-                $price = $row["price"];
-                $item = array(
-                    "itemID" => $itemID,
-                    "itemName" => $itemName,
-                    "price" => $price,
-                );
-                array_push($itemsArr, $item);
-            }
-
-
-            mysqli_close($dbConnection);
-        } catch (Exception $e) {
-            echo "Error Connecting to database";
-        }
-
-        ?>
-
+        <!-- ----------------------------------------------- Here in this div all Orders are displayed -->
         <div class="myOrdersGrid">
 
-            <div class="myOrderBox w3-container">
-                <div class="w3-light-gray w3-container" style="margin-top: 3px;">
-                    <span style="float: left;">Order Nr. 687654</span>
-                    <span style="float: right;"> Order Datum: 13:09:27 Dec 10 2018</span>
-                </div>
-                <table class="w3-table w3-margin-top">
+            <?php
+            // get all Orders
+            try {
+                //Öffnen der Datenbank-Verbindung
+                $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
 
-                    <thead>
-                        <tr class="w3-light-gray">
-                            <th></th>
-                            <th>Produktname</th>
-                            <th>Preis</th>
+                if (!$dbConnection) {
+                    echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
+                    echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
+                    echo "Debug-Fehlermledung: " . mysqli_connect_error() . PHP_EOL;
+                    exit;
+                }
+
+                // get Orders
+                $uid = $_SESSION["uid"];
+                $sql1 = "SELECT * FROM ws_orders WHERE userID = $uid";
+                $result1 = $dbConnection->query($sql1);
+                $ordersArr = array();
+                while ($row = $result1->fetch_assoc()) {
+                    array_push($ordersArr, $row);
+                }
+
+                //////////////////////////////////////////////////////////// for every Order 
+                foreach ($ordersArr as $order) {
+                    ////////////////////////////////////////////////////////// html for every Order at beginning
+                    ?>
+                    <div class="myOrderBox w3-container">
+                        <div class="w3-light-gray w3-container" style="margin-top: 3px;">
+                            <span style="float: left;">Order Nr. <?php echo $order["orderID"]; ?></span>
+                            <span style="float: right;"> Bestell Zeitpunkt: <?php echo date("H:i::s M n Y", $order["orderDate"]); ?></span>
+                        </div>
+                        <table class="w3-table w3-margin-top">
+
+                            <thead>
+                                <tr class="w3-light-gray">
+                                    <th></th>
+                                    <th>Produktname</th>
+                                    <th>Preis</th>
+                                </tr>
+                            </thead>
+                    <?php
+                    //////////////////////////////////////////////////////////
+
+                    $orderID = $order["orderID"];
+                    $orderPrice = $order["orderPrice"];
+                    $shippingCosts = $order["shippingCosts"];
+                    $shippingType = $order["shippingType"];
+                    $shippingAdress = $order["shippingAdress"];
+                    $shippingStatus = $order["shippingStatus"];
+                    $shippingType = $order["shippingType"];
+                    $itemIDs = $order["itemIDs"];
+
+                    //Produkte auseinander fledern
+                    $length = strlen($itemIDs);
+                    $itemIDsArr = array();
+                    $i = 1;
+                    while ($i < $length) {
+                        //if($i == ",")(++$i)
+                        $item = "";
+                        while ($itemIDs[$i] != ",") {
+                            $item .= $itemIDs[$i];
+                            ++$i;
+                        }
+                        array_push($itemIDsArr, intval($item));
+                        ++$i;
+                    }
+
+                    //get individual Product data from db
+                    $itemsArr = array();
+                    foreach ($itemIDsArr as $itemID) {
+                        $sql3 = "SELECT itemName, price FROM ws_items WHERE itemID = $itemID";
+                        $result3 = $dbConnection->query($sql3);
+                        $row = $result3->fetch_assoc();
+                        $itemName = $row["itemName"];
+                        $price = $row["price"];
+                        $item = array(
+                            "itemID" => $itemID,
+                            "itemName" => $itemName,
+                            "price" => $price,
+                        );
+                        array_push($itemsArr, $item);
+                    }
+                    foreach ($itemsArr as $item){
+                        ?>
+                        <tr>
+                            <td><img src="products/productImages/product(<?php echo $item["itemID"]; ?>).jpg" class="smallImage"></td>
+                            <td><?php echo $item["itemName"]; ?></td>
+                            <td><?php echo $item["itemName"]; ?></td>
                         </tr>
-                    </thead>
-
-                    <tr>
-                        <td><img src="products/productImages/product(1).jpg" class="smallImage"></td>
-                        <td>Titan Uhr - Modell 1</td>
-                        <td>4.99€</td>
-                    </tr>
-                    <tr>
-                        <td><img src="products/productImages/product(1).jpg" class="smallImage"></td>
-                        <td>Titan Uhr - Modell 1</td>
-                        <td>9.99€</td>
-                    </tr>
-                </table>
-                <div class="w3-container">
-                    <div class="w3-panel w3-border-top">
-                        <h4>Zwischensumme : 14.98 € </h4>
-                        <h4>Versandkosten: 5 € </h4>
-                        <h4>Gesamtbetrag: 19.98 € </h4>
-                        <div class="w3-border-top">
-                            <h4>Status: angekommen </h4>
+                        <?php
+                    } 
+                    ////////////////////////////////////////////////////////// html for every Order at the end
+                    ?>   
+                    </table>
+                    <div class="w3-container">
+                        <div class="w3-panel w3-border-top">
+                            <h4>Versandkosten:  <?php echo $shippingCosts; ?>€ </h4>
+                            <h4>Gesamtbetrag: <?php echo $orderPrice; ?> € </h4>
+                            <div class="w3-border-top">
+                                <h4>Status: <?php echo $shippingStatus; ?> </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="goback"></label>
+                        <div class="col-md-8">
+                            <div class=" "><a href="#" class=" w3-button  w3-light-gray"><i class="fas fa-redo-alt"></i>
+                                    nocheinmal bestellen</a></div>
+                            <div class=""><a href="processOrder.php" class=" w3-button w3-light-gray"><i class="fas fa-receipt"></i> Rechnung anfordern</a></div>
                         </div>
                     </div>
                 </div>
-                <!-- Button (Double) -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="goback"></label>
-                    <div class="col-md-8">
-                        <div class=" "><a href="#" class=" w3-button  w3-light-gray"><i class="fas fa-redo-alt"></i>
-                                nocheinmal bestellen</a></div>
-                        <div class=""><a href="processOrder.php" class=" w3-button w3-light-gray"><i
-                                    class="fas fa-receipt"></i> Rechnung anfordern</a></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="myOrderBox w3-container">
-                <table class="w3-table w3-margin-top">
+                <?php
+                ////////////////////////////////////////////////////////// html for every Order at the end
+                }
 
-                    <thead>
-                        <tr class="w3-light-gray">
-                            <th>Produktname</th>
-                            <th>Preis</th>
-                        </tr>
-                    </thead>
+                mysqli_close($dbConnection);
+            } catch (Exception $e) {
+                echo "Error Connecting to database";
+            }
 
-                    <tr>
-                        <td>Titan Uhr - Modell 1</td>
-                        <td>4.99€</td>
-                    </tr>
-                    <tr>
-                        <td>Titan Uhr - Modell 1</td>
-                        <td>9.99€</td>
-                    </tr>
-                </table>
-                <div class="w3-container">
-                    <div class="w3-panel w3-border-top">
-                        <h4>Zwischensumme : 14.98 € </h4>
-                        <h4>Versandkosten: 5 € </h4>
-                        <h4>Gesamtbetrag: 19.98 € </h4>
-                        <div class="w3-border-top">
-                            <h4>Status: 19.98 € </h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            ?>
 
+        <!-- div for the Orders -->
         </div>
+    <!-- main content div      -->
     </div>
 
     <!-- Fußleiste -->
@@ -306,7 +294,7 @@ if (isset($_SESSION["login"])) {
                     echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
                 }
             }
-        ?>
+            ?>
         </div>
 
         <div></div>
