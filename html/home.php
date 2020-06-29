@@ -167,40 +167,35 @@ if (isset($_SESSION["login"])) {
                     <div class="item active">
                         <img src="../images/uhr1.jpeg" alt="Chania" width="460" height="345">
                         <div class="carousel-caption">
-                            <h3>Produkt 1</h3>
-                            <p>Hier könnte eine Beschreibung stehen!</p>
+                            <h3>Uhr 1</h3>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="../images/uhr2.jpg" alt="Chania" width="460" height="345">
                         <div class="carousel-caption">
-                            <h3>Produkt 2</h3>
-                            <p>Hier könnte eine Beschreibung stehen!</p>
+                            <h3>Uhr 2</h3>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="../images/uhr3.jpg" alt="Chania" width="460" height="345">
                         <div class="carousel-caption">
-                            <h3>Produkt 3</h3>
-                            <p>Hier könnte eine Beschreibung stehen!</p>
+                            <h3>Uhr 3</h3>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="../images/uhr4.jpg" alt="Chania" width="460" height="345">
                         <div class="carousel-caption">
-                            <h3>Produkt 4</h3>
-                            <p>Hier könnte eine Beschreibung stehen!</p>
+                            <h3>Uhr 4</h3>
                         </div>
                     </div>
 
                     <div class="item">
                         <img src="../images/uhr6.jpg" alt="Chania" width="460" height="345">
                         <div class="carousel-caption">
-                            <h3>Produkt 5</h3>
-                            <p>Hier könnte eine Beschreibung stehen!</p>
+                            <h3>Uhr 5</h3>
                         </div>
                     </div>
 
