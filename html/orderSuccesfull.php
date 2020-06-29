@@ -58,7 +58,7 @@ if (isset($_POST['button']))
     <meta charset="utf-8">
 
     <!-- our Styles -->
-    <link rel="stylesheet" href="../css/headerArea.css">
+    <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
     <link rel="stylesheet" href="../css/myStyle">
 
@@ -74,22 +74,12 @@ if (isset($_POST['button']))
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-
-    <style>
-        .carousel-inner>.item>img,
-        .carousel-inner>.item>a>img {
-            width: 42%;
-            margin: auto;
-        }
-    </style>
-
     <script>
-        $(document).ready(function() { // wichtig!
+        $(document).ready(function () { // wichtig!
 
-            setInterval(function() {
+            setInterval(function () {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function(numActiveUsers) {
+                    function (numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -104,16 +94,16 @@ if (isset($_POST['button']))
 <body>
 
     <!-- Kopfbereich -->
-    <header class="titleBand w3-padding-16">
+    <header class="titleBand w3-padding-8">
 
         <div class="3-bar w3-center">
             <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
             <p class="myTitle">Only the greatest discounts!</p>
         </div>
 
-        <div class="centerMargin"><a href="home.php" class=" w3-button "></i> Home</a></div>
+        <div class="centerMargin"><a href="home.php"></i> Home</a></div>
 
-        <div class="centerMargin"><a href="aboutUs.php" class=" w3-button"> Über uns</a></div>
+        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
 
         <div></div>
 
@@ -125,13 +115,26 @@ if (isset($_POST['button']))
 
         <div class="centerMargin">
             <!-- shopping cart -->
-            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-4x"></i>(<?php echo $productCount ?>)</a>
+            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+        </div>
+
+        <div class="centerMargin">
+            <?php
+            //show My Orders Button if logged in
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $MyOrdersHtml;
+                }
+            }
+
+            ?>
         </div>
 
         <?php
         // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-        $loginHTML = '<div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>';
-        $logoutHTML = '<div class="centerMargin"><a href="logout.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Logout</a></div>';
+        $loginHTML = '<div class="centerMargin"><a href="login.php"><i class="fas fa-user"></i> Login</a></div>';
+        $logoutHTML = '<div class="centerMargin"><a href="logout.php"><i class="fas fa-user"></i> Logout</a></div>';
         if (isset($_SESSION["login"])) {
             if ($_SESSION["login"] == 111) {
                 echo $logoutHTML;
@@ -157,34 +160,44 @@ if (isset($_POST['button']))
         <div class="w3-container">
             <div></div>
             <div class="centerMargin">
-                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat" class="centerImage">
+                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat"
+                    class="centerImage">
             </div>
             <div></div>
         </div>
 
         <div class="centerMargin">
-            <a href="logout.php" class=" w3-button w3-light-gray centerMargin"><i class="fas fa-arrow-right"></i> Weiter shoppen</a>
+            <a href="home.php" class="centerMargin"><i class="fas fa-arrow-right"></i> Weiter shoppen</a>
         </div>
     </div>
 
     <!-- Fußleiste -->
-    <footer class="w3-container w3-padding-16 w3-margin-top">
-        <div class="w3-bar w3-light-gray">
-            <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
+    <footer class="footer w3-padding-24">
 
-            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
-            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
-                Kontakt</a>
-            <!-- <span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am <ins></ins></span> -->
+        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <div class="centerMargin">
             <?php
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                    echo '<span class="myBarItem w3-light-gray w3-right">Sie waren zuletzt online am: <ins>' . $dateString . '</ins></span>';
+                    echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
                 }
             }
-            ?>
+        ?>
         </div>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <span><ins id="numUserOnline"></ins> User online</span>
+        </div>
+
     </footer>
 
 </body>
