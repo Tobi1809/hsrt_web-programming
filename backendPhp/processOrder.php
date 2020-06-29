@@ -6,7 +6,7 @@ session_start();
 include 'sendEmail.php';
 
 //Die Klasse verfügbar machen
-include_once("../backendPhp/cart.php");
+include_once("cart.php");
 //This is to Process the Order!
 
 //Eine Neue Instanz der Klasse cart erstellen
