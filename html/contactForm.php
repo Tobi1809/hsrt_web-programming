@@ -38,8 +38,7 @@ if (isset($_SESSION["login"])) {
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
-
-    <!-- Webseite responsive -->
+    <link rel="stylesheet" href="../css/formContact.css" <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Stylesheet & FontAwesome für Icons -->
@@ -130,27 +129,95 @@ if (isset($_SESSION["login"])) {
 
     </header>
 
-    <!-- Main Content Start -->
-    <div class="mainContent">
-
-        <div class="w3-container w3-center">
-            <div class="w3-panel w3-border-top w3-border-bottom">
-                <h3>Kontaktformular</h3>
-            </div>
+    <div class="w3-container w3-center">
+        <div class="w3-panel w3-border-top w3-border-bottom">
+            <h3>Kontaktformular <i class="fas fa-envelope"></i></h3>
         </div>
+    </div>
 
-        <!-- Fußleiste -->
-        <footer class="titleBand w3-padding-32">
+    <div class="formContact">
+        <form method="post" class="form-horizontal">
+            <fieldset>
 
-            <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
-            <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="firstname">Name</label>
+                    <div class="col-md-6">
+                        <input id="firstname" name="firstname" type="text" placeholder="Vorname"
+                            class="form-control input-md" required="">
 
-            <div></div>
-            <div></div>
-            <div></div>
+                    </div>
+                </div>
 
-            <div class="centerMargin">
-                <?php
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="lastname"></label>
+                    <div class="col-md-6">
+                        <input id="lastname" name="lastname" type="text" placeholder="Nachname"
+                            class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">Email</label>
+                    <div class="col-md-6">
+                        <input id="email" name="email" type="text" placeholder="E-Mail-Adresse"
+                            class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="betreff">Betreff</label>
+                    <div class="col-md-6">
+                        <select id="betreff" name="betreff" class="form-control" required>
+                            <option value="0" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
+                            <option value="1">Supportanfrage</option>
+                            <option value="2">Probleme bei der Bestellung</option>
+                            <option value="3">Probleme bei der Lieferung</option>
+                            <option value="4">Sonstiges</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="message">Nachricht</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="message" name="message"
+                            placeholder="Beschreiben Sie hier bitte Ihr Anliegen"
+                            style="width:485px; height:100px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="sendContactForm"></label>
+                    <div class="col-md-4">
+                        <button type="submit" id="sendContactForm" name="sendContactForm" class="btn btn-success"
+                            style="width:485px; height:50px;">Abschicken</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Fußleiste -->
+    <footer class="footer w3-padding-32">
+
+        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <div class="centerMargin">
+            <?php
                         if (isset($_SESSION["login"])) {
                             if ($_SESSION["login"] == 111) {
                                 $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
@@ -158,18 +225,15 @@ if (isset($_SESSION["login"])) {
                             }
                         }
                     ?>
-            </div>
+        </div>
 
-            <div></div>
+        <div></div>
 
-            <div class="centerMargin">
-                <span><ins id="numUserOnline"></ins> User online</span>
-            </div>
+        <div class="centerMargin">
+            <span><ins id="numUserOnline"></ins> User online</span>
+        </div>
 
-        </footer>
-
-    </div>
-    <!-- Main Content Ende -->
+    </footer>
 
 </body>
 
