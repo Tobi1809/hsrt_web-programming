@@ -41,7 +41,7 @@ if (isset($_POST['firstname'])) //#! Check clientside with js if values are set
 
             $result2 = $dbConnection->query($sql);
 
-            // sendRegistrationEmail($firstname, $lastname, $email);  #! auskommentiert, um nicht ausversehen emails zu verschicken
+            sendRegistrationEmail($firstname, $lastname, $email);  #! auskommentiert, um nicht ausversehen emails zu verschicken
 
             // get User ID of newly registered user // could be optimized be including it in sql query above
             $sql = "SELECT UserID FROM webshop.ws_users where email='$email'";
