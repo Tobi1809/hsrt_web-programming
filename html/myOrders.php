@@ -133,7 +133,9 @@ if (isset($_SESSION["login"])) {
 
     </header>
 
-    <!-- Main Content -->
+    </header>
+
+    <!-- Main Content ------------------------------------------------------------------------------------>
     <div class="mainContent">
 
         <div class="w3-container w3-center">
@@ -141,6 +143,66 @@ if (isset($_SESSION["login"])) {
                 <h3>Meine Bestellungen <i class="far fa-thumbs-up"></i></h3>
             </div>
         </div>
+
+        <?php
+        // get all Orders
+        try {
+            //Öffnen der Datenbank-Verbindung
+            $dbConnection = mysqli_connect("127.0.0.1", "root", "", "webshop");
+    
+            if (!$dbConnection) {
+                echo "Fehler: Konnte nicht mit MySQL verbinden." . PHP_EOL;
+                echo "Debug-Fehlernummer: " . mysqli_connect_errno() . PHP_EOL;
+                echo "Debug-Fehlermledung: " . mysqli_connect_error() . PHP_EOL;
+                exit;
+            }
+
+            // get Orders
+            $uid = $_SESSION["uid"];
+            $sql1 = "SELECT * FROM ws_orders WHERE userID = $uid";
+            $result1 = $dbConnection->query($sql1);
+
+            while ($row = $result->fetch_assoc()) {
+                
+            }
+            //Produkte auseinander fledern
+            $length = strlen($itemIDs);
+            $itemIDsArr = array();
+            $i = 1;
+            while ($i < $length) {
+                //if($i == ",")(++$i)
+                $item = "";
+                while ($itemIDs[$i] != ",") {
+                    $item .= $itemIDs[$i];
+                    ++$i;
+                }
+                array_push($itemIDsArr, intval($item));
+                ++$i;
+            }
+
+            //individual Product names
+            $itemsArr = array();
+            foreach ($itemIDsArr as $itemID) {
+                $sql3 = "SELECT itemName, price FROM ws_items WHERE itemID = $itemID";
+                $result3 = $dbConnection->query($sql3);
+                $row = $result3->fetch_assoc();
+                $itemName = $row["itemName"];
+                $price = $row["price"];
+                $item = array(
+                    "itemID" => $itemID,
+                    "itemName" => $itemName,
+                    "price" => $price,
+                );
+                array_push($itemsArr, $item);
+            }
+
+
+            mysqli_close($dbConnection);
+        } catch (Exception $e) {
+            echo "Error Connecting to database";
+        }
+
+        ?>
 
         <div class="myOrdersGrid">
 
