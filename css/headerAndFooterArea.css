@@ -1,0 +1,84 @@
+/* Dieser Style ist für den Kopfbereich */
+
+h1.myTitle {
+	color: rgb(26, 24, 24);
+	padding: 0px;
+	margin: 0px;
+}
+h3.myTitle {
+	color: rgb(26, 24, 24);
+	padding: 0px;
+	margin: 0px;
+	font-weight: 500;
+}
+
+strong.myTitle {
+	color: rgb(216, 22, 48);
+}
+
+p.myTitle {
+	font-size: large;
+	color: rgb(26, 24, 24);
+	padding: 5px;
+	margin: 0px;
+}
+
+.myBarItem {
+	font-size: medium;
+	color: rgb(26, 24, 24);
+	padding: 35px;
+	margin: 0px;
+}
+
+.titleBand {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
+	justify-items: center;
+
+	height: fit-content;
+	background-color: rgb(68, 67, 67);
+	background-image: linear-gradient(to right, rgb(93.73, 92.16, 86.27), rgb(226, 217, 217));
+}
+
+.titleBand a {
+	color: black;
+	text-decoration: none;
+}
+
+.footer {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
+	justify-items: center;
+
+	
+	background-color: rgb(68, 67, 67);
+	background-image: linear-gradient(to right, rgb(93.73, 92.16, 86.27), rgb(226, 217, 217));
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+	
+}
+
+.centerMargin {
+	font-size: large;
+	margin: auto;
+	background-color: none;
+	color: black;
+	text-decoration: none;
+}
+
+.centerMargin a {
+	background-color: none;
+	color: black;
+	text-decoration: none;
+}
+
+.centerMargin a:hover {
+	background-color: none;
+	color: rgb(216, 22, 48);
+	text-decoration: none;
+}
+
+/* .TitleBandBox {
+	background-color: rgb(68, 67, 67);
+} */
