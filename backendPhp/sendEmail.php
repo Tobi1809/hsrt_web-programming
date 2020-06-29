@@ -149,6 +149,9 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
         $mail->Password   = $password;                              // SMTP password
         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        $mail->CharSet = 'UTF-8';                                   //to fix äöü € Problems
+        $mail->Encoding = 'base64';
+        $mail->addReplyTo($entered_email)
 
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
