@@ -43,7 +43,7 @@
         echo "$subTotal €";
     }
 
-    function insertTotalAmount($totalAmount)
+    function insertTotalAmount($totalAmount) //What is this??
     {
         return "$totalAmount";
     }
