@@ -15,6 +15,18 @@ $cart = new Cart();
 //Falls Produkte in der Session bereits im Warenkorb - dann gib diese zurück
 $productCount = $cart->get_cart_count();
 
+$welcomeString = "";
+//create welcome string if logged in 
+if (isset($_SESSION["login"])) {
+    if ($_SESSION["login"] == 111) {
+        //we are logged in
+        $welcomeString .= "Hallo, ";
+        $welcomeString .=  $_SESSION["firstname"];
+        $welcomeString .= " ";
+        $welcomeString .=  $_SESSION["lastname"];
+    }
+}
+
 //Sicherheitskontrolle - ist User eingeloggt der gerade bestellen will?
 $userLogin = false;
 
@@ -52,7 +64,7 @@ if (isset($_SESSION["uid"])) {
             while ($row = $result->fetch_assoc()) {
                 //Speichert Werte aus der Tabelle ws_users in der Session
                 $firstName = $row["firstName"];
-                $lasName = $row["lastName"];
+                $lastName = $row["lastName"];
                 $street = $row["street"];
                 $zip = $row["zip"];
                 $city = $row["city"];
@@ -84,15 +96,15 @@ if (isset($_SESSION["uid"])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- our Styles -->
-    <link rel="stylesheet" href="../css/headerArea.css">
+    <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
 
     <script>
-        $(document).ready(function() { // wichtig!
+        $(document).ready(function () { // wichtig!
 
-            setInterval(function() {
+            setInterval(function () {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function(numActiveUsers) {
+                    function (numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -104,13 +116,13 @@ if (isset($_SESSION["uid"])) {
 
     <!--Versandkosten-Anzeige für die User-->
     <script type="text/javascript">
-        $(function() {
-            $('#shipping').change(function() {
+        $(function () {
+            $('#shipping').change(function () {
                 if ($(this).val() != "") {
                     $.get("../backendPhp/getShippingCostsForUser.php", {
-                            selection: $(this).val()
-                        },
-                        function(data) {
+                        selection: $(this).val()
+                    },
+                        function (data) {
                             $('#getShippingCosts').html(data);
                         });
                 }
@@ -121,13 +133,13 @@ if (isset($_SESSION["uid"])) {
 
     <!--Gesamtbetrag-Anzeige für die User-->
     <script type="text/javascript">
-        $(function() {
-            $('#shipping').change(function() {
+        $(function () {
+            $('#shipping').change(function () {
                 if ($(this).val() != "") {
                     $.get("../backendPhp/getTotalAmountForUsers.php", {
-                            selection: $(this).val()
-                        },
-                        function(data) {
+                        selection: $(this).val()
+                    },
+                        function (data) {
                             $('#getTotalAmount').html(data);
                             $('#TotalAmountHiddenInput').val(data);
                         });
@@ -142,39 +154,61 @@ if (isset($_SESSION["uid"])) {
 <body>
 
     <!-- Kopfbereich -->
-    <header class="titleBand w3-padding-16">
+    <header class="titleBand w3-padding-8">
 
-        <div class="3-bar w3-center">
+        <div class="w3-bar w3-center">
             <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
             <p class="myTitle">Only the greatest discounts!</p>
         </div>
 
-        <div class="centerMargin"><a href="home.php" class=" w3-button "></i> Home</a></div>
+        <div class="centerMargin"><a href="home.php">Home</a></div>
 
-        <div class="centerMargin"><a href="aboutUs.php" class=" w3-button"> Über uns</a></div>
-
-        <div></div>
+        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
 
         <div></div>
+
         <div class="centerMargin">
-            <!-- shopping cart -->
-            <a href="#"> <i class="fa fa-shopping-cart fa-4x"></i></a>
+            <div>
+                <h3 class="myTitle"><?php echo $welcomeString ?></h3>
+            </div>
         </div>
 
-        <?php
-        // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-        $loginHTML = '<div class="centerMargin"><a href="login.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Login</a></div>';
-        $logoutHTML = '<div class="centerMargin"><a href="logout.php" class=" w3-button w3-light-gray"><i class="fas fa-user"></i> Logout</a></div>';
-        if (isset($_SESSION["login"])) {
-            if ($_SESSION["login"] == 111) {
-                echo $logoutHTML;
+        <div></div>
+
+        <div class="centerMargin">
+            <!-- shopping cart -->
+            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+        </div>
+
+        <div class="centerMargin">
+            <?php
+            //show My Orders Button if logged in
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $MyOrdersHtml;
+                }
+            }
+
+            ?>
+        </div>
+
+        <div class="centerMargin">
+            <?php
+            // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user"></i> Logout</a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $logoutHTML;
+                } else {
+                    echo $loginHTML;
+                }
             } else {
                 echo $loginHTML;
             }
-        } else {
-            echo $loginHTML;
-        }
-        ?>
+            ?>
+        </div>
 
     </header>
 
@@ -200,7 +234,8 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="firstname">Name</label>
                     <div class="col-md-6">
-                        <input id="firstname" name="firstname" type="text" placeholder="Vorname" value="<?php echo  $firstName; ?>" class="form-control input-md" required="">
+                        <input id="firstname" name="firstname" type="text" placeholder="Vorname"
+                            value="<?php echo  $firstName; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -209,7 +244,8 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="lastname"></label>
                     <div class="col-md-6">
-                        <input id="lastname" name="lastname" type="text" placeholder="Nachname" value="<?php echo $lasName; ?>" class="form-control input-md" required="">
+                        <input id="lastname" name="lastname" type="text" placeholder="Nachname"
+                            value="<?php echo $lastName; ?>" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -218,7 +254,8 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="street">Straße</label>
                     <div class="col-md-6">
-                        <input id="street" name="street" type="text" placeholder="Straße" value="<?php echo $street; ?>" class="form-control input-md" required="">
+                        <input id="street" name="street" type="text" placeholder="Straße" value="<?php echo $street; ?>"
+                            class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -227,7 +264,8 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="city">Stadt</label>
                     <div class="col-md-6">
-                        <input id="city" name="city" type="text" placeholder="Stadt" value="<?php echo $city; ?>" class="form-control input-md" required="">
+                        <input id="city" name="city" type="text" placeholder="Stadt" value="<?php echo $city; ?>"
+                            class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -236,10 +274,12 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="zip">Postleitzahl</label>
                     <div class="col-md-6">
-                        <input id="zip" name="zip" type="text" placeholder="Postleitzahl" value="<?php echo $zip; ?>" class="form-control input-md" required="">
+                        <input id="zip" name="zip" type="text" placeholder="Postleitzahl" value="<?php echo $zip; ?>"
+                            class="form-control input-md" required="">
 
                     </div>
                 </div>
+
 
                 <!-- Select Basic -->
                 <div class="form-group">
@@ -251,29 +291,29 @@ if (isset($_SESSION["uid"])) {
                             <option value="15">Express Lieferung (15€)</option>
                         </select>
                     </div>
-                </div>
 
-                <!-- Multiple Radios -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="radios">Zahlungsart</label>
-                    <div class="col-md-4">
-                        <div class="radio">
-                            <label for="radios-0">
-                                <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-                                Kreditkarte
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="radios-1">
-                                <input type="radio" name="radios" id="radios-1" value="2">
-                                PayPal
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="radios-2">
-                                <input type="radio" name="radios" id="radios-2" value="3">
-                                Bankeinzug
-                            </label>
+                    <!-- Multiple Radios -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="radios">Zahlungsart</label>
+                        <div class="col-md-4">
+                            <div class="radio">
+                                <label for="radios-0">
+                                    <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                                    Kreditkarte
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radios-1">
+                                    <input type="radio" name="radios" id="radios-1" value="2">
+                                    PayPal
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="radios-2">
+                                    <input type="radio" name="radios" id="radios-2" value="3">
+                                    Bankeinzug
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,17 +337,19 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="goback"></label>
                     <div class="col-md-8">
-                        <button onclick="history.go(-1);return false;" class="btn btn-danger">Zurück zum Warenkorb</button>
-                        <button type="submit" id="order" name="order" class="btn btn-success">Kostenpflichtig bestellen</button>
+                        <button onclick="history.go(-1);return false;" class="btn btn-danger">Zurück zum
+                            Warenkorb</button>
+                        <button type="submit" id="order" name="order" class="btn btn-success">Kostenpflichtig
+                            bestellen</button>
                     </div>
-                </div>
 
             </fieldset>
 
         </form>
     </div>
 
-    <table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-black w3-margin" style="width:45%; float: right">
+    <table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-black w3-margin"
+        style="width:45%; float: right">
 
         <thead>
             <tr class="w3-light-gray">
@@ -336,10 +378,10 @@ if (isset($_SESSION["uid"])) {
             ?>
 
         </tbody>
-
     </table>
 
-    <table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-black w3-margin" style="width:45%; float: right">
+    <table class="w3-container w3-table w3-card-4 w3-light-grey w3-text-black w3-margin"
+        style="width:45%; float: right">
 
         <thead>
             <tr class="w3-light-gray">
@@ -347,6 +389,7 @@ if (isset($_SESSION["uid"])) {
                 <th>Zwischensumme (<?php echo $productCount ?> Artikel):
                     <?php
 
+                    $Array = $_SESSION['cartArray'];
                     $total = 0;
 
                     for ($i = 0; $i < count($Array); $i++) {
@@ -374,15 +417,40 @@ if (isset($_SESSION["uid"])) {
 
     </table>
 
+    <!-- center Margin ende-->
+    </div>
+
+    <!-- Fußleiste schneidet Formular ab? - vorrübergehend entfernt -->
+
     <!-- Fußleiste -->
-    <footer class="w3-container w3-padding-16 w3-margin-top">
-        <div class="w3-bar w3-light-gray">
-            <span class="myBarItem w3-light-gray w3-left"> User online: <ins id="numUserOnline">0</ins></span>
-            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
-                Kontakt</a>
-            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
+    <!-- footer class="footer w3-padding-32">
+
+        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <div class="centerMargin">
+            <?php
+                if (isset($_SESSION["login"])) {
+                    if ($_SESSION["login"] == 111) {
+                        $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                        echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+                    }
+                }
+            ?>
         </div>
-    </footer>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <span><ins id="numUserOnline"></ins> User online</span>
+        </div>
+
+    </footer -->
+
 
 </body>
 
