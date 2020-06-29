@@ -1,0 +1,12 @@
+div.formContact {
+    display: block;
+    text-align: center;
+  }
+
+  form {
+    width: 1000px;
+    display: inline-block;
+    margin-left: -150px;
+    margin-right: auto;
+    text-align: left;
+  }
