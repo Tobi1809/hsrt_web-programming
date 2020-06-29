@@ -133,7 +133,7 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
     $nachricht = "<h3>Der User: $firstname $lastname, mit der Email: $entered_email hat per Kontaktformular eine Anfrage gesendet.</h3><br>";
     $nachricht .= "<p>Inhalt der Anfrage: $message <br>";
     $nachricht .= "Bitte die Anfrage so schnell wie möglich bearbeiten und ihm eine Antwort per Email senden. <br>";
-    $nachricht .= "Vielen Dank!</p>"
+    $nachricht .= "Vielen Dank!</p>";
 
     try {
         //get Password
@@ -151,7 +151,7 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         $mail->CharSet = 'UTF-8';                                   //to fix äöü € Problems
         $mail->Encoding = 'base64';
-        $mail->addReplyTo($entered_email)
+        $mail->addReplyTo($entered_email);
 
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
