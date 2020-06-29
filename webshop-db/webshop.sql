@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Jun 2020 um 18:28
+-- Erstellungszeit: 29. Jun 2020 um 18:34
 -- Server-Version: 10.4.11-MariaDB
 -- PHP-Version: 7.4.5
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `webshop`
 --
-CREATE DATABASE IF NOT EXISTS `webshop` DEFAULT CHARACTER SET utf8 COLLATE utf8_german2_ci;
-USE `webshop`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +31,7 @@ CREATE TABLE `ws_items` (
   `itemID` int(11) NOT NULL,
   `itemName` varchar(50) COLLATE utf8_german2_ci NOT NULL,
   `description` varchar(300) COLLATE utf8_german2_ci NOT NULL,
-  `price` decimal(5,2) NOT NULL
+  `price` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
@@ -71,10 +69,29 @@ CREATE TABLE `ws_ordered_items` (
 CREATE TABLE `ws_orders` (
   `orderID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
-  `orderPrice` decimal(4,2) NOT NULL,
+  `orderPrice` decimal(11,2) NOT NULL COMMENT 'Price of all items\r\n\r\nexcluding shipping\r\n\r\nshipping has to be added to get Total',
   `shippingCosts` decimal(4,2) NOT NULL,
-  `orderDate` datetime NOT NULL COMMENT 'Datum der Bestellung'
+  `orderDate` bigint(20) NOT NULL DEFAULT current_timestamp() COMMENT 'Zeitpunkt der Bestellung als Timestamp',
+  `shippingType` text COLLATE utf8_german2_ci NOT NULL COMMENT 'Normale Lieferung \r\noder \r\nExpress Lieferung',
+  `itemIDs` text CHARACTER SET ascii COLLATE ascii_bin NOT NULL COMMENT 'Item IDs als String getrennt mit komma ","',
+  `shippingAdress` text COLLATE utf8_german2_ci NOT NULL COMMENT 'zip,city,street,houseNumber,Firstname,lastname\r\n\r\ncreated bug, because in these values(street city could be a comma)\r\nbut nevermind',
+  `shippingStatus` text COLLATE utf8_german2_ci NOT NULL DEFAULT '\'bestellt\'' COMMENT 'mögliche stati (ist das der richttige Plural von Status?):\r\nbestellt\r\nan Liefer-dienst übergeben\r\nunterwegs\r\nangekommen'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
+
+--
+-- Daten für Tabelle `ws_orders`
+--
+
+INSERT INTO `ws_orders` (`orderID`, `userID`, `orderPrice`, `shippingCosts`, `orderDate`, `shippingType`, `itemIDs`, `shippingAdress`, `shippingStatus`) VALUES
+(5, 7, '19.98', '5.00', 1593421928, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(6, 7, '19.98', '5.00', 1593425250, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(7, 7, '29.98', '5.00', 1593425379, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(8, 7, '29.98', '15.00', 1593425787, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(9, 7, '29.98', '15.00', 1593425912, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(10, 7, '99.99', '15.00', 1593426883, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(11, 7, '99.99', '15.00', 1593426906, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(12, 7, '244.96', '15.00', 1593427285, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
+(13, 7, '29.98', '15.00', 1593444276, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\'');
 
 -- --------------------------------------------------------
 
@@ -114,7 +131,7 @@ CREATE TABLE `ws_users` (
 --
 
 INSERT INTO `ws_users` (`userID`, `firstName`, `lastName`, `street`, `zip`, `city`, `email`, `password`, `created`, `lastLoginTime`, `active`) VALUES
-(7, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 1593015914, 1593015914, 1);
+(7, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 1593015914, 1593440131, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -175,7 +192,7 @@ ALTER TABLE `ws_ordered_items`
 -- AUTO_INCREMENT für Tabelle `ws_orders`
 --
 ALTER TABLE `ws_orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `ws_shopping_cart`
