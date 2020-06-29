@@ -1,5 +1,30 @@
 <?php
+
+//Session starten
 session_start();
+
+//Die Klasse verfügbar machen
+include_once("../backendPhp/cart.php");
+
+//Eine Neue Instanz der Klasse cart erstellen
+$cart = new Cart();
+
+//Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
+$productCount = $cart->get_cart_count();
+
+
+$welcomeString = "";
+//create welcome string if logged in 
+if (isset($_SESSION["login"])) {
+    if ($_SESSION["login"] == 111) {
+        //we are logged in
+        $welcomeString .= "Hallo, ";
+        $welcomeString .=  $_SESSION["firstname"];
+        $welcomeString .= " ";
+        $welcomeString .=  $_SESSION["lastname"];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +35,9 @@ session_start();
     <meta charset="utf-8">
 
     <!-- our Styles -->
-    <link rel="stylesheet" href="../css/headerArea.css">
+    <link rel="stylesheet" href="../css/headerAndFooterArea.css">
+    <link rel="stylesheet" href="../css/productsGrid.css">
+    <link rel="stylesheet" href="../css/formLogin.css">
 
     <!-- for animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
@@ -33,9 +60,9 @@ session_start();
     <script src="../libraries/StanfordJavascriptCryptoLibrary.js"></script>
 
     <script>
-        $(document).ready(function() { // wichtig!
+        $(document).ready(function () { // wichtig!
             //bind event Handler to submission form
-            $("#loginform").submit(function(event) {
+            $("#loginform").submit(function (event) {
                 event.preventDefault(); // prevent submission
 
                 var data = $("#loginform :input").serializeArray();
@@ -47,10 +74,10 @@ session_start();
                 data[1].value = hash; // override plane password 
 
                 $.post("../backendPhp/loginUser.php", {
-                        email: data[0].value,
-                        password: data[1].value,
-                    },
-                    function(returnedData) {
+                    email: data[0].value,
+                    password: data[1].value,
+                },
+                    function (returnedData) {
                         //alert("login happend; data = " + returnedData)
 
                         switch (returnedData) {
@@ -74,30 +101,93 @@ session_start();
         });
     </script>
 
+    <script>
+        $(document).ready(function () { // wichtig!
+
+            setInterval(function () {
+                $.get("../backendPhp/getNumActiveUsers.php", {},
+                    function (numActiveUsers) {
+                        var activeUserElement = document.getElementById("numUserOnline");
+                        activeUserElement.innerText = numActiveUsers;
+                        console.log("updated active users");
+                    });
+            }, 1000);
+
+        });
+    </script>
+
 </head>
 
 <body>
 
     <!-- Kopfbereich -->
-    <header class="w3-container w3-padding-16">
-        <div class="w3-bar w3-light-gray">
-            <div class="w3-bar-item w3-light-gray w3-center">
-                <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-                <p class="myTitle">Only the greatest discounts!</p>
-            </div>
-            <a href="home.php" class="myBarItem w3-button w3-hide-small w3-left"></i> Home</a>
-            <a href="aboutUs.php" class="myBarItem w3-button w3-hide-small"> Über uns</a>
-            <a href="login.php" class="myBarItem w3-button w3-hide-small w3-right w3-light-gray"><i class="fas fa-user"></i> Login</a>
+    <header class="titleBand w3-padding-8">
+
+        <div class="w3-bar w3-center">
+            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
+            <p class="myTitle">Only the greatest discounts!</p>
         </div>
+
+        <div class="centerMargin"><a href="home.php">Home</a></div>
+
+        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <div>
+                <h3 class="myTitle"><?php echo $welcomeString ?></h3>
+            </div>
+        </div>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <!-- shopping cart -->
+            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+        </div>
+
+        <div class="centerMargin">
+            <?php
+            //show My Orders Button if logged in
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $MyOrdersHtml;
+                }
+            }
+
+            ?>
+        </div>
+
+        <div class="centerMargin">
+            <?php
+            // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user"></i> Logout</a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $logoutHTML;
+                } else {
+                    echo $loginHTML;
+                }
+            } else {
+                echo $loginHTML;
+            }
+            ?>
+        </div>
+
     </header>
 
-    <div class="container">
+    <div class="w3-container w3-center">
+        <div class="w3-panel w3-border-top w3-border-bottom">
+            <h3>Login </h3>
+        </div>
+    </div>
+
+    <div class="form">
         <form class="form-horizontal" role="form" id="loginform" method="POST" action="../backendPhp/loginUser.php">
-            <div class="w3-container w3-center">
-                <div class="w3-panel w3-border-top w3-border-bottom">
-                    <h3>Login </h3>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -105,7 +195,8 @@ session_start();
                         <label class="sr-only" for="email">E-Mail</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail-Adresse" required autofocus>
+                            <input type="email" name="email" class="form-control" id="email"
+                                placeholder="E-Mail-Adresse" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -117,7 +208,8 @@ session_start();
                         <label class="sr-only" for="password">Password</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Passwort" required>
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Passwort" required>
                         </div>
                     </div>
                 </div>
@@ -143,14 +235,34 @@ session_start();
     </div>
 
     <!-- Fußleiste -->
-    <footer class="w3-container w3-padding-16 w3-margin-top">
-        <div class="w3-bar w3-light-gray">
-            <span class="myBarItem w3-light-gray w3-left"> User online: 0</span>
-            <a href="contactForm.php" class="myBarItem w3-button w3-right"><i class="fas fa-envelope"></i>
-                Kontakt</a>
-            <a href="impressum.php" class="myBarItem w3-button w3-right"> Impressum</a>
+    <footer class="footer w3-padding-32">
+
+        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <div class="centerMargin">
+            <?php
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                    echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+                }
+            }
+        ?>
         </div>
+
+        <div></div>
+
+        <div class="centerMargin">
+            <span><ins id="numUserOnline"></ins> User online</span>
+        </div>
+
     </footer>
+
 </body>
 
 </html>

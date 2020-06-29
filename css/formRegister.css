@@ -1,0 +1,12 @@
+div.form {
+    display: block;
+    text-align: center;
+  }
+
+  form {
+    width: 1625px;
+    display: inline-block;
+    margin-left: 500px;
+    margin-right: auto;
+    text-align: left;
+  }
