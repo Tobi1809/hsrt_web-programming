@@ -30,6 +30,25 @@ if (isset($_SESSION["login"])) {
 
 ?>
 
+<?php
+//This part is to Process the Order!
+
+//Get all the $_POST data from checkout.php
+if (isset($_POST['button']))
+{
+    $itemID = $_POST["itemID"];
+    $itemName = $_POST["itemName"];
+    $description = $_POST["description"];
+    $quantity = "1";
+    $price = $_POST["price"];
+
+    $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 

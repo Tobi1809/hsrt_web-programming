@@ -29,6 +29,7 @@ if ($userLogin == false || $productCount == 0) {
 }
 
 ?>
+
 <?php
 //auslesen der Nutzerdaten
 if (isset($_SESSION["uid"])) {
@@ -128,6 +129,7 @@ if (isset($_SESSION["uid"])) {
                         },
                         function(data) {
                             $('#getTotalAmount').html(data);
+                            $('#TotalAmountHiddenInput').val(data);
                         });
                 }
             });
@@ -183,7 +185,7 @@ if (isset($_SESSION["uid"])) {
     </div>
 
     <div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin" style="width: 50%; float:left">
-        <form method="post" action="processOrder.php" name="payment" class="form-horizontal">
+        <form method="post" action="../backendPhp/processOrder.php" name="payment" class="form-horizontal">
 
             <fieldset>
 
@@ -243,7 +245,7 @@ if (isset($_SESSION["uid"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="shipping">Versandart</label>
                     <div class="col-md-6">
-                        <select id="shipping" name="shipping" class="form-control">
+                        <select id="shipping" name="shipping" class="form-control" required>
                             <option value="0" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
                             <option value="5">Normale Lieferung (5€)</option>
                             <option value="15">Express Lieferung (15€)</option>
@@ -275,6 +277,21 @@ if (isset($_SESSION["uid"])) {
                         </div>
                     </div>
                 </div>
+                <!-- save total amount in hidden input -->
+                <input type="text" name="TotalAmountHiddenInput" id="TotalAmountHiddenInput" value="" hidden>
+                <?php
+                //save ItemIDs in hidden Input
+                $Array = $_SESSION['cartArray'];
+                $itemIDs = "";
+                for ($i = 0; $i < count($Array); $i++) {
+                    $innerArray = $Array[$i];
+                    $itemIDs .= ",";
+                    $itemIDs .= $innerArray[0];
+                }
+                $itemIDs .= ",";
+
+                echo '<input type="text" name="ItemIDs" id="ItemIDs" value="' . $itemIDs . '" hidden >'
+                ?>
 
                 <!-- Button (Double) -->
                 <div class="form-group">

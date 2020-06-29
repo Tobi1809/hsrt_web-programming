@@ -4,16 +4,15 @@
 session_start();
 
 //Öffnen der Datenbank-Verbindung
-include ("../backendPhp/dbConnection.php");
+include("../backendPhp/dbConnection.php");
 
 //Die Klasse verfügbar machen
-include_once ("../backendPhp/cart.php");
+include_once("../backendPhp/cart.php");
 
 //Eine Neue Instanz der Klasse cart erstellen
 $cart = new Cart();
 
-if (isset($_POST['button']))
-{
+if (isset($_POST['button'])) {
     $itemID = $_POST["itemID"];
     $itemName = $_POST["itemName"];
     $description = $_POST["description"];
@@ -21,7 +20,6 @@ if (isset($_POST['button']))
     $price = $_POST["price"];
 
     $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
-
 }
 
 header("Location: ../html/home.php");

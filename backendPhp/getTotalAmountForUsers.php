@@ -47,5 +47,3 @@
     {
         return "$totalAmount";
     }
-    
-?>
