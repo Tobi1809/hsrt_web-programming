@@ -27,7 +27,7 @@ try {
 
 
 session_destroy();
+
+header("Location: home.php");
+
 ?>
-
-
-<h1>LOGOUT</h1>
