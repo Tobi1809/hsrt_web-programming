@@ -171,8 +171,8 @@ if (isset($_SESSION["login"])) {
                     ?>
                     <div class="myOrderBox w3-container">
                         <div class="w3-light-gray w3-container" style="margin-top: 3px;">
-                            <span style="float: left;">Order Nr. <?php echo $order["orderID"]; ?></span>
-                            <span style="float: right;"> Bestell Zeitpunkt: <?php echo date("H:i::s M n Y", $order["orderDate"]); ?></span>
+                            <span style="float: left;">Bestellung Nr. <?php echo $order["orderID"]; ?></span>
+                            <span style="float: right;"> Bestellzeitpunkt: <?php echo date("H:i:s M n Y", $order["orderDate"]); ?></span>
                         </div>
                         <table class="w3-table w3-margin-top">
 
@@ -229,7 +229,7 @@ if (isset($_SESSION["login"])) {
                         <tr>
                             <td><img src="products/productImages/product(<?php echo $item["itemID"]; ?>).jpg" class="smallImage"></td>
                             <td><?php echo $item["itemName"]; ?></td>
-                            <td><?php echo $item["itemName"]; ?></td>
+                            <td><?php echo $item["price"]; ?> €</td>
                         </tr>
                         <?php
                     } 
@@ -238,7 +238,7 @@ if (isset($_SESSION["login"])) {
                     </table>
                     <div class="w3-container">
                         <div class="w3-panel w3-border-top">
-                            <h4>Versandkosten:  <?php echo $shippingCosts; ?>€ </h4>
+                            <h4>Versandkosten:  <?php echo $shippingCosts; ?> € </h4>
                             <h4>Gesamtbetrag: <?php echo $orderPrice; ?> € </h4>
                             <div class="w3-border-top">
                                 <h4>Status: <?php echo $shippingStatus; ?> </h4>
@@ -260,7 +260,7 @@ if (isset($_SESSION["login"])) {
                                 <input type="text" name="TotalAmountHiddenInput" id="TotalAmountHiddenInput" value="<?php echo $orderPrice; ?>" hidden >
                                 <input type="text" name="shipping" id="shipping" value="<?php echo $shippingCosts; ?>" hidden >
 
-                                <button type="submit" id="order" name="order" class="btn btn-success">nocheinmal bestellen</button>
+                                <button type="submit" id="order" name="order" class="btn btn-success" style="width:200px; height:50px;">noch einmal bestellen</button>
                             </form>
                         </div>
                     </div>
