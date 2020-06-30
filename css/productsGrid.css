@@ -6,7 +6,7 @@
 .myProductsArea {
 	display: flex;
 	flex-direction: row;
-	margin: 100px;
+	margin: 4%;
 }
 
 .myProductsGrid {
@@ -20,7 +20,7 @@
 
 .myProductBox {
 	height: 450px;
-	width: 400px;
+	max-width: 400px;
 	background-color: white;
 	float: center;
 
