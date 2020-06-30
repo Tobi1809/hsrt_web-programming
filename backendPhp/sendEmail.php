@@ -41,7 +41,8 @@ function sendRegistrationEmail($firstname, $lastname, $empfaenger_email)
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'shop33prozent@gmail.com';              // SMTP username
+        $mail->Username   = 'shop33prozent@gmail.com';
+        //$mail->Username   = 'shop33prozent1@gmail.com';              // SMTP username
         $mail->Password   = $password;                              // SMTP password
         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
@@ -50,6 +51,7 @@ function sendRegistrationEmail($firstname, $lastname, $empfaenger_email)
 
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
+        //$mail->setFrom('shop33prozent1@gmail.com', 'Shopp33');
         $mail->addAddress($empfaenger_email);     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
@@ -95,7 +97,8 @@ function sendOrderConfirmationEmail($firstname, $lastname, $empfaenger_email, $b
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'shop33prozent@gmail.com';              // SMTP username
+        $mail->Username   = 'shop33prozent@gmail.com';
+        //$mail->Username   = 'shop33prozent1@gmail.com';              // SMTP username
         $mail->Password   = $password;                              // SMTP password
         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
@@ -104,6 +107,7 @@ function sendOrderConfirmationEmail($firstname, $lastname, $empfaenger_email, $b
         
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
+        //$mail->setFrom('shop33prozent1@gmail.com', 'Shopp33');
         $mail->addAddress($empfaenger_email);     // Add a recipient
         //$mail->addAddress('ellen@example.com');               // Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
@@ -130,10 +134,14 @@ function sendOrderConfirmationEmail($firstname, $lastname, $empfaenger_email, $b
 function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_email, $topic, $message)
 {
     $betreff = "Kontaktformular-Anfrage zum Thema: $topic";
-    $nachricht = "<h3>Der User: $firstname $lastname, mit der Email: $entered_email hat per Kontaktformular eine Anfrage gesendet.</h3><br>";
-    $nachricht .= "<p>Inhalt der Anfrage: $message <br>";
-    $nachricht .= "Bitte die Anfrage so schnell wie möglich bearbeiten und ihm eine Antwort per Email senden. <br>";
-    $nachricht .= "Vielen Dank!</p>";
+    $nachricht = "<h3>User: $firstname $lastname, mit der Email: $entered_email hat per Kontaktformular eine Anfrage gesendet.</h3>";
+    $nachricht .= "<h3>Inhalt der Anfrage:</h3>";
+    $nachricht .= "<p>$message</p>";
+    $nachricht .= "<h3>Bitte die Anfrage so schnell wie möglich bearbeiten und eine Antwort per Email senden.<h4>";
+    $nachricht .= "<h3>Vielen Dank!</h4>";
+
+    // Instantiation and passing `true` enables exceptions
+    $mail = new PHPMailer(true);
 
     try {
         //get Password
@@ -145,7 +153,8 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'shop33prozent@gmail.com';              // SMTP username
+        $mail->Username   = 'shop33prozent@gmail.com';
+        //$mail->Username   = 'shop33prozent1@gmail.com';              // SMTP username
         $mail->Password   = $password;                              // SMTP password
         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
@@ -155,8 +164,9 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
 
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
+        //$mail->setFrom('shop33prozent1@gmail.com', 'Shopp33');
         $mail->addAddress($empfaenger_email);     // Add a recipient
-        //$mail->addAddress('ellen@example.com');               // Name is optional
+        //mail->addAddress('shop33prozent1@gmail.com', 'Blub');               // Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
         //$mail->addBCC('bcc@example.com');

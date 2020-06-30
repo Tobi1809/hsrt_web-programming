@@ -136,7 +136,7 @@ if (isset($_SESSION["login"])) {
     </div>
 
     <div class="formContact">
-        <form method="post" class="form-horizontal">
+        <form method="post" action="../backendPhp/processContactForm.php" class="form-horizontal">
             <fieldset>
 
                 <!-- Text input-->
@@ -174,7 +174,7 @@ if (isset($_SESSION["login"])) {
                     <label class="col-md-4 control-label" for="betreff">Betreff</label>
                     <div class="col-md-6">
                         <select id="betreff" name="betreff" class="form-control" required>
-                            <option value="0" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
+                            <option value="" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
                             <option value="1">Supportanfrage</option>
                             <option value="2">Probleme bei der Bestellung</option>
                             <option value="3">Probleme bei der Lieferung</option>
@@ -188,7 +188,7 @@ if (isset($_SESSION["login"])) {
                     <label class="col-md-4 control-label" for="message">Nachricht</label>
                     <div class="col-md-4">
                         <textarea class="form-control" id="message" name="message"
-                            placeholder="Beschreiben Sie hier bitte Ihr Anliegen"
+                            placeholder="Beschreiben Sie hier bitte Ihr Anliegen."
                             style="width:485px; height:100px;"></textarea>
                     </div>
                 </div>
