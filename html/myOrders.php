@@ -195,7 +195,6 @@ if (isset($_SESSION["login"])) {
                     $shippingType = $order["shippingType"];
                     $shippingAdress = $order["shippingAdress"];
                     $shippingStatus = $order["shippingStatus"];
-                    $shippingType = $order["shippingType"];
                     $itemIDs = $order["itemIDs"];
 
                     //Produkte auseinander fledern
@@ -253,9 +252,19 @@ if (isset($_SESSION["login"])) {
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="goback"></label>
                         <div class="col-md-8">
-                            <div class=" "><a href="#" class=" w3-button  w3-light-gray"><i class="fas fa-redo-alt"></i>
-                                    nocheinmal bestellen</a></div>
-                            <div class=""><a href="processOrder.php" class=" w3-button w3-light-gray"><i class="fas fa-receipt"></i> Rechnung anfordern</a></div>
+                            <form method="post" action="../backendPhp/processOrder.php" name="payment" class="form-horizontal">
+
+                                <input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"]; ?>" hidden >
+                                <input type="text" name="lastname" id="lastname" value="fake" hidden >
+                                <input type="text" name="city" id="city" value="fake" hidden >
+                                <input type="text" name="zip" id="zip" value="fake" hidden >
+                                <input type="text" name="street" id="street" value="fake" hidden >
+                                <input type="text" name="ItemIDs" id="ItemIDs" value="<?php echo $itemIDs; ?>" hidden >
+                                <input type="text" name="TotalAmountHiddenInput" id="TotalAmountHiddenInput" value="<?php echo $orderPrice; ?>" hidden >
+                                <input type="text" name="shipping" id="shipping" value="<?php echo $shippingCosts; ?>" hidden >
+
+                                <button type="submit" id="order" name="order" class="btn btn-success">nocheinmal bestellen</button>
+                            </form>
                         </div>
                     </div>
                 </div>
