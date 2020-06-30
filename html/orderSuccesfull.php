@@ -1,50 +1,54 @@
 <?php
 
-//Session starten
-session_start();
+    //Session starten
+    session_start();
 
-//Wird nicht mehr benötigt?
-//include ("../backendPhp/getProductInfo.php");
-
-//Die Klasse verfügbar machen
-include_once("../backendPhp/cart.php");
-
-//Eine Neue Instanz der Klasse cart erstellen
-$cart = new Cart();
-
-//Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
-$productCount = $cart->get_cart_count();
-
-
-$welcomeString = "";
-//create welcome string if logged in 
-if (isset($_SESSION["login"])) {
-    if ($_SESSION["login"] == 111) {
-        //we are logged in
-        $welcomeString .= "Hallo, ";
-        $welcomeString .=  $_SESSION["firstname"];
-        $welcomeString .= " ";
-        $welcomeString .=  $_SESSION["lastname"];
+    //Sicherheitsprüfung!
+    if ($_SESSION['login'] != 111)
+    {
+        //Sofort Weiterleitung zum Login - falls User nicht eingeloggt ist und auf diese Seite zugreifen will
+        header("Location: login.php");
     }
-}
+
+    //Die Klasse verfügbar machen
+    include_once("../backendPhp/cart.php");
+
+    //Eine Neue Instanz der Klasse cart erstellen
+    $cart = new Cart();
+
+    //Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
+    $productCount = $cart->get_cart_count();
+
+
+    $welcomeString = "";
+    //create welcome string if logged in 
+    if (isset($_SESSION["login"])) {
+        if ($_SESSION["login"] == 111) {
+            //we are logged in
+            $welcomeString .= "Hallo, ";
+            $welcomeString .=  $_SESSION["firstname"];
+            $welcomeString .= " ";
+            $welcomeString .=  $_SESSION["lastname"];
+        }
+    }
 
 ?>
 
 <?php
-//This part is to Process the Order!
+    //This part is to Process the Order!
 
-//Get all the $_POST data from checkout.php
-if (isset($_POST['button']))
-{
-    $itemID = $_POST["itemID"];
-    $itemName = $_POST["itemName"];
-    $description = $_POST["description"];
-    $quantity = "1";
-    $price = $_POST["price"];
+    //Get all the $_POST data from checkout.php
+    if (isset($_POST['button']))
+    {
+        $itemID = $_POST["itemID"];
+        $itemName = $_POST["itemName"];
+        $description = $_POST["description"];
+        $quantity = "1";
+        $price = $_POST["price"];
 
-    $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
+        $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
 
-}
+    }
 
 
 ?>
@@ -120,30 +124,33 @@ if (isset($_POST['button']))
 
         <div class="centerMargin">
             <?php
-            //show My Orders Button if logged in
-            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
-            if (isset($_SESSION["login"])) {
-                if ($_SESSION["login"] == 111) {
-                    echo $MyOrdersHtml;
+
+                //show My Orders Button if logged in
+                $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+                if (isset($_SESSION["login"])) {
+                    if ($_SESSION["login"] == 111) {
+                        echo $MyOrdersHtml;
+                    }
                 }
-            }
 
             ?>
         </div>
 
         <?php
-        // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-        $loginHTML = '<div class="centerMargin"><a href="login.php"><i class="fas fa-user"></i> Login</a></div>';
-        $logoutHTML = '<div class="centerMargin"><a href="logout.php"><i class="fas fa-user"></i> Logout</a></div>';
-        if (isset($_SESSION["login"])) {
-            if ($_SESSION["login"] == 111) {
-                echo $logoutHTML;
+
+            // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
+            $loginHTML = '<div class="centerMargin"><a href="login.php"><i class="fas fa-user"></i> Login</a></div>';
+            $logoutHTML = '<div class="centerMargin"><a href="logout.php"><i class="fas fa-user"></i> Logout</a></div>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $logoutHTML;
+                } else {
+                    echo $loginHTML;
+                }
             } else {
                 echo $loginHTML;
             }
-        } else {
-            echo $loginHTML;
-        }
+
         ?>
 
 
@@ -183,13 +190,14 @@ if (isset($_POST['button']))
 
         <div class="centerMargin">
             <?php
-            if (isset($_SESSION["login"])) {
-                if ($_SESSION["login"] == 111) {
-                    $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                    echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+
+                if (isset($_SESSION["login"])) {
+                    if ($_SESSION["login"] == 111) {
+                        $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                        echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+                    }
                 }
-            }
-        ?>
+            ?>
         </div>
 
         <div></div>

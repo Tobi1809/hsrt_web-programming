@@ -3,6 +3,13 @@
 //Session starten
 session_start();
 
+//Sicherheitsprüfung!
+if ($_SESSION['login'] != 111)
+{
+    //Sofort Weiterleitung zum Login - falls User nicht eingeloggt ist und auf diese Seite zugreifen will
+    header("Location: login.php");
+}
+
 //Die Klasse verfügbar machen
 include_once("../backendPhp/cart.php");
 

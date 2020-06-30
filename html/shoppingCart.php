@@ -218,6 +218,8 @@ if (isset($_SESSION["login"])) {
                 <i class="fa fa-close animate__animated animate__shakeX"></i> Füllen Sie bitte zuerst Ihren Warenkorb um
                 fortzufahren!
             </span>
+
+            <!-- Sicherheitsprüfung - nur eingeloggte User mit Produktanzahl > 0 kommen zum Checkout-->
             <?php
                 }
                 if (isset($_SESSION["login"]) && $productCount > 0) {
