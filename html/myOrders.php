@@ -172,7 +172,7 @@ if (isset($_SESSION["login"])) {
                     <div class="myOrderBox w3-container">
                         <div class="w3-light-gray w3-container" style="margin-top: 3px;">
                             <span style="float: left;">Bestellung Nr. <?php echo $order["orderID"]; ?></span>
-                            <span style="float: right;"> Bestellzeitpunkt: <?php echo date("H:i:s M n Y", $order["orderDate"]); ?></span>
+                            <span style="float: right;"> Bestellzeitpunkt: <?php echo date("H:i:s M j Y", $order["orderDate"]); ?></span>
                         </div>
                         <table class="w3-table w3-margin-top">
 
