@@ -27,16 +27,16 @@
         $shippingCosts = 5;
         $totalAmount = $subTotal + $shippingCosts;
 
-		echo insertTotalAmount("$totalAmount");
+		echo insertTotalAmount($totalAmount);
 	}
 	elseif ($_GET["selection"] == "15") 
 	{
 		$shippingCosts = 15;
         $totalAmount = $subTotal + $shippingCosts;
 
-		echo insertTotalAmount("$totalAmount");
+		echo insertTotalAmount($totalAmount);
     }
-    elseif ($_GET["selection"] == "0")
+    elseif ($_GET["selection"] == "")
     {
         $shippingCosts = 0;
 
@@ -45,5 +45,5 @@
 
     function insertTotalAmount($totalAmount) //What is this??
     {
-        return "$totalAmount";
+        return $totalAmount;
     }

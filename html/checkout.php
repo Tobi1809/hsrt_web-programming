@@ -286,7 +286,7 @@ if (isset($_SESSION["uid"])) {
                     <label class="col-md-4 control-label" for="shipping">Versandart</label>
                     <div class="col-md-6">
                         <select id="shipping" name="shipping" class="form-control" required>
-                            <option value="0" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
+                            <option value="" disabled selected>Wähle bitte eine der folgenden Optionen aus</option>
                             <option value="5">Normale Lieferung (5€)</option>
                             <option value="15">Express Lieferung (15€)</option>
                         </select>

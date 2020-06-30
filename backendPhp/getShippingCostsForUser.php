@@ -12,7 +12,7 @@
 
 		echo insertShippingCosts($shippingCosts);
     }
-    elseif ($_GET["selection"] == "0")
+    elseif ($_GET["selection"] == "")
     {
         $shippingCosts = 0;
 
