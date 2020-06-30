@@ -187,8 +187,3 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
         //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
-
-?>
-
-
-
