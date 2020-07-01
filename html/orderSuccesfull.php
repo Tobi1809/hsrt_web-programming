@@ -172,11 +172,14 @@
                     class="centerImage">
             </div>
             <div></div>
+            <div class="centerMargin align-middle" style="padding-top:2.5rem;padding-bottom:5rem;">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <a href="home.php" class="centerMargin"><i class="fas fa-arrow-right"></i> weiter shoppen</a>
+                </div>
+            </div>
         </div>
 
-        <div class="centerMargin">
-            <a href="home.php" class="centerMargin"> <i class="fas fa-arrow-right"></i> Weiter shoppen</a>
-        </div>
     </div>
 
     <!-- Fußleiste -->

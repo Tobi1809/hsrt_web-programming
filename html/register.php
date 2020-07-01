@@ -286,8 +286,8 @@ if (isset($_SESSION["login"])) {
           <div class="form-group">
             <label class="col-md-8 control-label" for="register"></label>
             <div class="col-md-4">
-              <a href="login.php" class="btn btn-danger">Zurück zum Login</a>
-              <button type="submit" name="register" class="btn btn-success">Registrieren</button>
+              <button type="submit" name="register" class="btn btn-success" style="width:253.25px;padding:10px;">Registrieren</button>
+              <a href="login.php" class="btn btn-danger" style="width:253.25px;padding:10px;">Zurück zum Login</a>
             </div>
           </div>
 

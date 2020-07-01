@@ -262,7 +262,7 @@ if (isset($_SESSION["login"])) {
                             <input id="description" value="<?php echo $row["description"]; ?>" name="description"
                                 hidden>
                             <input id="price" value="<?php echo $row["price"]; ?>" name="price" hidden>
-                            <button type="submit" name="button" class="btn btn-success">Zum Warenkorb
+                            <button type="submit" name="button" class="btn btn-success" style="width:360px;">Zum Warenkorb
                                 hinzufügen</button>
                         </div>
                     </form>
