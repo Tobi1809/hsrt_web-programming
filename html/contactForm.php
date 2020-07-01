@@ -192,7 +192,7 @@ if (isset($_SESSION["login"])) {
                     <div class="col-md-4">
                         <textarea class="form-control" id="message" name="message"
                             placeholder="Beschreiben Sie hier bitte Ihr Anliegen."
-                            style="width:485px; height:100px;"></textarea>
+                            style="width:485px; height:100px;resize: none;"></textarea>
                     </div>
                 </div>
 
