@@ -1,0 +1,59 @@
+h1.aboutUs {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 46px;
+    margin: 30px;
+    font-weight: normal;
+}
+
+.aboutUs-entry {
+    width: 100%;
+    Padding: 20px;
+    Margin: 0px;
+}
+
+h2.aboutUs {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 25px;
+    margin: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+h3.aboutUs {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 25px;
+    margin: 30px;
+    font-weight: bold;
+}
+
+p.aboutUs {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    margin: 30px;
+}
+
+ul.aboutUs {
+    list
+    list-style-type: circle;
+}
+
+li {
+    font-size: 18px;
+    margin: 10px;
+    padding: 0px;
+}
+
+body.aboutUs {
+    background-color: rgb(230, 230, 230);
+}
+
+p.list {
+    Color: #3F3F3F;
+    font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    margin: 10px;
+}

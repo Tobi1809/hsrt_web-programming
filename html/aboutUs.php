@@ -38,7 +38,7 @@ if (isset($_SESSION["login"])) {
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
-    <link rel="stylesheet" href="../css/impressum.css">
+    <link rel="stylesheet" href="../css/aboutUs.css">
     <link rel="stylesheet" href="../css/myStyle.css">
 
     <!-- Webseite responsive -->
@@ -120,74 +120,64 @@ if (isset($_SESSION["login"])) {
 
     </header>
 
-    <article>
-        <div class="impressum-entry clearfix">
-            <h1 class="impressum">Impressum</h1>
-            <h2 class="impressum">Angaben gemäß § 5 TMG</h2>
-            <p class="impressum">Dustin Niklas Walker &amp; Tobias Münch
-                <br /> Hochschule Reutlingen
-                <br /> Alteburgstr. 150
-                <br /> 72762 Reutlingen
-            </p>
-            <h2 class="impressum">Kontakt</h2>
-            <p class="impressum">Telefon: 0170-123456789
-                <br /> E-Mail: shop33prozent@gmail.com
-            </p>
-            <h2 class="impressum">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-            <p class="impressum">Dustin Niklas Walker &amp; Tobias Münch
-                <br /> Hochschule Reutlingen
-                <br /> Alteburgstr. 150
-                <br /> 72762 Reutlingen
-            </p>
-            <h3 class="impressum">Haftung für Inhalte</h3>
-            <p class="impressum">Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
-                nach den
-                allgemeinen
-                Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
-                übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die
-                auf
-                eine rechtswidrige Tätigkeit hinweisen.
-            </p>
-            <p class="impressum">Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den
-                allgemeinen Gesetzen
-                bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis
-                einer
-                konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir
-                diese
-                Inhalte umgehend entfernen.
-            </p>
-            <h3 class="impressum">Haftung für Links</h3>
-            <p class="impressum">Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
-                Einfluss haben.
-                Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
-                verlinkten
-                Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten
-                wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren
-                zum
-                Zeitpunkt der Verlinkung nicht erkennbar.
-            </p>
-            <p class="impressum">Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
-                Anhaltspunkte einer
-                Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links
-                umgehend entfernen.
-            </p>
-            <h3 class="impressum">Urheberrecht</h3>
-            <p class="impressum">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-                unterliegen dem deutschen
-                Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
-                Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-                Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
-            </p>
-            <p class="impressum">Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die
-                Urheberrechte Dritter
-                beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine
-                Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden
-                von
-                Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
-            </p>
-            <p class="impressum">Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
+    <!-- Main content -->
+    <div>
+
+        <div class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin"
+            style="width: 75%; left: 10px; top: 10px;">
+            <article>
+                <div class="aboutUs-entry clearfix">
+                    <h2 class="aboutUs">Unser Projekt</h2>
+                    <p class="aboutUs">Shop33 repräsentiert das Ergebnis einer Zusammenarbeit zwischen Dustin Niklas
+                        Walker
+                        (Fakultät Technik) und Tobias Münch (Fakultät Informatik), unter der Aufsicht von dem Dozenten
+                        Matthias
+                        Gutbrod (Fakultät
+                        Informatik) in dem Modul Webprogrammierung der Hochschule Reutlingen.
+                        Dabei wurde der Webshop von Grund auf eigenhändig programmiert, um ...<br></p>
+                    <ul class="aboutUs">
+                        <li>
+                            <p class="list">Kenntnis der Architekturen von Webanwendungen</p>
+                        <li>
+                            <p class="list">zugrundeliegende Technologien benennen, sowie ihr Zusammenspiel beschreiben
+                                zu
+                                können</p>
+                        <li>
+                            <p class="list">und grundlegendes Wissen über Programmiersprachen und Datenbanken zur
+                                Realisierung
+                                von Webanwendungen zu erlangen.</p>
+                    </ul>
+                    <p class="aboutUs">Umgesetzt wurde das Projekt mit Hilfe von GitHub, einem netzbasierter Dienst zur
+                        Versionsverwaltung für Software-Entwicklungsprojekte.
+                        Eine Ausführliche Dokumentation des Projekts finden Sie hierbei unter folgendem Link:</p>
+                    <p class="aboutUs"><a
+                            href="https://github.com/Tobi1809/hsrt_web-programming">https://github.com/Tobi1809/hsrt_web-programming</a>
+                    </p>
+                    <h2 class="aboutUs">Kompetenzen</h2>
+                    <p class="aboutUs">Wir sind in der Lage eigene Webanwendungen auf Basistechnologien unter der
+                        Verwendung
+                        von gängigen Programmierplattformen, -werkzeugen und Systemen zu entwickeln.
+                        Clientseitig liegt der Schwerpunkt dabei auf HTML/CSS und JavaScript.
+                        Die serverseitige Programmierung wird mit aktuellen Frameworks, wie PHP, Java oder Node.js
+                        (JavaScript)
+                        durchgeführt.
+                        Zudem sind wir in der Lage Basistechnologien von Webanwendungen und unterschiedliche Ansätze der
+                        Webprogrammierung
+                        unter Einbindung einer MySQL-Datenbank anzuwenden und diese dann auch dementsprechend
+                        abzusichern.
+                    </p>
+                </div>
+            </article>
         </div>
-    </article>
+        
+        <!-- linked images -->
+        <div class="w3-container w3-center" style="width:50%;position: absolute; right:-26%; top: 16.25%;">
+            <div class="w3-card-4 center" style="width:45%;">
+                <a href="https://www.reutlingen-university.de/home/">
+                    <img src="../images/logo1.png" style="width:100%;height:10%;">
+                </a>
+            </div>
+        </div>
 
     <!-- Fußleiste -->
     <footer class="titleBand w3-padding-32">
