@@ -239,7 +239,7 @@ if (isset($_SESSION["login"])) {
                                 <form method="post" action="../backendPhp/processOrder.php" name="payment" class="form-horizontal">
 
                                     <input type="text" name="firstname" id="firstname" value="<?php echo $_SESSION["firstname"]; ?>" hidden>
-                                    <input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname-"]; ?>" hidden>
+                                    <input type="text" name="lastname" id="lastname" value="<?php echo $_SESSION["lastname"]; ?>" hidden>
                                     <input type="text" name="city" id="city" value="<?php echo $shippingAdress; ?>" hidden>
                                     <input type="text" name="zip" id="zip" value="<?php echo $shippingAdress; ?>" hidden>
                                     <input type="text" name="street" id="street" value="<?php echo $shippingAdress; ?>" hidden>
