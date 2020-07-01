@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 29. Jun 2020 um 18:34
+-- Erstellungszeit: 01. Jul 2020 um 19:39
 -- Server-Version: 10.4.11-MariaDB
--- PHP-Version: 7.4.5
+-- PHP-Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,21 +79,6 @@ CREATE TABLE `ws_orders` (
   `shippingStatus` text COLLATE utf8_german2_ci NOT NULL DEFAULT '\'bestellt\'' COMMENT 'mögliche stati (ist das der richttige Plural von Status?):\r\nbestellt\r\nan Liefer-dienst übergeben\r\nunterwegs\r\nangekommen'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
---
--- Daten für Tabelle `ws_orders`
---
-
-INSERT INTO `ws_orders` (`orderID`, `userID`, `orderPrice`, `shippingCosts`, `orderDate`, `shippingType`, `itemIDs`, `shippingAdress`, `shippingStatus`) VALUES
-(5, 7, '19.98', '5.00', 1593421928, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(6, 7, '19.98', '5.00', 1593425250, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(7, 7, '29.98', '5.00', 1593425379, 'Normale Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(8, 7, '29.98', '15.00', 1593425787, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(9, 7, '29.98', '15.00', 1593425912, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(10, 7, '99.99', '15.00', 1593426883, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(11, 7, '99.99', '15.00', 1593426906, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(12, 7, '244.96', '15.00', 1593427285, 'Express Lieferung', ',1,2,3,4,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\''),
-(13, 7, '29.98', '15.00', 1593444276, 'Express Lieferung', ',1,2,', '71088,Holzgerlingen,Aichtalstraße,17,Dustin,Walker', '\'bestellt\'');
-
 -- --------------------------------------------------------
 
 --
@@ -126,17 +111,6 @@ CREATE TABLE `ws_users` (
   `lastLoginTime` bigint(20) UNSIGNED NOT NULL DEFAULT current_timestamp() COMMENT 'Timestamp of last logout',
   `active` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
-
---
--- Daten für Tabelle `ws_users`
---
-
-INSERT INTO `ws_users` (`userID`, `firstName`, `lastName`, `street`, `zip`, `city`, `email`, `password`, `created`, `lastLoginTime`, `active`) VALUES
-(7, 'Dustin', 'Walker', 'Aichtalstraße', '71088', 'Holzgerlingen', 'du-wal@web.de', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 1593015914, 1593440131, 1);
-
---
--- Indizes der exportierten Tabellen
---
 
 --
 -- Indizes für die Tabelle `ws_items`
@@ -193,7 +167,7 @@ ALTER TABLE `ws_ordered_items`
 -- AUTO_INCREMENT für Tabelle `ws_orders`
 --
 ALTER TABLE `ws_orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT für Tabelle `ws_shopping_cart`
@@ -205,11 +179,8 @@ ALTER TABLE `ws_shopping_cart`
 -- AUTO_INCREMENT für Tabelle `ws_users`
 --
 ALTER TABLE `ws_users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
---
--- Constraints der exportierten Tabellen
---
 
 --
 -- Constraints der Tabelle `ws_ordered_items`
