@@ -175,12 +175,12 @@
         </div>
 
         <div class="centerMargin">
-            <a href="home.php" class="centerMargin"><i class="fas fa-arrow-right"></i> Weiter shoppen</a>
+            <a href="home.php" class="centerMargin"> <i class="fas fa-arrow-right"></i> Weiter shoppen</a>
         </div>
     </div>
 
     <!-- Fußleiste -->
-    <footer class="footer w3-padding-24">
+    <footer class="titleBand w3-padding-24">
 
         <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
         <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>

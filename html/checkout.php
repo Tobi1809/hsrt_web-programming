@@ -456,7 +456,3 @@ if (isset($_SESSION["uid"])) {
 </body>
 
 </html>
-
-<?php
-//mysqli_close($dbConnection);
-?>

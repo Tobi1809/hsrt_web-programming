@@ -187,13 +187,17 @@ if (isset($_SESSION["login"])) {
     <!-- Main Content Start -->
     <div class="mainContent">
 
-        <h1>Upps! Failed Order</h1>
+        <div class="w3-container w3-center">
+            <div class="w3-panel w3-border-top w3-border-bottom">
+                <h3>Leider ist etwas bei der Bestellung schiefgelaufen! <i class="far fa-frown"></i></h3>
+            </div>
+        </div>
 
         <!-- Main content ends here -->
     </div>
 
     <!-- Fußleiste -->
-    <footer class="titleBand w3-padding-32">
+    <footer class="footer w3-padding-32">
 
         <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
         <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>

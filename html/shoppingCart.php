@@ -215,10 +215,8 @@ if (isset($_SESSION["login"])) {
 
                 if ($productCount == 0) {
             ?><span class="text-danger align-middle" id="invalidCredentialsErrorMessage">
-                <!-- Error message here -->
-                <i class="fa fa-close animate__animated animate__shakeX"></i> Füllen Sie bitte zuerst Ihren Warenkorb um
-                fortzufahren!
-            </span>
+                Füllen Sie bitte zuerst Ihren Warenkorb umfortzufahren!
+                </span>
 
             <!-- Sicherheitsprüfung - nur eingeloggte User mit Produktanzahl > 0 kommen zum Checkout-->
             <?php
@@ -273,3 +271,9 @@ if (isset($_SESSION["login"])) {
 </body>
 
 </html>
+
+<?php
+
+    mysqli_close($dbConnection);
+
+?>

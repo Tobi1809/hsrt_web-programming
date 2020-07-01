@@ -4,7 +4,7 @@
     session_start();
 
     //Öffnen der Datenbank-Verbindung
-    include ("../backendPhp/dbConnection.php");
+    //include ("../backendPhp/dbConnection.php");
 
     //Die Klasse verfügbar machen
     include_once ("../backendPhp/cart.php");
