@@ -131,7 +131,7 @@ function sendOrderConfirmationEmail($firstname, $lastname, $empfaenger_email, $b
     }
 }
 
-function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_email, $topic, $message)
+function receiveContactForm($firstname, $lastname, $entered_email, $topic, $message)
 {
     $betreff = "Kontaktformular-Anfrage zum Thema: $topic";
     $nachricht = "<h3>User: $firstname $lastname, mit der Email: $entered_email hat per Kontaktformular eine Anfrage gesendet.</h3>";
@@ -165,7 +165,7 @@ function receiveContactForm($firstname, $lastname, $entered_email, $empfaenger_e
         //Recipients
         $mail->setFrom('shop33prozent@gmail.com', 'Shopp33');
         //$mail->setFrom('shop33prozent1@gmail.com', 'Shopp33');
-        $mail->addAddress($empfaenger_email);     // Add a recipient
+        $mail->addAddress('shop33prozent@gmail.com');     // Add a recipient
         //mail->addAddress('shop33prozent1@gmail.com', 'Blub');               // Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
