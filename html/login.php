@@ -61,9 +61,9 @@ if (isset($_SESSION["login"])) {
     <script src="../libraries/StanfordJavascriptCryptoLibrary.js"></script>
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
             //bind event Handler to submission form
-            $("#loginform").submit(function (event) {
+            $("#loginform").submit(function(event) {
                 event.preventDefault(); // prevent submission
 
                 var data = $("#loginform :input").serializeArray();
@@ -75,10 +75,10 @@ if (isset($_SESSION["login"])) {
                 data[1].value = hash; // override plane password 
 
                 $.post("../backendPhp/loginUser.php", {
-                    email: data[0].value,
-                    password: data[1].value,
-                },
-                    function (returnedData) {
+                        email: data[0].value,
+                        password: data[1].value,
+                    },
+                    function(returnedData) {
                         //alert("login happend; data = " + returnedData)
 
                         switch (returnedData) {
@@ -103,11 +103,11 @@ if (isset($_SESSION["login"])) {
     </script>
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
 
-            setInterval(function () {
+            setInterval(function() {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function (numActiveUsers) {
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -124,34 +124,22 @@ if (isset($_SESSION["login"])) {
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
 
-        <div class="w3-bar w3-center">
-            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-            <p class="myTitle">Only the greatest discounts!</p>
-        </div>
-
-        <div class="centerMargin"><a href="home.php">Home</a></div>
-
-        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
-
-        <div></div>
-
-        <div class="centerMargin">
-            <div>
-                <h3 class="myTitle"><?php echo $welcomeString ?></h3>
-            </div>
+        <div class="w3-bar float-left" style="margin: 2%;">
+            <h1 class="myTitle"><a href="home.php">uhr<strong class="myTitle">33</strong></a></h1>
+            <p class="myTitle">Luxus für dich</p>
         </div>
 
         <div></div>
 
-        <div class="centerMargin">
+        <div class="centerMargin float-right">
             <!-- shopping cart -->
-            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+            <a href="shoppingCart.php"><i class=" fa fa-shopping-cart fa-3x"></i>(<?php echo $productCount ?>)</a>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             //show My Orders Button if logged in
-            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas  fa-box-open fa-3x"></i></a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $MyOrdersHtml;
@@ -161,11 +149,11 @@ if (isset($_SESSION["login"])) {
             ?>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user"></i> Login</a>';
-            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user"></i> Logout</a>';
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Logout</a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $logoutHTML;
@@ -196,8 +184,7 @@ if (isset($_SESSION["login"])) {
                         <label class="sr-only" for="email">E-Mail</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                            <input type="email" name="email" class="form-control" id="email"
-                                placeholder="E-Mail-Adresse" required autofocus>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail-Adresse" required autofocus>
                         </div>
                     </div>
                 </div>
@@ -209,8 +196,7 @@ if (isset($_SESSION["login"])) {
                         <label class="sr-only" for="password">Password</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                            <input type="password" name="password" class="form-control" id="password"
-                                placeholder="Passwort" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Passwort" required>
                         </div>
                     </div>
                 </div>
@@ -227,7 +213,7 @@ if (isset($_SESSION["login"])) {
             <div class="row align-middle" style="padding-top: 0.5rem">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <button type="submit" class="btn btn-success align-center""><i class="fa fa-sign-in"></i> einloggen</button>
+                    <button type="submit" class="btn btn-success align-center""><i class=" fa fa-sign-in"></i> einloggen</button>
                     <a class="btn btn-link" href="register.php">Sie haben noch kein Benutzerkonto? Dann hier
                         registrieren!</a>
                 </div>
@@ -236,29 +222,27 @@ if (isset($_SESSION["login"])) {
     </div>
 
     <!-- Fußleiste -->
-    <footer class="footer w3-padding-32">
+    <footer class="titleBand w3-padding-32">
 
-        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
-        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+        <div class="centerMargin align-content-center"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin align-content-center"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
 
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="centerMargin align-content-center"><a href="aboutUs.php"> Über uns</a></div>
 
-        <div class="centerMargin">
-            <?php
-            if (isset($_SESSION["login"])) {
-                if ($_SESSION["login"] == 111) {
-                    $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                    echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+        <div style="margin-left: auto;">
+            <div class="centerMargin align-content-center">
+                <?php
+                if (isset($_SESSION["login"])) {
+                    if ($_SESSION["login"] == 111) {
+                        $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                        echo '<span>zuletzt online: <ins>' . $dateString . '</ins></span>';
+                    }
                 }
-            }
-        ?>
+                ?>
+            </div>
         </div>
 
-        <div></div>
-
-        <div class="centerMargin">
+        <div class="centerMargin align-content-center">
             <span><ins id="numUserOnline"></ins> User online</span>
         </div>
 

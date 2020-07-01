@@ -84,7 +84,7 @@ if (isset($_SESSION["login"])) {
 
 </head>
 
-<body class ="mainColor">
+<body class="mainColor">
 
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
@@ -291,9 +291,6 @@ if (isset($_SESSION["login"])) {
                     ?>
                 </div>
             </div>
-
-
-
 
             <div class="centerMargin align-content-center">
                 <span><ins id="numUserOnline"></ins> User online</span>

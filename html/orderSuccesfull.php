@@ -1,54 +1,51 @@
 <?php
 
-    //Session starten
-    session_start();
+//Session starten
+session_start();
 
-    //Sicherheitsprüfung!
-    if ($_SESSION['login'] != 111)
-    {
-        //Sofort Weiterleitung zum Login - falls User nicht eingeloggt ist und auf diese Seite zugreifen will
-        header("Location: login.php");
+//Sicherheitsprüfung!
+if ($_SESSION['login'] != 111) {
+    //Sofort Weiterleitung zum Login - falls User nicht eingeloggt ist und auf diese Seite zugreifen will
+    header("Location: login.php");
+}
+
+//Die Klasse verfügbar machen
+include_once("../backendPhp/cart.php");
+
+//Eine Neue Instanz der Klasse cart erstellen
+$cart = new Cart();
+
+//Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
+$productCount = $cart->get_cart_count();
+
+
+$welcomeString = "";
+//create welcome string if logged in 
+if (isset($_SESSION["login"])) {
+    if ($_SESSION["login"] == 111) {
+        //we are logged in
+        $welcomeString .= "Hallo, ";
+        $welcomeString .=  $_SESSION["firstname"];
+        $welcomeString .= " ";
+        $welcomeString .=  $_SESSION["lastname"];
     }
-
-    //Die Klasse verfügbar machen
-    include_once("../backendPhp/cart.php");
-
-    //Eine Neue Instanz der Klasse cart erstellen
-    $cart = new Cart();
-
-    //Falls Produkte in der Session bereits im Warenkorb - dann zeige diese an
-    $productCount = $cart->get_cart_count();
-
-
-    $welcomeString = "";
-    //create welcome string if logged in 
-    if (isset($_SESSION["login"])) {
-        if ($_SESSION["login"] == 111) {
-            //we are logged in
-            $welcomeString .= "Hallo, ";
-            $welcomeString .=  $_SESSION["firstname"];
-            $welcomeString .= " ";
-            $welcomeString .=  $_SESSION["lastname"];
-        }
-    }
+}
 
 ?>
 
 <?php
-    //This part is to Process the Order!
+//This part is to Process the Order!
 
-    //Get all the $_POST data from checkout.php
-    if (isset($_POST['button']))
-    {
-        $itemID = $_POST["itemID"];
-        $itemName = $_POST["itemName"];
-        $description = $_POST["description"];
-        $quantity = "1";
-        $price = $_POST["price"];
+//Get all the $_POST data from checkout.php
+if (isset($_POST['button'])) {
+    $itemID = $_POST["itemID"];
+    $itemName = $_POST["itemName"];
+    $description = $_POST["description"];
+    $quantity = "1";
+    $price = $_POST["price"];
 
-        $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
-
-    }
+    $cart->insertProduct($itemID, $itemName, $description, $quantity, $price);
+}
 
 
 ?>
@@ -80,11 +77,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
 
-            setInterval(function () {
+            setInterval(function() {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function (numActiveUsers) {
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -101,47 +98,36 @@
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
 
-        <div class="3-bar w3-center">
-            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-            <p class="myTitle">Only the greatest discounts!</p>
-        </div>
-
-        <div class="centerMargin"><a href="home.php"></i> Home</a></div>
-
-        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
-
-        <div></div>
-
-        <div class="centerMargin">
-            <h3 class="myTitle"><?php echo $welcomeString ?></h3>
+        <div class="w3-bar float-left" style="margin: 2%;">
+            <h1 class="myTitle"><a href="home.php">uhr<strong class="myTitle">33</strong></a></h1>
+            <p class="myTitle">Luxus für dich</p>
         </div>
 
         <div></div>
 
-        <div class="centerMargin">
+        <div class="centerMargin float-right">
             <!-- shopping cart -->
-            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+            <a href="shoppingCart.php"><i class=" fa fa-shopping-cart fa-3x"></i>(<?php echo $productCount ?>)</a>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
-
-                //show My Orders Button if logged in
-                $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
-                if (isset($_SESSION["login"])) {
-                    if ($_SESSION["login"] == 111) {
-                        echo $MyOrdersHtml;
-                    }
+            //show My Orders Button if logged in
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas  fa-box-open fa-3x"></i></a>';
+            if (isset($_SESSION["login"])) {
+                if ($_SESSION["login"] == 111) {
+                    echo $MyOrdersHtml;
                 }
+            }
 
             ?>
         </div>
 
-        <?php
-
+        <div class="centerMargin  float-right">
+            <?php
             // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-            $loginHTML = '<div class="centerMargin"><a href="login.php"><i class="fas fa-user"></i> Login</a></div>';
-            $logoutHTML = '<div class="centerMargin"><a href="logout.php"><i class="fas fa-user"></i> Logout</a></div>';
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Logout</a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $logoutHTML;
@@ -151,11 +137,11 @@
             } else {
                 echo $loginHTML;
             }
-
-        ?>
-
+            ?>
+        </div>
 
     </header>
+
     <!-- Main Content -->
     <div class="mainContent">
 
@@ -168,8 +154,7 @@
         <div class="w3-container">
             <div></div>
             <div class="centerMargin">
-                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat"
-                    class="centerImage">
+                <img src="https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif" alt="Thank you cat" class="centerImage">
             </div>
             <div></div>
             <div class="centerMargin align-middle" style="padding-top:2.5rem;padding-bottom:5rem;">
@@ -183,30 +168,27 @@
     </div>
 
     <!-- Fußleiste -->
-    <footer class="titleBand w3-padding-24">
+    <footer class="titleBand w3-padding-32">
 
-        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
-        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+        <div class="centerMargin align-content-center"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin align-content-center"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
 
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="centerMargin align-content-center"><a href="aboutUs.php"> Über uns</a></div>
 
-        <div class="centerMargin">
-            <?php
-
+        <div style="margin-left: auto;">
+            <div class="centerMargin align-content-center">
+                <?php
                 if (isset($_SESSION["login"])) {
                     if ($_SESSION["login"] == 111) {
                         $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                        echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
+                        echo '<span>zuletzt online: <ins>' . $dateString . '</ins></span>';
                     }
                 }
-            ?>
+                ?>
+            </div>
         </div>
 
-        <div></div>
-
-        <div class="centerMargin">
+        <div class="centerMargin align-content-center">
             <span><ins id="numUserOnline"></ins> User online</span>
         </div>
 

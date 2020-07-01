@@ -40,7 +40,7 @@ if (isset($_SESSION["login"])) {
     <link rel="stylesheet" href="../css/productsGrid.css">
     <link rel="stylesheet" href="../css/formContact.css">
     <link rel="stylesheet" href="../css/myStyle.css">
-    
+
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -55,11 +55,11 @@ if (isset($_SESSION["login"])) {
 
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
 
-            setInterval(function () {
+            setInterval(function() {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function (numActiveUsers) {
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -76,34 +76,22 @@ if (isset($_SESSION["login"])) {
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
 
-        <div class="w3-bar w3-center">
-            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-            <p class="myTitle">Only the greatest discounts!</p>
-        </div>
-
-        <div class="centerMargin"><a href="home.php">Home</a></div>
-
-        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
-
-        <div></div>
-
-        <div class="centerMargin">
-            <div>
-                <h3 class="myTitle"><?php echo $welcomeString ?></h3>
-            </div>
+        <div class="w3-bar float-left" style="margin: 2%;">
+            <h1 class="myTitle"><a href="home.php">uhr<strong class="myTitle">33</strong></a></h1>
+            <p class="myTitle">Luxus für dich</p>
         </div>
 
         <div></div>
 
-        <div class="centerMargin">
+        <div class="centerMargin float-right">
             <!-- shopping cart -->
-            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+            <a href="shoppingCart.php"><i class=" fa fa-shopping-cart fa-3x"></i>(<?php echo $productCount ?>)</a>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             //show My Orders Button if logged in
-            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas  fa-box-open fa-3x"></i></a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $MyOrdersHtml;
@@ -113,11 +101,11 @@ if (isset($_SESSION["login"])) {
             ?>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user"></i> Login</a>';
-            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user"></i> Logout</a>';
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Logout</a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $logoutHTML;
@@ -146,8 +134,7 @@ if (isset($_SESSION["login"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="firstname">Name</label>
                     <div class="col-md-6">
-                        <input id="firstname" name="firstname" type="text" placeholder="Vorname"
-                            class="form-control input-md" required="">
+                        <input id="firstname" name="firstname" type="text" placeholder="Vorname" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -156,8 +143,7 @@ if (isset($_SESSION["login"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="lastname"></label>
                     <div class="col-md-6">
-                        <input id="lastname" name="lastname" type="text" placeholder="Nachname"
-                            class="form-control input-md" required="">
+                        <input id="lastname" name="lastname" type="text" placeholder="Nachname" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -166,8 +152,7 @@ if (isset($_SESSION["login"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email</label>
                     <div class="col-md-6">
-                        <input id="email" name="email" type="text" placeholder="E-Mail-Adresse"
-                            class="form-control input-md" required="">
+                        <input id="email" name="email" type="text" placeholder="E-Mail-Adresse" class="form-control input-md" required="">
 
                     </div>
                 </div>
@@ -190,9 +175,7 @@ if (isset($_SESSION["login"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="message">Nachricht</label>
                     <div class="col-md-4">
-                        <textarea class="form-control" id="message" name="message"
-                            placeholder="Beschreiben Sie hier bitte Ihr Anliegen."
-                            style="width:485px; height:100px;resize: none;"></textarea>
+                        <textarea class="form-control" id="message" name="message" placeholder="Beschreiben Sie hier bitte Ihr Anliegen." style="width:485px; height:100px;resize: none;"></textarea>
                     </div>
                 </div>
 
@@ -200,8 +183,7 @@ if (isset($_SESSION["login"])) {
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="sendContactForm"></label>
                     <div class="col-md-4">
-                        <button type="submit" id="sendContactForm" name="sendContactForm" class="btn btn-success"
-                            style="width:485px; height:50px;">Abschicken</button>
+                        <button type="submit" id="sendContactForm" name="sendContactForm" class="btn btn-success" style="width:485px; height:50px;">Abschicken</button>
                     </div>
                 </div>
 
@@ -210,29 +192,27 @@ if (isset($_SESSION["login"])) {
     </div>
 
     <!-- Fußleiste -->
-    <footer class="footer w3-padding-32">
+    <footer class="titleBand w3-padding-32">
 
-        <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
-        <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+        <div class="centerMargin align-content-center"><a href="impressum.php">Impressum</a></div>
+        <div class="centerMargin align-content-center"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
 
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="centerMargin align-content-center"><a href="aboutUs.php"> Über uns</a></div>
 
-        <div class="centerMargin">
-            <?php
-                        if (isset($_SESSION["login"])) {
-                            if ($_SESSION["login"] == 111) {
-                                $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                                echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
-                            }
-                        }
-                    ?>
+        <div style="margin-left: auto;">
+            <div class="centerMargin align-content-center">
+                <?php
+                if (isset($_SESSION["login"])) {
+                    if ($_SESSION["login"] == 111) {
+                        $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                        echo '<span>zuletzt online: <ins>' . $dateString . '</ins></span>';
+                    }
+                }
+                ?>
+            </div>
         </div>
 
-        <div></div>
-
-        <div class="centerMargin">
+        <div class="centerMargin align-content-center">
             <span><ins id="numUserOnline"></ins> User online</span>
         </div>
 
