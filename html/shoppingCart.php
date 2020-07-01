@@ -197,17 +197,25 @@ if (isset($_SESSION["login"])) {
 
     <form method="post">
         <div class="w3-container">
-            <button type="submit" name="emptyCart" class="btn btn-danger">Warenkorb löschen</button>
+            <button type="submit" name="emptyCart" class="btn btn-danger" style="width:225px;padding:10px;margin:10px;">Warenkorb löschen</button>
             <?php
 
             if (isset($_POST['emptyCart'])) {
-                $cart->reset_cart();
-                echo "<script>location.href = location.href;</script>";
+                if ($productCount > 0) {
+                    $cart->reset_cart();
+                    echo "<script>location.href = location.href;</script>";
+                }
+                if ($productCount == 0) { ?>
+                    <span class="text-danger align-middle" id="invalidCredentialsErrorMessage">
+                        Ihr Warenkorb ist bereits leer!
+                    </span>
+                <?php
+                }
             }
 
             ?>
-
-            <button type="submit" name="checkOut" class="btn btn-success">Weiter zum Checkout</button>
+            <div></div>
+            <button type="submit" name="checkOut" class="btn btn-success" style="width:225px;padding:10px;margin:10px;">Weiter zum Checkout</button>
             <?php
 
             if (isset($_POST['checkOut'])) {
@@ -215,7 +223,7 @@ if (isset($_SESSION["login"])) {
 
                 if ($productCount == 0) {
             ?><span class="text-danger align-middle" id="invalidCredentialsErrorMessage">
-                Füllen Sie bitte zuerst Ihren Warenkorb umfortzufahren!
+                Füllen Sie bitte zuerst Ihren Warenkorb um fortzufahren!
                 </span>
 
             <!-- Sicherheitsprüfung - nur eingeloggte User mit Produktanzahl > 0 kommen zum Checkout-->
