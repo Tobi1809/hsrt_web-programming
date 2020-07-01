@@ -4,6 +4,11 @@ h1.myTitle {
 	color: rgb(26, 24, 24);
 	padding: 0px;
 	margin: 0px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	letter-spacing: -5px;
+	font-style: oblique;
+	font-size: 5em;
+	
 }
 h3.myTitle {
 	color: rgb(26, 24, 24);
@@ -12,8 +17,14 @@ h3.myTitle {
 	font-weight: 500;
 }
 
+.myTitle :hover {
+	background-color: none;
+	color: rgb(194, 71, 54, 80);
+	text-decoration: none;
+}
+
 strong.myTitle {
-	color: rgb(216, 22, 48);
+	color: rgb(194, 71, 54, 80);
 }
 
 p.myTitle {
@@ -31,9 +42,8 @@ p.myTitle {
 }
 
 .titleBand {
-	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
-	justify-items: center;
+	display: flex;
+	flex-direction: row;
 
 	height: fit-content;
 	background-color: rgb(68, 67, 67);
@@ -46,10 +56,8 @@ p.myTitle {
 }
 
 .footer {
-	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 2fr 3fr 2fr 1fr 1fr 1fr;
-	justify-items: center;
-
+	display: flex;
+	flex-direction: row;
 	
 	background-color: rgb(68, 67, 67);
 	background-image: linear-gradient(to right, rgb(93.73, 92.16, 86.27), rgb(226, 217, 217));
@@ -61,7 +69,10 @@ p.myTitle {
 
 .centerMargin {
 	font-size: large;
-	margin: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 1%;
+	margin-left: 1%;
 	background-color: none;
 	color: black;
 	text-decoration: none;
@@ -75,7 +86,7 @@ p.myTitle {
 
 .centerMargin a:hover {
 	background-color: none;
-	color: rgb(216, 22, 48);
+	color: rgb(194, 71, 54, 76);
 	text-decoration: none;
 }
 

@@ -21,8 +21,12 @@ if (isset($_SESSION["login"])) {
         $welcomeString .= "Hallo, ";
         $welcomeString .=  $_SESSION["firstname"];
         $welcomeString .= " ";
-        $welcomeString .=  $_SESSION["lastname"];
+        //$welcomeString .=  $_SESSION["lastname"];
+    } else {
+        $welcomeString = "shoppen Sie ganz einfach drauflos";
     }
+} else {
+    $welcomeString = "shoppen Sie ganz einfach drauflos   ";
 }
 
 ?>
@@ -32,7 +36,7 @@ if (isset($_SESSION["login"])) {
 
 <head>
 
-    <title>Webshop - Home</title>
+    <title>uhr33</title>
     <meta charset="utf-8">
 
     <!-- our Styles -->
@@ -64,11 +68,11 @@ if (isset($_SESSION["login"])) {
     </style>
 
     <script>
-        $(document).ready(function () { // wichtig!
+        $(document).ready(function() { // wichtig!
 
-            setInterval(function () {
+            setInterval(function() {
                 $.get("../backendPhp/getNumActiveUsers.php", {},
-                    function (numActiveUsers) {
+                    function(numActiveUsers) {
                         var activeUserElement = document.getElementById("numUserOnline");
                         activeUserElement.innerText = numActiveUsers;
                         console.log("updated active users");
@@ -85,34 +89,22 @@ if (isset($_SESSION["login"])) {
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
 
-        <div class="w3-bar w3-center">
-            <h1 class="myTitle">shop<strong class="myTitle">33</strong></h1>
-            <p class="myTitle">Only the greatest discounts!</p>
-        </div>
-
-        <div class="centerMargin"><a href="home.php">Home</a></div>
-
-        <div class="centerMargin"><a href="aboutUs.php"> Über uns</a></div>
-
-        <div></div>
-
-        <div class="centerMargin">
-            <div>
-                <h3 class="myTitle"><?php echo $welcomeString ?></h3>
-            </div>
+        <div class="w3-bar float-left" style="margin: 2%;">
+            <h1 class="myTitle"><a href="home.php">uhr<strong class="myTitle">33</strong></a></h1>
+            <p class="myTitle">Luxus für dich</p>
         </div>
 
         <div></div>
 
-        <div class="centerMargin">
+        <div class="centerMargin float-right">
             <!-- shopping cart -->
-            <a href="shoppingCart.php"><i class="fa fa-shopping-cart fa-2x"></i>(<?php echo $productCount ?>)</a>
+            <a href="shoppingCart.php"><i class=" fa fa-shopping-cart fa-3x"></i>(<?php echo $productCount ?>)</a>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             //show My Orders Button if logged in
-            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas fa-box-open"></i> Meine Bestellungen</a>';
+            $MyOrdersHtml = '<a href="myOrders.php" class="centerMargin"><i class="fas  fa-box-open fa-3x"></i></a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $MyOrdersHtml;
@@ -122,11 +114,11 @@ if (isset($_SESSION["login"])) {
             ?>
         </div>
 
-        <div class="centerMargin">
+        <div class="centerMargin  float-right">
             <?php
             // Login, wenn User noch nicht angemeldet ist und Logout, wenn er angemeldet ist
-            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user"></i> Login</a>';
-            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user"></i> Logout</a>';
+            $loginHTML = '<a href="login.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Login</a>';
+            $logoutHTML = '<a href="logout.php" class="centerMargin"><i class="fas fa-user fa-3x"></i> Logout</a>';
             if (isset($_SESSION["login"])) {
                 if ($_SESSION["login"] == 111) {
                     echo $logoutHTML;
@@ -138,7 +130,7 @@ if (isset($_SESSION["login"])) {
             }
             ?>
         </div>
-        
+
     </header>
 
     <!-- Main Content Start -->
@@ -146,7 +138,7 @@ if (isset($_SESSION["login"])) {
 
         <div class="w3-container w3-center">
             <div class="w3-panel w3-border-top w3-border-bottom">
-                <h3>Shoppen Sie ganz einfach direkt drauflos <i class="far fa-thumbs-up"></i></h3>
+                <h3><?php echo $welcomeString ?><i class="far fa-thumbs-up" style="margin-left: 10px;"></i></h3>
             </div>
         </div>
 
@@ -241,32 +233,29 @@ if (isset($_SESSION["login"])) {
                         ///////////////////////////////////////////////////////////////////////////////////////////////////////// Create Product Cards dynamically
                         $name = $row["itemName"];
                 ?>
-                <div class="myProductBox">
-                    <!-- Produkt <?php echo $row["itemID"]; //lol, php für kommentare XD
+                        <section class="myProductBox">
+                            <!-- Produkt <?php echo $row["itemID"]; //lol, php für kommentare XD
                                             ?> -->
-                    <div style="height: 50%;">
-                        <img src="products/productImages/product(<?php echo $row["itemID"]; ?>).jpg"
-                            class="img-rounded img-responsive" alt="">
-                    </div>
-                    <hr>
-                    <p><?php echo $row["itemName"]; ?></p>
-                    <p><?php echo $row["description"]; ?></p>
-                    <p><b><?php echo $row["price"]; ?> €</b> <s><?php echo round($row["price"] / 0.67, 2) ?> €</s> | <i
-                            class="red">33% Rabatt</i></p>
-                    <hr>
+                            <div style="height: 50%;">
+                                <img src="products/productImages/product(<?php echo $row["itemID"]; ?>).jpg" class="imgRoundedCorners img-responsive" alt="">
+                            </div>
+                            <hr>
+                            <h3><?php echo $row["itemName"]; ?></h3>
+                            <p><?php echo $row["description"]; ?></p>
+                            <p><b><?php echo $row["price"]; ?> €</b> <s><?php echo round($row["price"] / 0.67, 2) ?> €</s> | <i class="red">33% Rabatt</i></p>
+                            <hr>
 
-                    <form method="post" action="../backendPhp/addItemToCart.php">
-                        <div>
-                            <input id="itemID" value="<?php echo $row["itemID"]; ?>" name="itemID" hidden>
-                            <input id="itemName" value="<?php echo $row["itemName"]; ?>" name="itemName" hidden>
-                            <input id="description" value="<?php echo $row["description"]; ?>" name="description"
-                                hidden>
-                            <input id="price" value="<?php echo $row["price"]; ?>" name="price" hidden>
-                            <button type="submit" name="button" class="btn btn-success" style="width:360px;">Zum Warenkorb
-                                hinzufügen</button>
-                        </div>
-                    </form>
-                </div>
+                            <form method="post" action="../backendPhp/addItemToCart.php">
+                                <div>
+                                    <input id="itemID" value="<?php echo $row["itemID"]; ?>" name="itemID" hidden>
+                                    <input id="itemName" value="<?php echo $row["itemName"]; ?>" name="itemName" hidden>
+                                    <input id="description" value="<?php echo $row["description"]; ?>" name="description" hidden>
+                                    <input id="price" value="<?php echo $row["price"]; ?>" name="price" hidden>
+                                    <button type="submit" name="button" class="myButton btn"><i class="fas fa-cart-plus fa-2x" style="color: rgb(33, 33, 33);"></i></button>
+
+                                </div>
+                            </form>
+                        </section>
 
                 <?php
                     }
@@ -285,27 +274,28 @@ if (isset($_SESSION["login"])) {
         <!-- Fußleiste -->
         <footer class="titleBand w3-padding-32">
 
-            <div class="centerMargin"><a href="impressum.php">Impressum</a></div>
-            <div class="centerMargin"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
+            <div class="centerMargin align-content-center"><a href="impressum.php">Impressum</a></div>
+            <div class="centerMargin align-content-center"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
 
-            <div></div>
-            <div></div>
-            <div></div>
+            <div class="centerMargin align-content-center"><a href="aboutUs.php"> Über uns</a></div>
 
-            <div class="centerMargin">
-                <?php
-                        if (isset($_SESSION["login"])) {
-                            if ($_SESSION["login"] == 111) {
-                                $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
-                                echo '<span>Sie waren zuletzt am <ins>' . $dateString . '</ins> online</span>';
-                            }
+            <div style="margin-left: auto;">
+                <div class="centerMargin align-content-center">
+                    <?php
+                    if (isset($_SESSION["login"])) {
+                        if ($_SESSION["login"] == 111) {
+                            $dateString = date("d.m.Y", $_SESSION['lastLoginTime']);
+                            echo '<span>zuletzt online: <ins>' . $dateString . '</ins></span>';
                         }
+                    }
                     ?>
+                </div>
             </div>
 
-            <div></div>
 
-            <div class="centerMargin">
+
+
+            <div class="centerMargin align-content-center">
                 <span><ins id="numUserOnline"></ins> User online</span>
             </div>
 
