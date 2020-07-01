@@ -48,17 +48,17 @@ if (isset($_SESSION["login"])) {
     <link rel="stylesheet" href="../css/myStyle.css">
 
 
-    <!-- Für das Karussell-->
+    <!-- Für das Karussell -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-
+    <!-- Karussell Style -->
     <style>
         .carousel-inner>.item>img,
         .carousel-inner>.item>a>img {
-            width: 42%;
+            width: auto;
+            height: auto;
             margin: auto;
         }
     </style>
@@ -167,37 +167,37 @@ if (isset($_SESSION["login"])) {
                 <div class="carousel-inner" role="listbox">
 
                     <div class="item active">
-                        <img src="../images/uhr1.jpeg" alt="Chania" width="460" height="345">
+                        <img src="../images/Uhr1.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
-                            <h3>Uhr 1</h3>
+                            <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/uhr2.jpg" alt="Chania" width="460" height="345">
+                        <img src="../images/Uhr2.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
-                            <h3>Uhr 2</h3>
+                            <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/uhr3.jpg" alt="Chania" width="460" height="345">
+                        <img src="../images/Uhr3.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
-                            <h3>Uhr 3</h3>
+                            <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/uhr4.jpg" alt="Chania" width="460" height="345">
+                        <img src="../images/Uhr4.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
-                            <h3>Uhr 4</h3>
+                            <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/uhr6.jpg" alt="Chania" width="460" height="345">
+                        <img src="../images/Uhr5.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
-                            <h3>Uhr 5</h3>
+                            <h4></h4>
                         </div>
                     </div>
 
