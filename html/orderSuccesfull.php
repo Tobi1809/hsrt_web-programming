@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
     <link rel="stylesheet" href="../css/myStyle">
+    <link rel="stylesheet" href="../css/myStyle.css">
 
     <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +96,7 @@
 
 </head>
 
-<body>
+<body class="mainColor">
 
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">

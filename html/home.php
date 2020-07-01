@@ -45,6 +45,8 @@ if (isset($_SESSION["login"])) {
     <!-- Stylesheet & FontAwesome für Icons -->
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../libraries/FontAwesome/CSS/all.css">
+    <link rel="stylesheet" href="../css/myStyle.css">
+
 
     <!-- Für das Karussell-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -78,7 +80,7 @@ if (isset($_SESSION["login"])) {
 
 </head>
 
-<body>
+<body class ="mainColor">
 
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">

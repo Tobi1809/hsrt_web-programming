@@ -52,6 +52,7 @@ if (isset($_SESSION["login"])) {
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
+    <link rel="stylesheet" href="../css/myStyle.css">
 
     <script>
         $(document).ready(function () { // wichtig!
@@ -70,7 +71,7 @@ if (isset($_SESSION["login"])) {
 
 </head>
 
-<body>
+<body class="mainColor">
 
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">

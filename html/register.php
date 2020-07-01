@@ -38,6 +38,7 @@ if (isset($_SESSION["login"])) {
   <link rel="stylesheet" href="../css/headerAndFooterArea.css">
   <link rel="stylesheet" href="../css/productsGrid.css">
   <link rel="stylesheet" href="../css/formRegister.css">
+  <link rel="stylesheet" href="../css/myStyle.css">
 
   <!-- for animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
@@ -122,7 +123,7 @@ if (isset($_SESSION["login"])) {
 
 </head>
 
-<body>
+<body class="mainColor">
 
   <!-- Kopfbereich -->
   <header class="titleBand w3-padding-8">

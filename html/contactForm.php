@@ -38,7 +38,10 @@ if (isset($_SESSION["login"])) {
     <!-- our Styles -->
     <link rel="stylesheet" href="../css/headerAndFooterArea.css">
     <link rel="stylesheet" href="../css/productsGrid.css">
-    <link rel="stylesheet" href="../css/formContact.css" <!-- Webseite responsive -->
+    <link rel="stylesheet" href="../css/formContact.css">
+    <link rel="stylesheet" href="../css/myStyle.css">
+    
+    <!-- Webseite responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Stylesheet & FontAwesome für Icons -->
@@ -68,7 +71,7 @@ if (isset($_SESSION["login"])) {
 
 </head>
 
-<body>
+<body class="mainColor">
 
     <!-- Kopfbereich -->
     <header class="titleBand w3-padding-8">
