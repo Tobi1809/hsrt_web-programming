@@ -196,7 +196,7 @@ if (isset($_SESSION["login"])) {
 
           <!-- Text input-->
           <div class="form-group">
-            <label class="col-md-8 control-label" for="firstname"><strong>Vor- und Nachname</strong></label>
+            <label class="col-md-8 control-label" for="firstname"><strong>Name</strong></label>
             <div class="col-md-4">
               <input id="firstname" name="firstname" type="text" placeholder="Vorname" class="form-control input-md"
                 required="">
