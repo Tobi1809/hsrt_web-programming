@@ -159,35 +159,35 @@ if (isset($_SESSION["login"])) {
                 <div class="carousel-inner" role="listbox">
 
                     <div class="item active">
-                        <img src="../images/Uhr1.jpg" alt="Chania" width="" height="">
+                        <img src="../images/uhr1.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
                             <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/Uhr2.jpg" alt="Chania" width="" height="">
+                        <img src="../images/uhr2.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
                             <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/Uhr3.jpg" alt="Chania" width="" height="">
+                        <img src="../images/uhr3.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
                             <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/Uhr4.jpg" alt="Chania" width="" height="">
+                        <img src="../images/uhr4.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
                             <h4></h4>
                         </div>
                     </div>
 
                     <div class="item">
-                        <img src="../images/Uhr5.jpg" alt="Chania" width="" height="">
+                        <img src="../images/uhr5.jpg" alt="Chania" width="" height="">
                         <div class="carousel-caption">
                             <h4></h4>
                         </div>
