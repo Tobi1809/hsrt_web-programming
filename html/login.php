@@ -222,7 +222,7 @@ if (isset($_SESSION["login"])) {
     </div>
 
     <!-- Fußleiste -->
-    <footer class="titleBand w3-padding-32">
+    <footer class="titleBand w3-padding-32" style="bottom: 0;position: fixed;width: 100%;">
 
         <div class="centerMargin align-content-center"><a href="impressum.php">Impressum</a></div>
         <div class="centerMargin align-content-center"><a href="contactForm.php"><i class="fas fa-envelope"></i> Kontakt</a></div>
