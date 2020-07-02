@@ -171,10 +171,26 @@ if (isset($_SESSION["login"])) {
         </div>
         
         <!-- linked images -->
-        <div class="w3-container w3-center" style="width:50%;position: absolute; right:-26%; top: 16.25%;">
+        <div class="w3-container w3-center" style="width:50%;position: absolute; right:-26%; top: 26.25%;">
             <div class="w3-card-4 center" style="width:45%;">
                 <a href="https://www.reutlingen-university.de/home/">
                     <img src="../images/logo1.png" style="width:100%;height:10%;">
+                </a>
+            </div>
+        </div>
+
+        <div class="w3-container w3-center" style="width:50%;position: absolute; right:-26%; top: 51.75%;">
+            <div class="w3-card-4 center" style="width:45%;">
+                <a href="https://www.inf.reutlingen-university.de/home/">
+                    <img src="../images/Logo2.jpg" style="width:100%;height:10%;">
+                </a>
+            </div>
+        </div>
+
+        <div class="w3-container w3-center" style="width:50%;position: absolute; right:-26%; top: 77.5%;">
+            <div class="w3-card-4 center" style="width:45%;">
+                <a href="https://www.tec.reutlingen-university.de/startseite/">
+                    <img src="../images/logo3.jfif" style="width:100%;height:10%;">
                 </a>
             </div>
         </div>
